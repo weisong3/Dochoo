@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:layout_height="fill_parent">
+
+    <ScrollView
+        android:id="@+id/settings_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/login_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_centerVertical="true"
+                    android:text="@string/notification"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <ToggleButton
+                    android:id="@+id/notification_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="ToggleButton" />
+            </RelativeLayout>
+             -->
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/your_username"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/default_dochoo_orange" />
+
+                <com.chc.views.TypefacedTextView
+                    android:layout_marginTop="8dp"
+                    app:typeface="opensans.ttf"
+                    android:id="@+id/textView_username"
+                    android:textSize="@dimen/default_text_size_medium"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/role_selected_bg"
+                    android:text="@string/your_username" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="32dp">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_message_life"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/default_dochoo_orange" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/settings_options_wrapper_height"
+                    android:background="@color/role_selected_bg">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="fill_parent">
+
+                        <com.chc.views.TypefacedTextView
+                            app:typeface="opensans.ttf"
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="@dimen/option_item_horizontal_padding"
+                            android:paddingRight="@dimen/option_item_horizontal_padding"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/bg_settings_item"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/settings_message_life_1"
+                            android:id="@+id/option_1_1" />
+                    </FrameLayout>
+
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="fill_parent">
+
+                        <com.chc.views.TypefacedTextView
+                            app:typeface="opensans.ttf"
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="@dimen/option_item_horizontal_padding"
+                            android:paddingRight="@dimen/option_item_horizontal_padding"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/bg_settings_item"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/settings_message_life_2"
+                            android:id="@+id/option_1_2" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="fill_parent">
+
+                        <com.chc.views.TypefacedTextView
+                            app:typeface="opensans.ttf"
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="@dimen/option_item_horizontal_padding"
+                            android:paddingRight="@dimen/option_item_horizontal_padding"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/bg_settings_item"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/settings_message_life_3"
+                            android:id="@+id/option_1_3" />
+                    </FrameLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="32dp">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_reauth_time"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/default_dochoo_orange" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/settings_options_wrapper_height"
+                    android:background="@color/role_selected_bg">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="fill_parent">
+
+                        <com.chc.views.TypefacedTextView
+                            app:typeface="opensans.ttf"
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="@dimen/option_item_horizontal_padding"
+                            android:paddingRight="@dimen/option_item_horizontal_padding"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/bg_settings_item"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/settings_reauth_time_1"
+                            android:id="@+id/option_2_1" />
+                    </FrameLayout>
+
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="fill_parent">
+
+                        <com.chc.views.TypefacedTextView
+                            app:typeface="opensans.ttf"
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="@dimen/option_item_horizontal_padding"
+                            android:paddingRight="@dimen/option_item_horizontal_padding"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/bg_settings_item"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/settings_reauth_time_2"
+                            android:id="@+id/option_2_2" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="fill_parent">
+
+                        <com.chc.views.TypefacedTextView
+                            app:typeface="opensans.ttf"
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="@dimen/option_item_horizontal_padding"
+                            android:paddingRight="@dimen/option_item_horizontal_padding"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/bg_settings_item"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/settings_reauth_time_3"
+                            android:id="@+id/option_2_3" />
+                    </FrameLayout>
+
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="fill_parent">
+
+                        <com.chc.views.TypefacedTextView
+                            app:typeface="opensans.ttf"
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="@dimen/option_item_horizontal_padding"
+                            android:paddingRight="@dimen/option_item_horizontal_padding"
+                            android:layout_height="fill_parent"
+                            android:background="@drawable/bg_settings_item"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/settings_reauth_time_4"
+                            android:id="@+id/option_2_4" />
+                    </FrameLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button_sign_out"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/button_bg_selector"
+        android:text="@string/signout"
+        android:textColor="@color/white" />
+</LinearLayout>

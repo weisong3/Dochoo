@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="8dp" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
+
+        <CalendarView
+            android:id="@+id/calendarview"
+            android:layout_width="@dimen/calenderpicker_width"
+            android:layout_height="@dimen/calenderpicker_height"
+            android:dateTextAppearance="?android:attr/textAppearanceMedium"
+            android:focusedMonthDateColor="@android:color/black"
+            android:showWeekNumber="false"
+            android:unfocusedMonthDateColor="@android:color/darker_gray"
+            android:weekDayTextAppearance="?android:attr/textAppearanceMedium"
+            android:weekSeparatorLineColor="@android:color/darker_gray" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listview_year"
+        android:layout_width="@dimen/calendarpicker_listview_width"
+        android:layout_height="@dimen/calendarpicker_listview_height"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:background="@android:color/darker_gray"
+        android:visibility="gone" >
+    </ListView>
+
+</FrameLayout>

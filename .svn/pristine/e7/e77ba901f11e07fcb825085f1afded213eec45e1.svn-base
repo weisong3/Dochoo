@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_list_profile_wrapper"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_list_activity_item_height"
+    android:background="@drawable/user1"
+    android:orientation="vertical"
+    android:padding="@dimen/item_list_activity_listview_item_padding" >
+
+    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ff0000" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/item_list_profile_not_signin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/click_signin" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_list_profile_signin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical" >
+
+            <com.chc.views.SquareRelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@color/dark_grey"
+                android:padding="1dp" >
+
+                <ImageView
+                    android:id="@+id/entity_list_item_profile_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@color/white"
+                    android:src="@drawable/userprofile_add_photo" />
+            </com.chc.views.SquareRelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_list_padding"
+                android:paddingRight="@dimen/activity_list_padding" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:orientation="horizontal" >
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:id="@+id/entity_list_item_profile_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="username"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:id="@+id/entity_list_item_profile_fullname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="fullname"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,465 @@
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/navi_drawer_bg_color">
+
+    <LinearLayout
+        android:id="@+id/navi_profile"
+        android:background="@drawable/list_selector_bg"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="64dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="8dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="8dp">
+
+        <com.makeramen.RoundedImageView
+            android:layout_gravity="center"
+            android:id="@+id/navi_drawer_icon"
+            android:layout_width="@dimen/navi_drawer_profile_icon_size"
+            android:layout_height="@dimen/navi_drawer_profile_icon_size"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_head"
+            app:corner_radius="@dimen/navi_drawer_profile_icon_size"
+            app:border_width="@dimen/rounded_img_border_width"
+            app:border_color="@color/default_dochoo_orange"
+            app:round_background="true"
+            android:contentDescription="@string/content_desc_profile_icon" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="16dp">
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Full Name"
+                android:id="@+id/navi_drawer_profile_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/default_text_size_large"
+                android:maxEms="16"
+                android:singleLine="true"
+                tools:ignore="HardcodedText" />
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/navi_profile_edit"
+                android:textColor="#B5B9BA"
+                android:textStyle="italic" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_title_height"
+                    android:background="@color/navi_drawer_title_bg_color"
+                    android:paddingLeft="12dp">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/navi_color_title_text"
+                        android:text="@string/navi_title_conversation"
+                        android:layout_gravity="left|center_vertical" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:id="@+id/navi_text_conversation_all"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:background="@drawable/list_selector_bg"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_conversation_all"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:visibility="gone"
+                    android:background="@color/navi_drawer_divider_color"
+                    android:clickable="false" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:visibility="gone"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:background="@drawable/list_selector_bg"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:id="@+id/navi_text_conversation_single"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_conversation_single"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:visibility="gone"
+                    android:layout_height="1px"
+                    android:background="@color/navi_drawer_divider_color"
+                    android:clickable="false" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:visibility="gone"
+                    android:background="@drawable/list_selector_bg"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:id="@+id/navi_text_conversation_group"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_conversation_group"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/navi_drawer_divider_color"
+                    android:visibility="gone"
+                    android:clickable="false" />
+
+                <FrameLayout
+                    android:visibility="gone"
+                    android:layout_width="fill_parent"
+                    android:background="@drawable/list_selector_bg"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:id="@+id/navi_text_conversation_starred"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_conversation_starred"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_title_height"
+                    android:background="@color/navi_drawer_title_bg_color"
+                    android:paddingLeft="12dp">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/navi_color_title_text"
+                        android:text="@string/navi_title_contact"
+                        android:layout_gravity="left|center_vertical" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:id="@+id/navi_text_contact_collab"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:background="@drawable/list_selector_bg"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_contact_collab"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+                <LinearLayout
+                    android:id="@+id/navi_drawer_wrapper_contact_list_2"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/navi_drawer_divider_color"
+                    android:clickable="false" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:background="@drawable/list_selector_bg"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:id="@+id/navi_text_contact_colleague"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_contact_colleague"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/navi_drawer_wrapper_contact_list_3"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="1px"
+                        android:background="@color/navi_drawer_divider_color"
+                        android:clickable="false" />
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/navi_item_height"
+                        android:id="@+id/navi_text_contact_patients"
+                        android:background="@drawable/list_selector_bg"
+                        android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                        android:paddingRight="@dimen/navi_item_padding_horizontal"
+                        android:layout_gravity="center_vertical">
+
+                        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/navi_text_contact_patients"
+                            android:layout_gravity="left|center_vertical"
+                            android:textSize="@dimen/default_text_size_large"
+                            android:textColor="@color/white" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_title_height"
+                    android:id="@+id/frameLayout8"
+                    android:background="@color/navi_drawer_title_bg_color"
+                    android:paddingLeft="12dp">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_title_more"
+                        android:textColor="@color/navi_color_title_text"
+                        android:layout_gravity="left|center_vertical" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:background="@drawable/list_selector_bg"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:id="@+id/navi_text_user_manual"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_user_manual"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/navi_drawer_divider_color"
+                    android:clickable="false" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:background="@drawable/list_selector_bg"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:id="@+id/navi_text_my_qr_code"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_my_qr_code"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/navi_drawer_divider_color"
+                    android:clickable="false" />
+
+                <!--<FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:background="@drawable/list_selector_bg"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:id="@+id/navi_text_invitation"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_invitation"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/navi_drawer_divider_color"
+                    android:clickable="false" />-->
+
+
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:background="@drawable/list_selector_bg"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:id="@+id/navi_text_more_setting"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_more_settings"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/navi_drawer_divider_color"
+                    android:clickable="false" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:id="@+id/navi_text_more_about"
+                    android:background="@drawable/list_selector_bg"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_more_about"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/navi_drawer_divider_color"
+                    android:clickable="false" />
+
+               <!-- <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/navi_item_height"
+                    android:background="@drawable/list_selector_bg"
+                    android:paddingLeft="@dimen/navi_item_padding_horizontal"
+                    android:paddingRight="@dimen/navi_item_padding_horizontal"
+                    android:id="@+id/navi_text_more_advanced"
+                    android:layout_gravity="center_vertical">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/navi_text_more_advanced"
+                        android:layout_gravity="left|center_vertical"
+                        android:textSize="@dimen/default_text_size_large"
+                        android:textColor="@color/white" />
+                </FrameLayout>-->
+
+
+                <FrameLayout
+                    android:visibility="gone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/navi_drawer_divider_color"
+                    android:clickable="false" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

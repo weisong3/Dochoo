@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profile_root_scroll_view"
+    android:background="#F6F6F6">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp">
+
+        <com.makeramen.RoundedImageView
+            android:layout_width="@dimen/profile_icon_radius"
+            android:layout_height="@dimen/profile_icon_radius"
+            android:id="@+id/profile_head"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            app:corner_radius="@dimen/profile_icon_radius"
+            app:border_width="@dimen/rounded_img_border_width"
+            app:border_color="@color/default_dochoo_orange"
+            app:round_background="true"
+            android:src="@drawable/default_head" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/firstname"
+                    android:layout_marginLeft="@dimen/profile_title_margin_left"
+                    android:textSize="@dimen/default_text_size_medium_small"
+                    android:textColor="@color/profile_title_color" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/profile_divider_margin_vertical"
+                    android:layout_marginBottom="@dimen/profile_divider_margin_vertical"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+
+                <EditText
+                    android:id="@+id/profile_edittext_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileEditText"
+                    android:layout_marginLeft="@dimen/profile_content_margin_horizontal"
+                    android:layout_marginRight="@dimen/profile_content_margin_horizontal"
+                    android:textAppearance="?android:textAppearanceSmall" />
+            </LinearLayout>
+
+            <ImageButton
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_btn_edit_firstname"
+                android:src="@drawable/btn_edit_profile_selector"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/profile_edit_btn_padding_left"
+                android:paddingTop="@dimen/profile_edit_btn_padding_vertical"
+                android:paddingBottom="@dimen/profile_edit_btn_padding_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lastname"
+                    android:layout_marginLeft="@dimen/profile_title_margin_left"
+                    android:textSize="@dimen/default_text_size_medium_small"
+                    android:textColor="@color/profile_title_color" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/profile_divider_margin_vertical"
+                    android:layout_marginBottom="@dimen/profile_divider_margin_vertical"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+
+                <EditText
+                    android:id="@+id/profile_edittext_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileEditText"
+                    android:layout_marginLeft="@dimen/profile_content_margin_horizontal"
+                    android:layout_marginRight="@dimen/profile_content_margin_horizontal"
+                    android:textAppearance="?android:textAppearanceSmall" />
+            </LinearLayout>
+
+            <ImageButton
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_btn_edit_lastname"
+                android:src="@drawable/btn_edit_profile_selector"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/profile_edit_btn_padding_left"
+                android:paddingTop="@dimen/profile_edit_btn_padding_vertical"
+                android:paddingBottom="@dimen/profile_edit_btn_padding_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gender"
+                    android:layout_marginLeft="@dimen/profile_title_margin_left"
+                    android:textSize="@dimen/default_text_size_medium_small"
+                    android:textColor="@color/profile_title_color" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/profile_divider_margin_vertical"
+                    android:layout_marginBottom="@dimen/profile_divider_margin_vertical"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+
+                <RadioGroup
+                    android:layout_marginLeft="@dimen/profile_content_margin_horizontal"
+                    android:id="@+id/profile_gender"
+                    android:layout_width="wrap_content"
+                    android:paddingTop="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/profile_male"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="0dp"
+                        android:text="@string/gender_male"
+                        android:textColor="@color/profile_title_color"
+                        android:textSize="@dimen/default_text_size_medium_small" />
+
+                    <RadioButton
+                        android:id="@+id/profile_female"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="0dp"
+                        android:text="@string/gender_female"
+                        android:textColor="@color/profile_title_color"
+                        android:textSize="@dimen/default_text_size_medium_small" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_btn_edit_gender"
+                android:src="@drawable/btn_edit_profile_selector"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/profile_edit_btn_padding_left"
+                android:paddingTop="@dimen/profile_edit_btn_padding_vertical"
+                android:paddingBottom="@dimen/profile_edit_btn_padding_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dob_format"
+                    android:layout_marginLeft="@dimen/profile_title_margin_left"
+                    android:textSize="@dimen/default_text_size_medium_small"
+                    android:textColor="@color/profile_title_color" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/profile_divider_margin_vertical"
+                    android:layout_marginBottom="@dimen/profile_divider_margin_vertical"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+
+                <TextView
+                    android:id="@+id/profile_textview_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/profile_content_margin_horizontal"
+                    android:layout_marginRight="@dimen/profile_content_margin_horizontal"
+                    android:textAppearance="?android:textAppearanceSmall" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:src="@drawable/btn_edit_profile_selector"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/profile_edit_btn_padding_left"
+                android:paddingTop="@dimen/profile_edit_btn_padding_vertical"
+                android:paddingBottom="@dimen/profile_edit_btn_padding_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/degree"
+                    android:layout_marginLeft="@dimen/profile_title_margin_left"
+                    android:textSize="@dimen/default_text_size_medium_small"
+                    android:textColor="@color/profile_title_color" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/profile_divider_margin_vertical"
+                    android:layout_marginBottom="@dimen/profile_divider_margin_vertical"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/profile_spinner_margin_horizontal"
+                    android:id="@+id/profile_spinner_degree"
+                    style="@style/ProfileSpinnerStyle"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/profile_degree_other_wrapper"
+                    android:layout_marginLeft="@dimen/profile_content_margin_horizontal"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/please_specify" />
+
+                    <EditText
+                        style="@style/ProfileEditText"
+                        android:id="@+id/profile_degree_other_specify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageButton
+                android:visibility="invisible"
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_btn_edit_degree"
+                android:src="@drawable/btn_edit_profile_selector"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/profile_edit_btn_padding_left"
+                android:paddingTop="@dimen/profile_edit_btn_padding_vertical"
+                android:paddingBottom="@dimen/profile_edit_btn_padding_vertical" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/specialty"
+                    android:layout_marginLeft="@dimen/profile_title_margin_left"
+                    android:textSize="@dimen/default_text_size_medium_small"
+                    android:textColor="@color/profile_title_color" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/profile_divider_margin_vertical"
+                    android:layout_marginBottom="@dimen/profile_divider_margin_vertical"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+
+                <EditText
+                    android:id="@+id/profile_edittext_specialty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileEditText"
+                    android:layout_marginLeft="@dimen/profile_content_margin_horizontal"
+                    android:layout_marginRight="@dimen/profile_content_margin_horizontal"
+                    android:textAppearance="?android:textAppearanceSmall" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_btn_edit_specialty"
+                android:src="@drawable/btn_edit_profile_selector"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/profile_edit_btn_padding_left"
+                android:paddingTop="@dimen/profile_edit_btn_padding_vertical"
+                android:paddingBottom="@dimen/profile_edit_btn_padding_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/languages"
+                    android:layout_marginLeft="@dimen/profile_title_margin_left"
+                    android:textSize="@dimen/default_text_size_medium_small"
+                    android:textColor="@color/profile_title_color" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/profile_divider_margin_vertical"
+                    android:layout_marginBottom="@dimen/profile_divider_margin_vertical"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+
+                <EditText
+                    android:id="@+id/profile_edittext_languages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileEditText"
+                    android:layout_marginLeft="@dimen/profile_content_margin_horizontal"
+                    android:layout_marginRight="@dimen/profile_content_margin_horizontal"
+                    android:textAppearance="?android:textAppearanceSmall" />
+            </LinearLayout>
+
+            <ImageButton
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_btn_edit_languages"
+                android:src="@drawable/btn_edit_profile_selector"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/profile_edit_btn_padding_left"
+                android:paddingTop="@dimen/profile_edit_btn_padding_vertical"
+                android:paddingBottom="@dimen/profile_edit_btn_padding_vertical" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/accepted_insurance"
+                    android:layout_marginLeft="@dimen/profile_title_margin_left"
+                    android:textSize="@dimen/default_text_size_medium_small"
+                    android:textColor="@color/profile_title_color" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/profile_divider_margin_vertical"
+                    android:layout_marginBottom="@dimen/profile_divider_margin_vertical"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+
+                <EditText
+                    android:id="@+id/profile_edittext_insurance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileEditText"
+                    android:layout_marginLeft="@dimen/profile_content_margin_horizontal"
+                    android:layout_marginRight="@dimen/profile_content_margin_horizontal"
+                    android:textAppearance="?android:textAppearanceSmall" />
+            </LinearLayout>
+
+            <ImageButton
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_btn_edit_insurances"
+                android:src="@drawable/btn_edit_profile_selector"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/profile_edit_btn_padding_left"
+                android:paddingTop="@dimen/profile_edit_btn_padding_vertical"
+                android:paddingBottom="@dimen/profile_edit_btn_padding_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/personal_intro"
+                    android:layout_marginLeft="@dimen/profile_title_margin_left"
+                    android:textSize="@dimen/default_text_size_medium_small"
+                    android:textColor="@color/profile_title_color" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/profile_divider_margin_vertical"
+                    android:layout_marginBottom="@dimen/profile_divider_margin_vertical"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+
+                <EditText
+                    android:id="@+id/profile_edittext_intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/profile_edittext_hint"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:textSize="@dimen/profile_edittext_size"
+                    android:maxLines="10"
+                    android:layout_marginLeft="@dimen/profile_content_margin_horizontal"
+                    android:layout_marginRight="@dimen/profile_content_margin_horizontal"
+                    android:textAppearance="?android:textAppearanceSmall" />
+            </LinearLayout>
+
+            <ImageButton
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_btn_edit_intro"
+                android:src="@drawable/btn_edit_profile_selector"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/profile_edit_btn_padding_left"
+                android:paddingTop="@dimen/profile_edit_btn_padding_vertical"
+                android:paddingBottom="@dimen/profile_edit_btn_padding_vertical" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/affiliation"
+                    android:layout_marginLeft="@dimen/profile_title_margin_left"
+                    android:textSize="@dimen/default_text_size_medium_small"
+                    android:textColor="@color/profile_title_color" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/profile_divider_margin_vertical"
+                    android:layout_marginBottom="@dimen/profile_divider_margin_vertical"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+
+                <EditText
+                    android:id="@+id/profile_edittext_affiliation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileEditText"
+                    android:layout_marginLeft="@dimen/profile_content_margin_horizontal"
+                    android:layout_marginRight="@dimen/profile_content_margin_horizontal"
+                    android:textAppearance="?android:textAppearanceSmall" />
+            </LinearLayout>
+
+            <ImageButton
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_btn_edit_affiliation"
+                android:src="@drawable/btn_edit_profile_selector"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/profile_edit_btn_padding_left"
+                android:paddingTop="@dimen/profile_edit_btn_padding_vertical"
+                android:paddingBottom="@dimen/profile_edit_btn_padding_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/office_hour"
+                    android:layout_marginLeft="@dimen/profile_title_margin_left"
+                    android:textSize="@dimen/default_text_size_medium_small"
+                    android:textColor="@color/profile_title_color" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/profile_divider_margin_vertical"
+                    android:layout_marginBottom="@dimen/profile_divider_margin_vertical"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+
+                <EditText
+                    android:id="@+id/profile_edittext_hours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/ProfileEditText"
+                    android:layout_marginLeft="@dimen/profile_content_margin_horizontal"
+                    android:layout_marginRight="@dimen/profile_content_margin_horizontal"
+                    android:textAppearance="?android:textAppearanceSmall" />
+            </LinearLayout>
+
+            <ImageButton
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_btn_edit_hours"
+                android:src="@drawable/btn_edit_profile_selector"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/profile_edit_btn_padding_left"
+                android:paddingTop="@dimen/profile_edit_btn_padding_vertical"
+                android:paddingBottom="@dimen/profile_edit_btn_padding_vertical" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- User's. On right side -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="32dp"
+    android:paddingRight="8dp" >
+
+    <ProgressBar
+        android:id="@+id/instant_msg_out_progress"
+        style="@android:style/Widget.ProgressBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@+id/instant_msg_container"
+        android:indeterminate="true"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/instant_msg_out_ivfailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/instant_msg_container"
+        android:src="@drawable/im_fail"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/instant_msg_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="4dp"
+        android:layout_marginTop="4dp" >
+
+        <FrameLayout 
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            >
+	        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+	            android:id="@+id/instant_msg_content"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textAppearance="?android:attr/textAppearanceMedium"
+	            android:textColor="@color/grey" />
+	        
+	        <ImageView 
+	            android:id="@+id/instant_msg_voice"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:src="@drawable/voice_flip_anim"
+	            android:layout_marginLeft="96dp"
+	            android:layout_gravity="right|center_vertical"
+	            android:visibility="visible"/>
+	        
+	        <ImageView
+	            android:id="@+id/instant_msg_image"
+	            android:layout_width="@dimen/instant_msg_img_max_width"
+	            android:layout_height="wrap_content"
+	            android:scaleType="fitCenter"
+	            android:adjustViewBounds="true"
+	            android:visibility="gone"
+	            />
+        </FrameLayout>
+        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+            android:id="@+id/instant_msg_out_time"
+            android:layout_below="@+id/instant_msg_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="2dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/dark_grey" />
+        
+    </LinearLayout>
+
+</RelativeLayout>

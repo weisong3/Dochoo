@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="blue1">#99ccff</color>
+    <color name="universal_bg">#ffd9d9d9</color>
+    <color name="text_color">#ff565656</color>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="light_gray">#e9e9e9</color>
+    <color name="grey">#282828</color>
+    <color name="grey2">#eeeeee</color>
+    <color name="transparent">#00000000</color>
+    <color name="dark_grey">#c1c1c1</color>
+    <color name="appointment_listview_item_background">#ffededed</color>
+    <color name="chc_default_blue">#4e719b</color>
+    <color name="chc_default_grey">#e1e1e1</color>
+    <color name="chc_border_grey">#cacaca</color>
+
+    <color name="filter_group_inactive">#8492ff</color>
+    <color name="filter_group_active">#4f63fe</color>
+    <color name="filter_child_inactive">#dce0ff</color>
+    <color name="filter_child_active">#ffbdbcbc</color>
+    <color name="filter_banner">#84b5ff</color>
+    <color name="tab_selected">#8492ff</color>
+    <color name="filter_bg">#ffededed</color>
+    <color name="normal_bg">@color/filter_bg</color>
+    <color name="content_bg">@color/white</color>
+    <color name="actionbar_bg">@color/default_dark_blue_grey</color>
+    <color name="filter_child_text_inactive">@color/actionbar_bg</color>
+    <color name="filter_child_text_active">@color/white</color>
+    <color name="filter_group_text_active">@color/white</color>
+    <color name="filter_group_text_inactive">@color/white</color>
+    <color name="border_line">#a6aeb3</color>
+    <color name="default_bg_color">@color/white</color>
+
+    <!-- Swipey Tabs -->
+    <color name="swipey_tab_bg_color">#ff3b3b3b</color>
+    <color name="swipey_tab_bottomBarColor">#ff96aa39</color>
+
+    <!-- Landing -->
+    <color name="landing_btn_1">#7656d1</color>
+    <color name="landing_btn_2">#5c97d9</color>
+    <color name="landing_btn_3">#64caea</color>
+    <color name="landing_btn_4">#51a2ed</color>
+    <color name="landing_btn_5">#86a0ea</color>
+    <color name="landing_btn_6">#6d81b9</color>
+
+    <!-- Department -->
+    <color name="department_grid_text_inactive">@color/grey</color>
+    <color name="department_grid_text_active">@color/white</color>
+
+    <!-- Doctor -->
+    <color name="doctor_home_bg_1">#efefef</color>
+    <color name="doctor_home_bg_2">#d9d9d9</color>
+    <color name="doctor_home_label">@color/grey</color>
+    <color name="doctor_discount_price_color">#ff0000</color>
+    <color name="doctor_add_fav_text_color">@android:color/black</color>
+
+    <!-- Transaction -->
+    <color name="transaction_top_bg">#dfdddd</color>
+    <color name="transaction_left_bg">#e6eaff</color>
+
+    <!-- payment -->
+    <color name="payment_us_top_bg">#aaaaaa</color>
+
+    <!-- User Profile -->
+    <color name="user_basic_info_notice_color">#de0000</color>
+
+    <!-- Appointment -->
+    <color name="appointment_refer_gridview_color">@color/white</color>
+    <color name="appointment_filelist_gridview_color">@color/appointment_refer_gridview_color</color>
+    <color name="manage_appointment_left_container_bg">#4f63fe</color>
+    <color name="manage_appointment_doctor_info_text_color">@color/white</color>
+    <color name="manage_appointment_requirement_text_color">@color/white</color>
+    <color name="manage_appointment_tab_text_color">@color/white</color>
+
+    <!-- Menu -->
+    <color name="menu_bottom_bar_color">@color/grey</color>
+    <color name="menu_bg_color">@color/grey</color>
+    <color name="menu_item_text_color">@color/white</color>
+    <color name="default_actionbar_color">#4a69a2</color>
+
+    <!-- Old action bar colors
+    <color name="menu_item_actionbar_color1">@color/landing_btn_1</color>
+    <color name="menu_item_actionbar_color2">@color/landing_btn_2</color>
+    <color name="menu_item_actionbar_color3">@color/landing_btn_3</color>
+    <color name="menu_item_actionbar_color4">@color/landing_btn_4</color>
+    <color name="menu_item_actionbar_color5">@color/landing_btn_5</color>
+    <color name="menu_item_actionbar_color6">@color/landing_btn_6</color>
+     -->
+
+    <color name="menu_item_actionbar_color1">@color/default_actionbar_color</color>
+    <color name="menu_item_actionbar_color2">@color/default_actionbar_color</color>
+    <color name="menu_item_actionbar_color3">@color/default_actionbar_color</color>
+    <color name="menu_item_actionbar_color4">@color/default_actionbar_color</color>
+    <color name="menu_item_actionbar_color5">@color/default_actionbar_color</color>
+    <color name="menu_item_actionbar_color6">@color/default_actionbar_color</color>
+
+    <!-- Login -->
+    <color name="color_login_bg">#eaf1c7</color>
+
+    <!-- Instant messaging -->
+    <color name="color_instant_msg_out_bg">#9aeff9</color>
+    <color name="color_instant_msg_in_bg">#e8f99a</color>
+    <color name="color_dark_trans_bg">#cc999999</color>
+
+    <drawable name="transparent_color">#00000000</drawable>
+    <color name="default_dark_blue_grey">#424854</color>
+    <color name="transparentDarkGrey">#99555555</color>
+    <color name="dochoo_default_text_color">@color/default_dark_blue_grey</color>
+    <color name="transparentBlack85p">#d9000000</color>
+    <color name="default_dochoo_orange">#e95014</color>
+    <color name="default_listview_divider">@color/default_dark_blue_grey</color>
+    <color name="instant_msg_bg_orange">#fff5ee</color>
+    <color name="instant_msg_bg">#f9f9f9</color>
+    <color name="instant_msg_seekbar_outbount_bg">#838892</color>
+    <color name="profile_divider_color">#d3d3d3</color>
+    <color name="transparentOrangeBg">#66e95014</color>
+    <color name="navi_drawer_bg_color">#5F6879</color>
+    <color name="navi_drawer_title_bg_color">#424854</color>
+    <color name="navi_drawer_divider_color">#dadada</color>
+    <color name="navi_color_title_text">#d0d0d0</color>
+    <color name="profile_title_color">@color/default_dochoo_orange</color>
+    <color name="role_selected_bg">#E3E3E3</color>
+    <color name="register_text_color">#424854</color>
+    <color name="login_bg">#f6f6f6</color>
+</resources>

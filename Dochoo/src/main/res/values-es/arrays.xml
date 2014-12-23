@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="degree_array">
+    <item>MD</item>
+    <item>DO</item>
+    <item>NP</item>
+    <item>RN</item>
+    <item>LVN</item>
+    <item>PA</item>
+    <item>MA</item>
+    <item>"Case Manager"</item>
+    <item>"Farmacéutico"</item>
+    <item>"Pharmacy Tech"</item>
+    <item>"anestesiólogo"</item>
+    <item>"Estudiante"</item>
+    <item>"Quiropráctico"</item>
+    <item>"Dentista"</item>
+    <item>"Dieta/Nutricionista"</item>
+    <item>"optometrista"</item>
+    <item>"PT/OT/ST"</item>
+    <item>"Reclutador"</item>
+    <item>"Psicólogo"</item>
+    <item>"Trabajador Social"</item>
+    <item>"Cuidador"</item>
+    <item>"Otros"</item>
+    </string-array>
+</resources>

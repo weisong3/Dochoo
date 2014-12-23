@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+     >
+    <Button
+        android:id="@+id/confirm_add_group_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="@string/confirm_groupchat_member"
+        android:background="@color/chc_default_grey"
+        android:layout_margin="5dp"/>
+
+</LinearLayout>

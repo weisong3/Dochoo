@@ -1,0 +1,666 @@
+package com.chc.found;
+
+import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
+
+import com.chc.dochoo.CHCApplication;
+import com.chc.dochoo.contacts.ContactActivity;
+import com.chc.dochoo.contacts.ContactModel;
+import com.chc.dochoo.conversations.AuthenticationStatusUpdate;
+import com.chc.dochoo.conversations.ContactStatusUpdate;
+import com.chc.dochoo.conversations.ConversationModel;
+import com.chc.dochoo.conversations.GroupChatTask;
+import com.chc.dochoo.conversations.GroupChatTaskType;
+import com.chc.dochoo.conversations.GroupConversation;
+import com.chc.dochoo.conversations.GroupConversationActivity;
+import com.chc.dochoo.conversations.GroupMemberModel;
+import com.chc.dochoo.conversations.GroupStatusUpdate;
+import com.chc.dochoo.conversations.InstantMessageModel;
+import com.chc.dochoo.conversations.PrivateConversationActivity;
+import com.chc.dochoo.conversations.StatusUpdateMessage;
+import com.chc.dochoo.splash.SplashActivity;
+import com.chc.dochoo.userlogin.ReauthenticateActivity;
+import com.chc.found.adapters.PatientMainPagerAdapter;
+import com.chc.found.config.Apis;
+import com.chc.found.models.DatabaseHelper;
+import com.chc.found.models.EntityUser;
+import com.chc.dochoo.conversations.FoundMessage;
+import com.chc.dochoo.conversations.FoundModel;
+import com.chc.dochoo.conversations.InstantMessage;
+import com.chc.dochoo.conversations.NewsMessage;
+import com.chc.found.models.GroupMember;
+import com.chc.found.network.NetworkRequestsUtil;
+import com.chc.found.presenters.InstantMessagePresenter;
+import com.chc.found.presenters.NewsPresenter;
+import com.chc.found.presenters.SignOutPresenter;
+import com.chc.found.utils.SharedPreferenceUtil;
+import com.chc.found.views.IInstantMessageView;
+import com.igexin.sdk.PushConsts;
+import com.test.found.R;
+
+import org.apache.commons.lang.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GcmIntentService extends IntentService implements IInstantMessageView {
+    public static final int NOTIFICATION_ID_NEWS = 1;
+    public static final int NOTIFICATION_ID_MSG = 2;
+    private static final String TAG = "GcmIntentService";
+    private NotificationManager mNotificationManager;
+    NotificationCompat.Builder builder;
+    private InstantMessagePresenter instantMessagePresenter;
+    private NewsPresenter newsPresenter;
+    private Context applicationContext;
+
+    public GcmIntentService() {
+        super("FoundGcmIntentService");
+        newsPresenter = new NewsPresenter(this);
+    }
+
+    @Override
+    protected void onHandleIntent(final Intent intent) {
+
+        if (instantMessagePresenter == null)
+            instantMessagePresenter = new InstantMessagePresenter(this, getCHCApplication().getHelper());
+
+
+        final Bundle extras = intent.getExtras();
+        if (extras == null) return;
+        applicationContext = getApplicationContext();
+        switch (extras.getInt(PushConsts.CMD_ACTION)) {
+            case PushConsts.GET_MSG_DATA:
+                new AsyncTask<Void, Void, Void>() {
+
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        if (!extras.isEmpty()) {  // has effect of unparcelling Bundle
+                            //if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
+                            // do work about the message here
+                            Bundle newBundle = bundleTranslate(extras);
+                            if(newBundle != null)
+                                processMessage(newBundle);
+                            //}
+                        }
+
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        // Release the wake lock provided by the WakefulBroadcastReceiver.
+                        GcmBroadcastReceiver.completeWakefulIntent(intent);
+                    }
+
+                }.execute();
+                break;
+            case PushConsts.GET_CLIENTID:
+                // 获取ClientID(CID)
+                // 第三方应用需要将CID上传到第三方服务器，并且将当前用户帐号和CID进行关联，以便日后通过用户帐号查找CID进行消息推送
+                String cid = extras.getString("clientid");
+                Log.e(TAG, "client id is " + cid);
+                SharedPreferenceUtil.storeRegistrationId(applicationContext, cid);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private Bundle bundleTranslate(Bundle bundle){
+        Bundle result = new Bundle();
+        try{
+            JSONObject data = new JSONObject(new String(bundle.getByteArray("payload"))).getJSONObject("data");
+            result.putString("type",data.optString("type",""));
+            result.putString("content",data.optString("content",""));
+            String imagelinks = data.optString("imagelink","");
+            if(StringUtils.isNotBlank(imagelinks)){
+                JSONArray imageJsons = data.getJSONArray("imagelink");
+                if(imageJsons == null || imageJsons.length() ==0){
+                    result.putStringArray("imagelink",new String[0]);
+                }
+                else{
+                    String[] imagelink = new String[imageJsons.length()];
+                    for(int i = 0; i< imageJsons.length(); i++){
+                        imagelink[i] = imageJsons.get(i).toString();
+                    }
+                    result.putStringArray("imagelink",imagelink);
+                }
+            }
+
+            result.putString("id",data.optString("id",""));
+            result.putString("senderid",data.optString("senderid",""));
+            //version thing skipped here
+            result.putString("date",data.optString("date",""));
+            result.putString("title",data.optString("title",""));
+            result.putString("groupId",data.optString("groupId",""));
+            result.putString("messageType",data.optString("messageType",""));
+            result.putString("sendername",data.optString("sendername",""));
+            result.putString("receiverid",data.optString("receiverid",""));
+            result.putString("status",data.optString("status",""));
+            result.putString("cus",data.optString("cus",""));
+            result.putString("update",data.optString("update",""));
+            result.putString("groupMembers",data.optString("groupMembers",""));
+            result.putString("userid",data.optString("userid",""));
+        }catch (Exception e){
+            Log.e(TAG,"bundle translation exception: " + e.getMessage());
+            result = null;
+        }
+
+        return result;
+
+    }
+    /**
+     * Processes the push bundle. must be called in worker thread
+     *
+     * @param bundle
+     */
+    private void processMessage(Bundle bundle) {
+        if (!CHCApplication.getInstance(this).isSignedIn()) return;
+        // check message type
+
+        try {
+            FoundMessage fm = new FoundModel().parseBundle(bundle);
+
+            if( fm instanceof GroupStatusUpdate){
+                processGroupStatusUpdate((GroupStatusUpdate) fm);
+            } else if (fm instanceof InstantMessage) {
+                processInstantMessage((InstantMessage) fm);
+            } else if (fm instanceof NewsMessage) {
+                processNewsMessage((NewsMessage) fm);
+            } else if (fm instanceof StatusUpdateMessage) {
+                processStatusUpdate((StatusUpdateMessage) fm);
+            } else if (fm instanceof ContactStatusUpdate) {
+                processContactStausUpdate((ContactStatusUpdate) fm);// else should expect an exception to catch
+            } else if( fm instanceof AuthenticationStatusUpdate){
+                processServerAuthentication();
+            }
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+            return;
+        }
+    }
+    private void processServerAuthentication(){
+        mNotificationManager = (NotificationManager)
+                this.getSystemService(Context.NOTIFICATION_SERVICE);
+        String notificationStr = getString(R.string.account_logged_in_on_other_device);
+        Class<?> cls;
+        Intent intent;
+
+        cls = SplashActivity.class;
+        intent = new Intent(this, cls);
+        FoundSettings.getInstance(this).setLastLoginTime(this,Long.MIN_VALUE);
+        if (Apis.DEBUG) Log.w(TAG, "Intent class: " + cls.getSimpleName());
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                intent, Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle(getString(R.string.found_app_name))
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(notificationStr))
+                        .setContentText(notificationStr)
+                        .setAutoCancel(true)
+                        .setPriority(Notification.PRIORITY_MAX)
+                        .setLights(0xff00ff00, 1000, 1000);
+
+        mBuilder.setContentIntent(contentIntent);
+        if (Apis.DEBUG) Log.w(TAG, "PendingIntent set for the notification builder");
+
+        Notification notification = mBuilder.build();
+        notification.defaults |= Notification.DEFAULT_SOUND;
+        notification.defaults |= Notification.DEFAULT_VIBRATE;
+
+        mNotificationManager.notify(NOTIFICATION_ID_MSG, notification);
+        SignOutPresenter mSignOutPresenter = new SignOutPresenter(this);
+        mSignOutPresenter.signOut();
+        Intent intent2 = new Intent(this, SplashActivity.class);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent2);
+    }
+    private void processContactStausUpdate(ContactStatusUpdate message){
+        if((short)-1 == message.getContactUpdateType()){
+            //deleted by other, remove contact and message
+            String entityId = message.getEntityId();
+            ConversationModel.deletePrivateConversationIfEmpty(getCHCApplication().getHelper(),entityId);
+            List<InstantMessage> msgsToDelete = InstantMessageModel.getInstantMessagesByEntityId(
+                    getCHCApplication().getHelper(), entityId);
+            InstantMessageModel.deleteMultimediaContentFromMsg(msgsToDelete);
+            InstantMessageModel.deleteMessages(getCHCApplication().getHelper(), msgsToDelete);
+            ContactModel.deleteContact(getCHCApplication().getHelper(),entityId);
+        }
+        else if((short)1 == message.getContactUpdateType()){
+            sendAddedByOthersNotification(message);
+        }
+        else{
+            Log.e(TAG,"Contact update status: " + message.getContactUpdateType() + " is not assigned.");
+        }
+
+    }
+
+    private void processStatusUpdate(StatusUpdateMessage updateMessage) {
+        InstantMessage im = writeStatusUpdate(updateMessage);
+        if (im != null)
+            broadcastInstantMessage(im);
+    }
+
+    private InstantMessage writeStatusUpdate(StatusUpdateMessage updateMessage) {
+        DatabaseHelper helper = getCHCApplication().getHelper();
+        return InstantMessageModel.updateStatusById(helper, updateMessage.getId(), updateMessage.getStatusUpdate());
+    }
+
+    private void processNewsMessage(NewsMessage newsMessage) {
+
+        // write to db
+        newsPresenter.writeData(newsMessage);
+
+        // only broadcast message if the user is not professional (ie. patient)
+        if (!FoundSettings.getInstance(this).isProfessional()) {
+            broadcastNewsMessage(newsMessage);
+
+            // if needs notification, send
+            // check notification setting first
+            String notificationStr = getString(R.string.you_have_news);
+            sendNewsNotification(notificationStr, newsMessage.getEntityId(), false);
+        }
+
+    }
+
+    private void broadcastNewsMessage(NewsMessage newsMessage) {
+        if (newsMessage == null) return;
+        Intent broadcastIntent = new Intent(applicationContext.getString(R.string.news_action));
+        broadcastIntent.putExtra(applicationContext.getString(R.string.broadcast_intent_extra_tag_news), newsMessage.getId());
+        broadcastIntent.putExtra(applicationContext.getString(R.string.broadcast_intent_extra_tag_news_entity), newsMessage.getEntityId());
+        sendBroadcast(broadcastIntent);
+    }
+
+    private void processGroupStatusUpdate(final GroupStatusUpdate gsu){
+        //Group Topic Changed, Got added to a new group
+        CHCApplication chcApplication = getCHCApplication();
+        if(chcApplication != null){
+            DatabaseHelper dbhelper = chcApplication.getHelper();
+            String curUserId = chcApplication.getUserId();
+            String curPushId = chcApplication.getRegId();
+            Long noticeTime;
+            InstantMessage notice = null;
+            if(gsu.getGroupTaskType() == GroupChatTaskType.TopicChanged && StringUtils.isNotBlank(gsu.getGroupId())){
+                GroupConversation groupChat = ConversationModel.getGroupConversationByGroupId(dbhelper, gsu.getGroupId());
+                GroupMember operator = GroupMemberModel.GetGroupMemberByGroupIdAndId(dbhelper, gsu.getGroupId(), gsu.getOperatorId());
+                if(null != groupChat && StringUtils.isNotBlank(gsu.getNewTitle()) && operator != null){
+                    groupChat.setTopic(gsu.getNewTitle());
+                    ConversationModel.updateGroupConversation(dbhelper, groupChat);
+                    noticeTime = GroupChatTask.getFirstNoticeTime(gsu.getNoticeTimeList());
+                    notice =
+                            InstantMessage.newNoticeMsg(curUserId,
+                                    gsu.getGroupId(),
+                                    operator.getFullName() + " " + applicationContext.getString(R.string.group_change_title_notice) + " " +gsu.getNewTitle(),
+                                    noticeTime);
+                    InstantMessageModel.createInstantMessage(dbhelper, notice);
+                }
+            }
+            else if(gsu.getGroupTaskType() == GroupChatTaskType.NewRemove && StringUtils.isNotBlank(gsu.getGroupId())){
+                GroupConversation groupChat = ConversationModel.getGroupConversationByGroupId(dbhelper, gsu.getGroupId());
+                if(StringUtils.isNotBlank(gsu.getTargetMemberId()) && null != groupChat){
+                    GroupMember member = GroupMemberModel.GetGroupMemberByGroupIdAndId(dbhelper, gsu.getGroupId(), gsu.getTargetMemberId());
+                    if(null != member){
+                        noticeTime = GroupChatTask.getFirstNoticeTime(gsu.getNoticeTimeList());
+                        notice = InstantMessage.newNoticeMsg(curUserId, gsu.getGroupId(), member.getFullName() + " " + applicationContext.getString(R.string.group_remove_member_notice),noticeTime);
+                        InstantMessageModel.createInstantMessage(dbhelper, notice);
+                        GroupMemberModel.deleteGroupMemberById(dbhelper, member.getId());
+                        if(StringUtils.equals(chcApplication.getUserId(), member.getUserId())){
+                            groupChat.setStillInGroup(false);
+                            ConversationModel.updateGroupConversation(dbhelper, groupChat);
+                        }
+                        if(StringUtils.equals(member.getUserId(),groupChat.getLeader())){
+                            List<GroupMember> memberList = GroupMemberModel.GetMemberByGroupId(dbhelper,gsu.getGroupId());
+                            if( null != memberList && memberList.size() > 1){
+                                groupChat.setLeader(memberList.get(0).getUserId());
+                                ConversationModel.updateGroupConversation(dbhelper, groupChat);
+                            }
+                        }
+                    }
+                }
+            }
+            else if(gsu.getGroupTaskType() == GroupChatTaskType.NewAdd && StringUtils.isNotBlank(gsu.getGroupId())){
+                String targetGroupId = GroupChatTask.updateGroupInformation(dbhelper, curUserId, curPushId, gsu.getGroupId());
+                if(StringUtils.isBlank(targetGroupId))  return;
+                try{
+                    JSONArray array = new JSONArray(gsu.getTargetMemberId());
+                    List<String> memberIds = new ArrayList<>();
+                    for(int i=0;i<array.length();i++)   memberIds.add(array.optString(i));
+
+                    GroupMember operator = GroupMemberModel.GetGroupMemberByGroupIdAndId(dbhelper, gsu.getGroupId(), gsu.getOperatorId());
+                    //create group notice
+                    if(StringUtils.equals(operator.getUserId(), chcApplication.getUserId()))  {
+                        Log.i(TAG,"Create Group Notice detected, skipped");
+                        return;
+                    }
+                    List<GroupMember> members = GroupMemberModel.GetGroupMembersInGroup(dbhelper, gsu.getGroupId(), memberIds);
+
+                    if( null != members && members.size()>0 && operator != null){
+                        noticeTime = GroupChatTask.getFirstNoticeTime(gsu.getNoticeTimeList());
+                        String newMemberName = "  ";
+                        for(GroupMember member:members)
+                            newMemberName += member.getFullName() + " , ";
+                        newMemberName = newMemberName.substring(0,newMemberName.length()-2);
+                        String noticeContent = operator.getFullName() + " " + applicationContext.getString(R.string.group_add_member_notice_pre) + newMemberName + " " + applicationContext.getString(R.string.group_add_member_notice_suf);
+                        if(memberIds.contains(operator.getUserId())){
+                            //create group notcie(from others, different from above)
+                            noticeContent= operator.getFullName() + " " + applicationContext.getString(R.string.group_created_notice) + newMemberName;
+                        }
+                        notice =
+                                InstantMessage.newNoticeMsg(curUserId,
+                                        gsu.getGroupId(),
+                                        noticeContent
+                                        ,noticeTime);
+                        InstantMessageModel.createInstantMessage(dbhelper, notice);
+                        GroupConversation groupChat = ConversationModel.getGroupConversationByGroupId(dbhelper, gsu.getGroupId());
+                        groupChat.setStillInGroup(true);
+                        ConversationModel.updateGroupConversation(dbhelper, groupChat);
+                    }
+                }catch (Exception e){
+                    Log.e(TAG,"New Add notice failed: " + e.getMessage());
+                }
+            }
+            else{
+                //should never be called
+                Log.e(TAG,"unknown group process task");
+                new GroupChatTask(this, dbhelper, gsu.getGroupTaskType(), curUserId, curPushId, gsu.getGroupId(), false).execute();
+            }
+            if(notice != null)  broadcastGroupNotice(notice, gsu);
+
+        }
+
+    }
+
+    /**
+     * Processes instant message. Must be called in worker thread
+     *
+     * @param im
+     */
+    private void processInstantMessage(final InstantMessage im) {
+
+        // check notification status first
+        boolean showNotification;
+        if(StringUtils.isBlank(im.getGroupId())){
+            instantMessagePresenter.onNewMsgReceived(im);
+            showNotification = getCHCApplication().isShowNotification(im.getEntityId());
+        }
+
+        else{
+            instantMessagePresenter.onNewGroupMsgReceived(im);
+            showNotification = getCHCApplication().isShowNotification(im.getGroupId());
+        }
+        // now the presenter has taken care of processing the message
+        // if the message contains image or file
+        // it is already downloaded
+        // whether it succeeded or not
+        // we now notify the user of the message
+
+        // send broadcast
+        broadcastInstantMessage(im);
+
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        // Vibrate for 500 milliseconds
+        if (v.hasVibrator()) {
+            v.vibrate(500);
+        }
+
+
+        if (Apis.DEBUG) Log.w(TAG, "Showing notification: " + showNotification);
+
+        if (showNotification) {
+            sendInstantMsgNotification(im);
+        }
+
+    }
+
+    private void broadcastGroupNotice(InstantMessage im, GroupStatusUpdate gsu){
+        if (im == null) return;
+        Intent broadcastIntent = new Intent(applicationContext.getString(R.string.im_action));
+        broadcastIntent.putExtra(applicationContext.getString(R.string.broadcast_intent_extra_tag_im), im.getId());
+        broadcastIntent.putExtra(applicationContext.getString(R.string.broadcast_intent_extra_tag_im_entity), gsu.getTargetMemberId());
+        broadcastIntent.putExtra(applicationContext.getString(R.string.broadcast_intent_extra_tag_im_group), StringUtils.isBlank(im.getGroupId())?"":im.getGroupId());
+        broadcastIntent.putExtra(applicationContext.getString(R.string.broadcast_intent_extra_tag_im_new), false);
+        broadcastIntent.putExtra(applicationContext.getString(R.string.broadcast_intent_extra_tag_group_noticetype), gsu.getGroupTaskType().ordinal());
+        broadcastIntent.putExtra(applicationContext.getString(R.string.broadcast_intent_extra_tag_group_newtitle), gsu.getNewTitle());
+
+        sendBroadcast(broadcastIntent);
+
+        if (Apis.DEBUG) Log.w(TAG, "group notice broadcast sent");
+    }
+    private void broadcastInstantMessage(InstantMessage im) {
+        if (im == null) return;
+        Intent broadcastIntent = new Intent(applicationContext.getString(R.string.im_action));
+        broadcastIntent.putExtra(applicationContext.getString(R.string.broadcast_intent_extra_tag_im), im.getId());
+        broadcastIntent.putExtra(applicationContext.getString(R.string.broadcast_intent_extra_tag_im_entity), im.getEntityId());
+        broadcastIntent.putExtra(applicationContext.getString(R.string.broadcast_intent_extra_tag_im_group), StringUtils.isBlank(im.getGroupId())?"":im.getGroupId());
+        sendBroadcast(broadcastIntent);
+
+        if (Apis.DEBUG) Log.w(TAG, "broadcast sent");
+    }
+
+    private boolean isPushIdEmpty(Context context) {
+        return StringUtils.isBlank(SharedPreferenceUtil.getRegistrationId(context));
+    }
+
+    private void sendInstantMsgNotification(InstantMessage im) {
+        String notificationStr;
+        if(StringUtils.isNotBlank(im.getGroupId())){
+            notificationStr = getString(R.string.you_have_new_group_message);
+        }
+        else{
+            String entityId = im.getEntityId();
+            EntityUser entityUser = instantMessagePresenter.getEntityById(entityId);
+
+            if (entityUser != null) {
+                notificationStr = entityUser.getFullname() + getString(R.string.you_have_msgs_from);
+            } else {
+                notificationStr = getString(R.string.you_have_msgs);
+            }
+        }
+
+
+        mNotificationManager = (NotificationManager)
+                this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        PendingIntent contentIntent;
+        Class<?> cls;
+        Intent intent;
+        if (isPushIdEmpty(this)) {
+            cls = SplashActivity.class;
+            intent = new Intent(this, cls);
+        } else if (FoundSettings.isReauthenticationNeeded(this)) {
+            cls = ReauthenticateActivity.class;
+            intent = new Intent(this, cls);
+        } else {
+            Bundle args = new Bundle();
+            if(StringUtils.isNotBlank(im.getGroupId())){
+                cls = GroupConversationActivity.class;
+                args.putString(GroupConversationActivity.KEY_GROUP_ID,im.getGroupId());
+            }
+            else{
+                cls = PrivateConversationActivity.class;
+                args.putString(PrivateConversationActivity.KEY_ENTITY_ID, im.getEntityId());
+            }
+
+            intent = new Intent(this, cls);
+            intent.putExtras(args);
+        }
+        contentIntent = PendingIntent.getActivity(this, 0,
+                intent, Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        if (Apis.DEBUG) Log.w(TAG, "Intent class: " + cls.getSimpleName());
+
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle(getString(R.string.found_app_name))
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(notificationStr))
+                        .setContentText(notificationStr)
+                        .setAutoCancel(true)
+                        .setPriority(Notification.PRIORITY_MAX)
+                        .setLights(0xff00ff00, 1000, 1000);
+
+        mBuilder.setContentIntent(contentIntent);
+        if (Apis.DEBUG) Log.w(TAG, "PendingIntent set for the notification builder");
+
+        Notification notification = mBuilder.build();
+        notification.defaults |= Notification.DEFAULT_SOUND;
+        notification.defaults |= Notification.DEFAULT_VIBRATE;
+
+        mNotificationManager.notify(NOTIFICATION_ID_MSG, notification);
+    }
+
+    // Put the message into a notification and post it.
+    // This is just one simple example of what you might choose to do with
+    // a GCM message.
+    private void sendNewsNotification(String msg, String entityId, boolean makeSound) {
+        mNotificationManager = (NotificationManager)
+                this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Class<?> cls;
+        Intent intent;
+        if (FoundSettings.isReauthenticationNeeded(this)) {
+            cls = ReauthenticateActivity.class;
+            intent = new Intent(this, cls);
+        } else {
+            cls = MainActivity.class;
+            Bundle args = new Bundle();
+            args.putString(PatientMainPagerAdapter.KEY_ENTITY_ID, entityId);
+            args.putSerializable(FoundConstants.BUNDLE_KEY_ENTRANCE, FragmentTabInfo.FragmentTabClassInfo.NEWSPAGE);
+            intent = new Intent(this, cls);
+            intent.putExtras(args);
+        }
+
+        if (Apis.DEBUG) Log.w(TAG, "Intent class: " + cls.getSimpleName());
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                intent, Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle(getString(R.string.found_app_name))
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(msg))
+                        .setContentText(msg)
+                        .setAutoCancel(true)
+                        .setPriority(Notification.PRIORITY_MAX)
+                        .setLights(0xff00ff00, 1000, 1000);
+
+        mBuilder.setContentIntent(contentIntent);
+        if (Apis.DEBUG) Log.w(TAG, "PendingIntent set for the notification builder");
+
+        Notification notification = mBuilder.build();
+        if (makeSound) {
+            notification.defaults |= Notification.DEFAULT_SOUND;
+            notification.defaults |= Notification.DEFAULT_VIBRATE;
+//      	notification.defaults |= Notification.DEFAULT_LIGHTS;
+        }
+
+        mNotificationManager.notify(NOTIFICATION_ID_MSG, notification);
+    }
+
+    private void sendAddedByOthersNotification(ContactStatusUpdate csuMessage) {
+        String notificationStr;
+        if (StringUtils.isNotBlank(csuMessage.getContent())) {
+            notificationStr = csuMessage.getContent() + " " + getString(R.string.contact_added_by_others);
+        } else {
+            notificationStr = getString(R.string.contact_added_by_anonym);
+        }
+
+        mNotificationManager = (NotificationManager)
+                this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        PendingIntent contentIntent;
+        Class<?> cls;
+        Intent intent;
+        if (isPushIdEmpty(this)) {
+            cls = SplashActivity.class;
+            intent = new Intent(this, cls);
+        } else if (FoundSettings.isReauthenticationNeeded(this)) {
+            cls = ReauthenticateActivity.class;
+            intent = new Intent(this, cls);
+        } else {
+            cls = ContactActivity.class;
+            //Bundle args = new Bundle();
+            // args.putString(PrivateConversationActivity.KEY_ENTITY_ID, csuMessage.getEntityId());
+            intent = new Intent(this, cls);
+            //   intent.putExtras(args);
+        }
+        contentIntent = PendingIntent.getActivity(this, 0,
+                intent, Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        if (Apis.DEBUG) Log.w(TAG, "Intent class: " + cls.getSimpleName());
+
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle(getString(R.string.found_app_name))
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(notificationStr))
+                        .setContentText(notificationStr)
+                        .setAutoCancel(true)
+                        .setPriority(Notification.PRIORITY_MAX)
+                        .setLights(0xff00ff00, 1000, 1000);
+
+        mBuilder.setContentIntent(contentIntent);
+        if (Apis.DEBUG) Log.w(TAG, "PendingIntent set for the notification builder");
+
+        Notification notification = mBuilder.build();
+        notification.defaults |= Notification.DEFAULT_SOUND;
+        notification.defaults |= Notification.DEFAULT_VIBRATE;
+
+        mNotificationManager.notify(NOTIFICATION_ID_MSG, notification);
+    }
+
+    @Override
+    public CHCApplication getCHCApplication() {
+        return CHCApplication.getInstance(this);
+    }
+
+    @Override
+    public void onMessageLoaded(List<? extends FoundMessage> msgList) {
+        // ignore
+    }
+
+    @Override
+    public void onAddNewPostMessage(InstantMessage im) {
+        // ignore
+    }
+
+    @Override
+    public void onUnsupportedFormatOrSize() {
+    }
+
+    @Override
+    public void onDownloadFailed() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onDownloadFinished(InstantMessage im) {
+        // TODO Auto-generated method stub
+
+    }
+
+}

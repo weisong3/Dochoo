@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="foundAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBarTheme</item>
+    </style>
+
+    <style name="MyActionBarTheme" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/actionbar_bg</item>
+    </style>
+
+    <style name="BaseSmallButton" parent="android:Widget.Holo.Button.Small" />
+
+    <style name="userprofile_textStyle" parent="android:TextAppearance.Holo.Medium">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="userprofileEdittextStyle" parent="android:TextAppearance.Holo.Widget.EditText">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="instant_msg_voice_seekbar_inbound" parent="android:Widget.Holo.SeekBar">
+        <item name="android:progressDrawable">@drawable/scrubber_progress_horizontal_orange</item>
+        <item name="android:indeterminateDrawable">@drawable/scrubber_progress_horizontal_orange</item>
+        <item name="android:thumb">@drawable/btn_thumb_seekbar_orange</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:thumbOffset">8dip</item>
+    </style>
+
+
+    <style name="instant_msg_voice_seekbar_outbound" parent="android:Widget.Holo.SeekBar">
+        <item name="android:progressDrawable">@drawable/scrubber_progress_horizontal_grey</item>
+        <item name="android:indeterminateDrawable">@drawable/scrubber_progress_horizontal_grey</item>
+        <item name="android:thumb">@drawable/btn_thumb_seekbar_grey</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:thumbOffset">8dip</item>
+    </style>
+
+    <style name="ProfileEditText" parent="android:Widget.Holo.Light.EditText">
+        <item name="android:hint">@string/profile_edittext_hint</item>
+        <item name="android:background">@null</item>
+        <item name="android:inputType">text</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/profile_edittext_size</item>
+    </style>
+</resources>

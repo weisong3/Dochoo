@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/center_inner_margin"
+    android:paddingBottom="@dimen/center_inner_margin"
+    android:paddingLeft="@dimen/center_standard_margin"
+    android:paddingRight="@dimen/center_standard_margin"
+    android:gravity="center_vertical" >
+
+    <com.chc.found.views.ResizableImageView 
+        android:id="@+id/doc_image"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/center_standard_margin"
+        android:src="@drawable/doc_default"/>
+    
+    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+        android:id="@+id/doc_name"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"/>
+</LinearLayout>

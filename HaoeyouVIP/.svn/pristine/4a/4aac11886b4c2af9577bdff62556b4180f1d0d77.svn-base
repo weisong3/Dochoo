@@ -1,0 +1,803 @@
+#
+# generated on 2014/09/23 06:43:55
+#
+# --table-start--
+dataClass=com.chc.dochoo.conversations.AuthenticationStatusUpdate
+tableName=authenticationstatusupdate
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=content
+# --field-end--
+# --field-start--
+fieldName=imagelink
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=time
+# --field-end--
+# --field-start--
+fieldName=type
+# --field-end--
+# --field-start--
+fieldName=entityId
+columnName=entity_id
+canBeNull=false
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.dochoo.conversations.ContactStatusUpdate
+tableName=contactstatusupdate
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=content
+# --field-end--
+# --field-start--
+fieldName=imagelink
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=time
+# --field-end--
+# --field-start--
+fieldName=type
+# --field-end--
+# --field-start--
+fieldName=entityId
+columnName=entity_id
+canBeNull=false
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.dochoo.conversations.Conversation
+tableName=conversation
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=userId
+# --field-end--
+# --field-start--
+fieldName=lastMsgId
+# --field-end--
+# --field-start--
+fieldName=topic
+# --field-end--
+# --field-start--
+fieldName=numOfUnread
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.dochoo.conversations.FoundMessage
+tableName=foundmessage
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=content
+# --field-end--
+# --field-start--
+fieldName=imagelink
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=time
+# --field-end--
+# --field-start--
+fieldName=type
+# --field-end--
+# --field-start--
+fieldName=entityId
+columnName=entity_id
+canBeNull=false
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.dochoo.conversations.GroupConversation
+tableName=group_conversation
+# --table-fields-start--
+# --field-start--
+fieldName=targetGroupchatId
+columnName=targetGroupchatId
+# --field-end--
+# --field-start--
+fieldName=leader
+columnName=leader
+# --field-end--
+# --field-start--
+fieldName=stillInGroup
+columnName=stillInGroup
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=userId
+# --field-end--
+# --field-start--
+fieldName=lastMsgId
+# --field-end--
+# --field-start--
+fieldName=topic
+# --field-end--
+# --field-start--
+fieldName=numOfUnread
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.dochoo.conversations.GroupStatusUpdate
+tableName=groupstatusupdate
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=content
+# --field-end--
+# --field-start--
+fieldName=imagelink
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=time
+# --field-end--
+# --field-start--
+fieldName=type
+# --field-end--
+# --field-start--
+fieldName=entityId
+columnName=entity_id
+canBeNull=false
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.dochoo.conversations.InstantMessage
+tableName=instantmessage
+# --table-fields-start--
+# --field-start--
+fieldName=fromPatient
+# --field-end--
+# --field-start--
+fieldName=messageType
+# --field-end--
+# --field-start--
+fieldName=multimediaPath
+# --field-end--
+# --field-start--
+fieldName=unread
+# --field-end--
+# --field-start--
+fieldName=mVersion
+# --field-end--
+# --field-start--
+fieldName=groupId
+columnName=group_id
+# --field-end--
+# --field-start--
+fieldName=groupDisplyName
+# --field-end--
+# --field-start--
+fieldName=status
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=content
+# --field-end--
+# --field-start--
+fieldName=imagelink
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=time
+# --field-end--
+# --field-start--
+fieldName=type
+# --field-end--
+# --field-start--
+fieldName=entityId
+columnName=entity_id
+canBeNull=false
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.dochoo.conversations.NewsMessage
+tableName=newsmessage
+# --table-fields-start--
+# --field-start--
+fieldName=title
+# --field-end--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=content
+# --field-end--
+# --field-start--
+fieldName=imagelink
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=time
+# --field-end--
+# --field-start--
+fieldName=type
+# --field-end--
+# --field-start--
+fieldName=entityId
+columnName=entity_id
+canBeNull=false
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.dochoo.conversations.PrivateConversation
+tableName=private_conversation
+# --table-fields-start--
+# --field-start--
+fieldName=targetId
+columnName=targetId
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=userId
+# --field-end--
+# --field-start--
+fieldName=lastMsgId
+# --field-end--
+# --field-start--
+fieldName=topic
+# --field-end--
+# --field-start--
+fieldName=numOfUnread
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.dochoo.conversations.StatusUpdateMessage
+tableName=statusupdatemessage
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=content
+# --field-end--
+# --field-start--
+fieldName=imagelink
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=time
+# --field-end--
+# --field-start--
+fieldName=type
+# --field-end--
+# --field-start--
+fieldName=entityId
+columnName=entity_id
+canBeNull=false
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.found.models.ColleagueCenterUser
+tableName=colleaguecenterusers
+# --table-fields-start--
+# --field-start--
+fieldName=colleagueDoctorUsers
+foreignCollection=true
+foreignCollectionEager=true
+foreignCollectionForeignFieldName=colleagueCenterUser
+# --field-end--
+# --field-start--
+fieldName=subDoctors
+foreignCollection=true
+foreignCollectionEager=true
+foreignCollectionForeignFieldName=colleagueCenterSubdoctorUser
+# --field-end--
+# --field-start--
+fieldName=doctors
+foreignCollection=true
+foreignCollectionEager=true
+# --field-end--
+# --field-start--
+fieldName=address
+# --field-end--
+# --field-start--
+fieldName=phone
+# --field-end--
+# --field-start--
+fieldName=website
+# --field-end--
+# --field-start--
+fieldName=galleryArray
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=fullname
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=profileIconUrl
+# --field-end--
+# --field-start--
+fieldName=workingHours
+# --field-end--
+# --field-start--
+fieldName=acceptedInsurances
+# --field-end--
+# --field-start--
+fieldName=numUnread
+# --field-end--
+# --field-start--
+fieldName=lastMsgTime
+# --field-end--
+# --field-start--
+fieldName=pin
+# --field-end--
+# --field-start--
+fieldName=username
+# --field-end--
+# --field-start--
+fieldName=loginEmail
+# --field-end--
+# --field-start--
+fieldName=pinyinName
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.found.models.ColleagueDoctorUser
+tableName=colleaguedoctorusers
+# --table-fields-start--
+# --field-start--
+fieldName=speciality
+# --field-end--
+# --field-start--
+fieldName=languages
+# --field-end--
+# --field-start--
+fieldName=degree
+# --field-end--
+# --field-start--
+fieldName=locations
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=phones
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=logoList
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=firstName
+# --field-end--
+# --field-start--
+fieldName=lastName
+# --field-end--
+# --field-start--
+fieldName=hospitalAffiliations
+# --field-end--
+# --field-start--
+fieldName=gender
+# --field-end--
+# --field-start--
+fieldName=center
+columnName=center_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=colleagueCenterUser
+columnName=colleague_center_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=colleagueCenterSubdoctorUser
+columnName=colleague_center_subdoctors_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=fullname
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=profileIconUrl
+# --field-end--
+# --field-start--
+fieldName=workingHours
+# --field-end--
+# --field-start--
+fieldName=acceptedInsurances
+# --field-end--
+# --field-start--
+fieldName=numUnread
+# --field-end--
+# --field-start--
+fieldName=lastMsgTime
+# --field-end--
+# --field-start--
+fieldName=pin
+# --field-end--
+# --field-start--
+fieldName=username
+# --field-end--
+# --field-start--
+fieldName=loginEmail
+# --field-end--
+# --field-start--
+fieldName=pinyinName
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.found.models.DoctorUser
+tableName=doctorusers
+# --table-fields-start--
+# --field-start--
+fieldName=speciality
+# --field-end--
+# --field-start--
+fieldName=languages
+# --field-end--
+# --field-start--
+fieldName=degree
+# --field-end--
+# --field-start--
+fieldName=locations
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=phones
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=logoList
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=firstName
+# --field-end--
+# --field-start--
+fieldName=lastName
+# --field-end--
+# --field-start--
+fieldName=hospitalAffiliations
+# --field-end--
+# --field-start--
+fieldName=gender
+# --field-end--
+# --field-start--
+fieldName=center
+columnName=center_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=colleagueCenterUser
+columnName=colleague_center_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=colleagueCenterSubdoctorUser
+columnName=colleague_center_subdoctors_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=fullname
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=profileIconUrl
+# --field-end--
+# --field-start--
+fieldName=workingHours
+# --field-end--
+# --field-start--
+fieldName=acceptedInsurances
+# --field-end--
+# --field-start--
+fieldName=numUnread
+# --field-end--
+# --field-start--
+fieldName=lastMsgTime
+# --field-end--
+# --field-start--
+fieldName=pin
+# --field-end--
+# --field-start--
+fieldName=username
+# --field-end--
+# --field-start--
+fieldName=loginEmail
+# --field-end--
+# --field-start--
+fieldName=pinyinName
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.found.models.EntityUser
+tableName=entityuser
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=fullname
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=profileIconUrl
+# --field-end--
+# --field-start--
+fieldName=workingHours
+# --field-end--
+# --field-start--
+fieldName=acceptedInsurances
+# --field-end--
+# --field-start--
+fieldName=numUnread
+# --field-end--
+# --field-start--
+fieldName=lastMsgTime
+# --field-end--
+# --field-start--
+fieldName=pin
+# --field-end--
+# --field-start--
+fieldName=username
+# --field-end--
+# --field-start--
+fieldName=loginEmail
+# --field-end--
+# --field-start--
+fieldName=pinyinName
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.found.models.GroupMember
+tableName=group_member
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=userId
+columnName=userId
+# --field-end--
+# --field-start--
+fieldName=fullName
+# --field-end--
+# --field-start--
+fieldName=belongTo
+columnName=belongTo
+# --field-end--
+# --field-start--
+fieldName=profileIconUrl
+# --field-end--
+# --field-start--
+fieldName=inviteDate
+columnName=inviteDate
+# --field-end--
+# --field-start--
+fieldName=role
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.found.models.MedicalCenterUser
+tableName=medicalcenterusers
+# --table-fields-start--
+# --field-start--
+fieldName=doctors
+foreignCollection=true
+foreignCollectionEager=true
+# --field-end--
+# --field-start--
+fieldName=address
+# --field-end--
+# --field-start--
+fieldName=phone
+# --field-end--
+# --field-start--
+fieldName=website
+# --field-end--
+# --field-start--
+fieldName=galleryArray
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=fullname
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=profileIconUrl
+# --field-end--
+# --field-start--
+fieldName=workingHours
+# --field-end--
+# --field-start--
+fieldName=acceptedInsurances
+# --field-end--
+# --field-start--
+fieldName=numUnread
+# --field-end--
+# --field-start--
+fieldName=lastMsgTime
+# --field-end--
+# --field-start--
+fieldName=pin
+# --field-end--
+# --field-start--
+fieldName=username
+# --field-end--
+# --field-start--
+fieldName=loginEmail
+# --field-end--
+# --field-start--
+fieldName=pinyinName
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.chc.found.models.PatientUser
+tableName=patientuser
+# --table-fields-start--
+# --field-start--
+fieldName=phone
+# --field-end--
+# --field-start--
+fieldName=firstName
+# --field-end--
+# --field-start--
+fieldName=lastName
+# --field-end--
+# --field-start--
+fieldName=dob
+# --field-end--
+# --field-start--
+fieldName=sex
+# --field-end--
+# --field-start--
+fieldName=email
+# --field-end--
+# --field-start--
+fieldName=medicalConditions
+# --field-end--
+# --field-start--
+fieldName=surgeries
+# --field-end--
+# --field-start--
+fieldName=medications
+# --field-end--
+# --field-start--
+fieldName=allergies
+# --field-end--
+# --field-start--
+fieldName=insurances
+# --field-end--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=fullname
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=profileIconUrl
+# --field-end--
+# --field-start--
+fieldName=workingHours
+# --field-end--
+# --field-start--
+fieldName=acceptedInsurances
+# --field-end--
+# --field-start--
+fieldName=numUnread
+# --field-end--
+# --field-start--
+fieldName=lastMsgTime
+# --field-end--
+# --field-start--
+fieldName=pin
+# --field-end--
+# --field-start--
+fieldName=username
+# --field-end--
+# --field-start--
+fieldName=loginEmail
+# --field-end--
+# --field-start--
+fieldName=pinyinName
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

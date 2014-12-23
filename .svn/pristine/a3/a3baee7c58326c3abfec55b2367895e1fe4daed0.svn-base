@@ -1,0 +1,143 @@
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+    <com.makeramen.RoundedImageView
+        android:layout_width="@dimen/profile_icon_radius"
+        android:layout_height="@dimen/profile_icon_radius"
+        android:id="@+id/activity_patient_view_profilehead"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerCrop"
+        app:corner_radius="@dimen/profile_icon_radius"
+        app:border_width="@dimen/rounded_img_border_width"
+        app:border_color="@color/default_dochoo_orange"
+        app:round_background="true"
+        android:src="@drawable/default_head" />
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:columnCount="11"
+        app:alignmentMode="alignBounds"
+        android:layout_marginTop="16dp"
+        app:useDefaultMargins="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_patient_view_name"
+            app:layout_columnSpan="3"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/activity_patient_view_name"
+            app:layout_columnSpan="8"
+            android:layout_marginLeft="25dp"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dob"
+            app:layout_columnSpan="3" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/activity_patient_view_dob"
+            app:layout_columnSpan="8"
+            android:layout_marginLeft="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gender"
+            app:layout_columnSpan="3" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/activity_patient_view_gender"
+            app:layout_columnSpan="8"
+            android:layout_marginLeft="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone"
+            app:layout_columnSpan="3" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/activity_patient_view_phone"
+            app:layout_columnSpan="8"
+            android:layout_marginLeft="25dp" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_patient_view_conditions"
+        app:layout_columnSpan="3" />
+        <TextView
+            android:maxEms="12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/activity_patient_view_conditions"
+            app:layout_columnSpan="8"
+            android:layout_marginLeft="25dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_patient_view_medications"
+            app:layout_columnSpan="3" />
+        <TextView
+            android:maxEms="12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/activity_patient_view_medications"
+            app:layout_columnSpan="8"
+            android:layout_marginLeft="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_patient_view_allergies"
+            app:layout_columnSpan="3" />
+        <TextView
+            android:maxEms="12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/activity_patient_view_allergies"
+            app:layout_columnSpan="8"
+            android:layout_marginLeft="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_patient_view_insurances"
+            app:layout_columnSpan="3" />
+        <TextView
+            android:maxEms="12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/activity_patient_view_insurances"
+            app:layout_columnSpan="8"
+            android:layout_marginLeft="25dp" />
+    </android.support.v7.widget.GridLayout>
+
+</LinearLayout>
+</ScrollView>

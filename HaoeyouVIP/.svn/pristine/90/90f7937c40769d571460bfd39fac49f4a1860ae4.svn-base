@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Activities style -->
+    <style name="ActivityIcon">
+        <item name="android:layout_width">@dimen/activities_icon_width</item>
+        <item name="android:layout_height">@dimen/activities_icon_height</item>
+        <item name="android:padding">@dimen/activities_icon_padding</item>
+    </style>
+
+    <!-- Application theme. -->
+    <style name="foundAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionBarStyle">@style/MyActionBarTheme</item>
+    </style>
+
+    <style name="MyActionBarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@color/actionbar_bg</item>
+    </style>
+
+    <style name="Theme.AppCompat.Light.NoActionBar" parent="@style/Theme.AppCompat.Light">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="NoActionBarTitleTheme" parent="foundAppTheme">
+        <item name="actionBarStyle">@style/NoTitleActionBar</item>
+    </style>
+
+    <style name="NoTitleActionBar" parent="MyActionBarTheme">
+        <item name="titleTextStyle">@style/NoTitleText</item>
+        <item name="subtitleTextStyle">@style/NoTitleText</item>
+    </style>
+
+    <style name="NoTitleText">
+        <item name="android:textSize">0sp</item>
+        <item name="android:textColor">#00000000</item>
+    </style>
+
+    <style name="BaseButton" parent="@android:style/Widget.Button" />
+
+    <style name="BaseSmallButton" parent="android:Widget.Button.Small" />
+
+    <style name="MyButton" parent="BaseButton">
+        <item name="android:background">@drawable/filter_group_bg_selector</item>
+        <item name="android:paddingTop">@dimen/button_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/button_padding_vertical</item>
+        <item name="android:paddingLeft">@dimen/button_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/button_padding_horizontal</item>
+    </style>
+
+    <style name="SmallPaddingButton" parent="BaseSmallButton">
+        <item name="android:background">@drawable/button_bg_selector</item>
+        <item name="android:paddingTop">@dimen/small_button_padding_vertical</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingBottom">@dimen/small_button_padding_vertical</item>
+        <item name="android:paddingLeft">@dimen/small_button_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/small_button_padding_horizontal</item>
+    </style>
+
+    <style name="landingSmallButton" parent="BaseButton">
+        <item name="android:background">@android:color/background_dark</item>
+        <item name="android:paddingTop">@dimen/button_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/button_padding_vertical</item>
+        <item name="android:paddingLeft">@dimen/button_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/button_padding_horizontal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="NumberButton" parent="BaseButton">
+        <item name="android:width">100dp</item>
+        <item name="android:height">100dp</item>
+    </style>
+
+    <style name="MyRadioButton">
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="text_title">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+    </style>
+
+    <style name="text_option">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="layout_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="layout_fill">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+    <style name="layout_f_w">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="h_line">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1.5dip</item>
+        <item name="android:background">@color/filter_group_inactive</item>
+    </style>
+
+    <style name="indicator_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">4dip</item>
+        <item name="android:background">@color/filter_group_inactive</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="userprofile_textStyle" parent="android:TextAppearance.Medium">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="userprofileEdittextStyle" parent="android:TextAppearance.Widget.EditText">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="buydrug_textStyle">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+    <style name="NoActionBarHolo" parent="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+
+    <style name="progressBarIndefinite" parent="@android:style/Widget.ProgressBar.Large" />
+
+    <style name="instant_msg_voice_seekbar_inbound" parent="android:Widget.SeekBar">
+        <item name="android:progressDrawable">@drawable/scrubber_progress_horizontal_orange</item>
+        <item name="android:indeterminateDrawable">@drawable/scrubber_progress_horizontal_orange</item>
+        <item name="android:thumb">@drawable/btn_thumb_seekbar_orange</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:thumbOffset">8dip</item>
+    </style>
+
+    <style name="instant_msg_voice_seekbar_outbound" parent="android:Widget.SeekBar">
+        <item name="android:progressDrawable">@drawable/scrubber_progress_horizontal_grey</item>
+        <item name="android:indeterminateDrawable">@drawable/scrubber_progress_horizontal_grey</item>
+        <item name="android:thumb">@drawable/btn_thumb_seekbar_grey</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:thumbOffset">8dip</item>
+    </style>
+
+    <style name="ProfileEditText" parent="android:Widget.EditText">
+        <item name="android:hint">@string/profile_edittext_hint</item>
+        <item name="android:background">@null</item>
+        <item name="android:inputType">text</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/profile_edittext_size</item>
+    </style>
+
+    <style name="ProfileSpinnerStyle" parent="android:Widget.TextView.SpinnerItem">
+        <item name="android:textAppearance">@style/TextAppearanceSpinnerItem</item>
+    </style>
+
+    <style name="TextAppearanceSpinnerItem" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+        <item name="android:textColor">#F00</item>
+    </style>
+
+    <style name="LoginFormContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="DochooBigButton" parent="android:Widget.Button">
+        <item name="android:background">@drawable/button_bg_selector</item>
+        <item name="android:paddingTop">@dimen/dochoo_big_button_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/dochoo_big_button_padding_vertical</item>
+        <item name="android:paddingLeft">@dimen/dochoo_big_button_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/dochoo_big_button_padding_horizontal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/default_text_size_medium</item>
+    </style>
+
+</resources>

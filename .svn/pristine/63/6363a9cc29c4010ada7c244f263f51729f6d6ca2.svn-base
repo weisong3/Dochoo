@@ -1,0 +1,500 @@
+package com.chc.dochoo.conversations;
+
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.text.Editable;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.chc.dochoo.CHCApplication;
+import com.chc.dochoo.contacts.ContactActivity;
+import com.chc.dochoo.contacts.ContactModel;
+import com.chc.dochoo.contacts.NewGroupChatMemberActivity;
+import com.chc.dochoo.userlogin.Role;
+import com.chc.found.MainActivity;
+import com.chc.found.models.DatabaseHelper;
+import com.chc.found.models.EntityModel;
+import com.chc.found.models.EntityUser;
+import com.chc.found.models.GroupMember;
+import com.chc.found.views.IBaseView;
+import com.chc.views.ExpandableHeightGridView;
+import com.chcgp.hpad.util.download.ImageDownloader;
+import com.makeramen.RoundedImageView;
+import com.test.found.R;
+
+import org.apache.commons.lang.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by Lance on 6/12/14.
+ */
+public class GroupInfoFragment extends Fragment implements IBaseView{
+    private ExpandableHeightGridView mGridView;
+    private RelativeLayout groupNameLine;
+    private TextView groupNameView;
+    private Button quitGroupButton;
+    private Button exportHistoryButton;
+    private GroupInfoAdapter mAdapter;
+    private GroupConversation groupChat;
+    private List<GroupMember> members;
+    private Boolean deleteStatus;
+
+    private BroadcastReceiver receiver = new MyBroadcastReceiver();
+    private volatile boolean receiverRegistered = false;
+    private IntentFilter intentFilter;
+
+    private class MyBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            CHCApplication chcApplication = getCHCApplication();
+            if(chcApplication == null) return;
+            DatabaseHelper dbhelper = chcApplication.getHelper();
+            String targetgroupId = intent.getStringExtra(context.getString(R.string.broadcast_intent_extra_tag_im_group));
+            if(StringUtils.isNotBlank(targetgroupId) && StringUtils.equals(targetgroupId, groupChat.getTargetGroupchatId()) && receiverRegistered){
+                String msgId = intent.getStringExtra(context.getString(R.string.broadcast_intent_extra_tag_im));
+                if(StringUtils.isNotBlank(msgId)){
+                    InstantMessage msg = InstantMessageModel.getMessageById(dbhelper, msgId);
+                    if(null != msg && msg.getMessageType() == InstantMessage.InstantMessageType.GROUPNOTICE){
+                        int value = intent.getIntExtra(context.getString(R.string.broadcast_intent_extra_tag_group_noticetype), -1);
+                        String targetMemberId = intent.getStringExtra(context.getString(R.string.broadcast_intent_extra_tag_im_entity));
+                        if(value <0)    return;
+                        GroupChatTaskType taskType = GroupChatTaskType.values()[value];
+                        if(taskType == GroupChatTaskType.NewRemove && StringUtils.equals(targetMemberId, chcApplication.getUserId())){
+                            //got kicked out
+                            groupChat.setStillInGroup(false);
+                            ConversationModel.updateGroupConversation(dbhelper, groupChat);
+                            ((GroupConversationActivity)context).updateGroupChat(groupChat);
+                            ((GroupConversationActivity)context).finish();
+                        }
+                        if(!deleteStatus)   restoreFragment();
+                    }
+                }
+            }
+        }
+
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_groupinfo, container, false);
+        mGridView = (ExpandableHeightGridView)root.findViewById(R.id.group_info_grid_view);
+        groupNameLine = (RelativeLayout)root.findViewById(R.id.group_info_group_name_line);
+        groupNameView = (TextView)root.findViewById(R.id.group_info_show_group_name);
+        quitGroupButton = (Button)root.findViewById(R.id.group_info_quit_group);
+        exportHistoryButton = (Button)root.findViewById(R.id.group_info_export_history);
+        intentFilter = new IntentFilter(getString(R.string.im_action));
+        return root;
+    }
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        Bundle args = getArguments();
+        if (args == null) return;
+        final String targetGroupId = args.getString(GroupConversationActivity.KEY_GROUP_ID);
+        deleteStatus = args.getBoolean("deleteStatus", false);
+        if(StringUtils.isBlank(targetGroupId)) return;
+        final CHCApplication chcApplication = getCHCApplication();
+        if(chcApplication == null)  return;
+        groupChat = ConversationModel.getGroupConversationByGroupId(chcApplication.getHelper(), targetGroupId);
+        if(groupChat == null) return;
+        final Handler myHandler = new Handler() {
+
+            @Override
+            public void handleMessage(Message msg) {
+                if(msg.getData() != null){
+                    String newTopic = msg.getData().getString("title");
+                    if(StringUtils.isNotBlank(newTopic))    groupNameView.setText(newTopic);
+                    String quit = msg.getData().getString("quit");
+                    if(StringUtils.isNotBlank(quit))    ContactActivity.startDefaultContactList(getActivity());
+                }
+            }
+        };
+        quitGroupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(getActivity())
+                        .setTitle(getString(R.string.quit_group_alert_title))
+                        .setMessage(getString(R.string.quit_group_alert_content))
+                        .setPositiveButton(getString(R.string.confirm_yes), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                GroupChatTask groupTask = new GroupChatTask(getActivity(), chcApplication.getHelper(), GroupChatTaskType.Quit, chcApplication.getUserId(), chcApplication.getRegId(), groupChat.getTargetGroupchatId(), true);
+                               //groupTask.setMyHandler(myHandler);
+                                groupTask.execute();
+                            }
+                        }).setNegativeButton(getString(R.string.confirm_no), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                // Do nothing.
+                            }
+                        }).show();
+            }
+        });
+        exportHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EntityUser user = chcApplication.getUser();
+                if (user == null) return;
+                String userEmail = user.getLoginEmail();
+                if (StringUtils.isBlank(userEmail) || StringUtils.equals("null",userEmail)) {
+                    userEmail = user.getUsername();
+                }
+                new AlertDialog.Builder(getActivity())
+                        .setTitle(getString(R.string.export_group_history_title))
+                        .setMessage(getString(R.string.private_conversation_export_msg) + userEmail)
+                        .setPositiveButton(R.string.confirm_yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            new GroupChatTask(getActivity(), chcApplication.getHelper(), GroupChatTaskType.ExportHistory, chcApplication.getUserId(), chcApplication.getRegId(), groupChat.getTargetGroupchatId(), true).execute();
+                            }
+                        })
+                        .setNegativeButton(R.string.confirm_no, null)
+                        .create()
+                        .show();
+            }
+        });
+        groupNameLine.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    groupNameLine.setAlpha(0.7f);
+                    return true;
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    groupNameLine.setAlpha(1f);
+
+                    final EditText input = new EditText(getActivity());
+                    //final String message = "Change Group Chat Name";
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle(getString(R.string.group_info_change_topic_title))
+                            //.setMessage(message)
+                            .setView(input)
+                            .setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    Editable value = input.getText();
+                                    List<String> values = new ArrayList<>();
+                                    values.add(value.toString());
+                                    GroupChatTask groupTask = new GroupChatTask(getActivity(), chcApplication.getHelper(), GroupChatTaskType.ChangeTopic, chcApplication.getUserId(), chcApplication.getRegId(), groupChat.getTargetGroupchatId(), true);
+                                    groupTask.setMyHandler(myHandler);
+                                    groupTask.execute(values);
+                                }
+                            }).setNegativeButton(getString(R.string.cancel_button), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // Do nothing.
+                        }
+                    }).show();
+                    return true;
+                } else if (event.getAction() == MotionEvent.ACTION_CANCEL) {
+                    groupNameLine.setAlpha(1f);
+                    return true;
+                }
+                return false;
+            }
+        });
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        if(deleteStatus){
+            LayoutInflater li = LayoutInflater.from(getActivity());
+            View customView = li.inflate(R.layout.custom_actionbar_button, null);
+            Button confirmButton = (Button)customView.findViewById(R.id.confirm_add_group_member);
+            confirmButton.setClickable(true);
+            confirmButton.setBackgroundColor(getResources().getColor(R.color.default_dochoo_orange));
+            confirmButton.setTextColor(getResources().getColor(R.color.white));
+            confirmButton.setText(getString(R.string.cancel_button));
+            confirmButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ActionBar actionBar = ((GroupConversationActivity)getActivity()).getSupportActionBar();
+                    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                    actionBar.setDisplayShowTitleEnabled(true);
+                    actionBar.setCustomView(null);
+                    restoreFragment();
+                }
+            });
+            ActionBar actionBar = ((GroupConversationActivity)getActivity()).getSupportActionBar();
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setDisplayUseLogoEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+            ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
+                    android.app.ActionBar.LayoutParams.WRAP_CONTENT, android.app.ActionBar.LayoutParams.WRAP_CONTENT,
+                    Gravity.CENTER_VERTICAL|Gravity.RIGHT);
+            layoutParams.setMargins(
+                    getResources().getDimensionPixelSize(R.dimen.new_group_member_lien_left_margin),
+                    getResources().getDimensionPixelSize(R.dimen.new_group_member_lien_left_margin),
+                    getResources().getDimensionPixelSize(R.dimen.new_group_member_lien_left_margin),
+                    getResources().getDimensionPixelSize(R.dimen.new_group_member_lien_left_margin)
+            );
+            actionBar.setCustomView(customView,layoutParams);
+        }
+        else
+            inflater.inflate(R.menu.private_conversation, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        members = GroupMemberModel.GetMemberByGroupId(getCHCApplication().getHelper(), groupChat.getTargetGroupchatId());
+        mAdapter = new GroupInfoAdapter(getActivity(),members, deleteStatus);
+        mGridView.setAdapter(mAdapter);
+        mGridView.setExpanded(true);
+        groupNameView.setText(groupChat.getTopic());
+        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(R.string.group_info_fragment_title);
+        synchronized (this) {
+            if (getActivity() != null && !receiverRegistered) {
+                getActivity().registerReceiver(receiver, intentFilter);
+                receiverRegistered = true;
+            }
+        }
+    }
+
+    @Override
+    public void onPause() {
+        if (receiverRegistered) {
+            synchronized (this) {
+                receiverRegistered = false;
+            }
+            getActivity().unregisterReceiver(receiver);
+        }
+        super.onPause();
+    }
+
+    @Override
+    public CHCApplication getCHCApplication() {
+        FragmentActivity activity = getActivity();
+        if (activity == null) return null;
+        return CHCApplication.getInstance(activity);
+    }
+
+    public static Fragment newInstance(String groupId, Boolean deleteStatus){
+        Bundle bundle = new Bundle();
+        bundle.putString(GroupConversationActivity.KEY_GROUP_ID,groupId);
+        bundle.putBoolean("deleteStatus", deleteStatus);
+        Fragment f = new GroupInfoFragment();
+        f.setArguments(bundle);
+        return f;
+    }
+
+    public void showDeleteIconGrid(){
+        FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
+        Fragment newFragment = newInstance(groupChat.getTargetGroupchatId(), true);
+        fragTransaction.replace(R.id.root, newFragment, "groupInfoFrag");
+        fragTransaction.commit();
+    }
+
+    public void restoreFragment(){
+        FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
+        Fragment newFragment = newInstance(groupChat.getTargetGroupchatId(), false);
+        fragTransaction.replace(R.id.root, newFragment, "groupInfoFrag");
+        fragTransaction.commit();
+    }
+
+    private class GroupInfoAdapter extends BaseAdapter{
+        private Context context;
+        private List<GroupMember> members;
+        private Boolean deleteStatus;
+        private Boolean isLeader;
+
+        @Override
+        public int getCount() {
+            if(isLeader)
+                return members.size()+2;
+            else
+                return members.size()+1;
+        }
+
+        @Override
+        public GroupMember getItem(int i) {
+            return members.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            View result = LayoutInflater.from(context).inflate(R.layout.group_info_grid_item, null, false);
+            RoundedImageView iconView = (RoundedImageView)result.findViewById(R.id.group_info_grid_icon);
+            RoundedImageView deleteIcon = (RoundedImageView)result.findViewById(R.id.group_info_grid_delete);
+            TextView nameView = (TextView)result.findViewById(R.id.group_info_grid_fullname);
+            int size = context.getResources().getDimensionPixelSize(R.dimen.icon_instant_msg_size);
+            final CHCApplication chcApplication = getCHCApplication();
+            if(null != chcApplication){
+                if(i<members.size()){
+                    final GroupMember item = getItem(i);
+                    ImageDownloader.getInstance().download(item.getProfileIconUrl(), iconView, size, size, context.getResources(), R.drawable.default_head);
+                    nameView.setText(item.getFullName());
+                    iconView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(deleteStatus){
+                                final Handler myHandler = new Handler() {
+                                    @Override
+                                    public void handleMessage(Message msg) {
+                                        if(msg.getData() != null){
+                                            String delete = msg.getData().getString("delete");
+                                            if(StringUtils.isNotBlank(delete))    showDeleteIconGrid();
+                                        }
+                                    }
+                                };
+                                GroupChatTask deleteTask = new GroupChatTask(getActivity(), getCHCApplication().getHelper(), GroupChatTaskType.Remove, getCHCApplication().getUserId(), getCHCApplication().getRegId(), groupChat.getTargetGroupchatId(),true);
+                                List<String> target = new ArrayList<>();
+                                target.add(item.getId());//this id is not user id, it is initilized locally, used here for easier deleting
+                                deleteTask.setMyHandler(myHandler);
+                                deleteTask.execute(target);
+                            }
+
+                            else{
+                                if(StringUtils.equals(item.getUserId(), chcApplication.getUserId())){
+                                    //do nothing
+                                }
+                                else{
+                                    EntityUser targetUser =  EntityModel.getEntityById(chcApplication.getHelper(), item.getUserId());
+                                    if(targetUser != null){
+                                        MainActivity.startActivity(getActivity(), targetUser.getId(), targetUser);
+                                    }
+                                    else{
+                                        if(item.getRole() == Role.PATIENT){
+                                            Toast.makeText(context, getString(R.string.group_info_add_contact_patient) + " " + item.getFullName() + " " + getString(R.string.group_info_not_contact_title), Toast.LENGTH_SHORT).show();
+                                        }
+                                        else{
+                                            String memberRole;
+                                            if(item.getRole() == Role.DOCTOR)
+                                                memberRole = getString(R.string.group_info_add_contact_doctor);
+                                            else if(item.getRole() == Role.CENTER)
+                                                memberRole = getString(R.string.group_info_add_contact_center);
+                                            else    memberRole = "something wrong!!!";
+                                            final String stringRole = memberRole;
+
+                                            final Handler myHandler = new Handler() {
+
+                                                @Override
+                                                public void handleMessage(Message msg) {
+                                                    if(msg.getData() != null){
+                                                        String gotIt = msg.getData().getString("addMemberContact");
+                                                        if(StringUtils.isNotBlank(gotIt))   Toast.makeText(context, getString(R.string.contact_add_success), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            };
+
+                                            new AlertDialog.Builder(getActivity())
+                                                    .setTitle(stringRole + " " + item.getFullName() + " " +getString(R.string.group_info_not_contact_title))
+                                                    .setMessage(getString(R.string.group_info_not_contact_question))
+                                                    .setPositiveButton(getString(R.string.confirm_yes), new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            GroupChatTask groupTask = new GroupChatTask(getActivity(), chcApplication.getHelper(), GroupChatTaskType.AddGroupMember, chcApplication.getUserId(), chcApplication.getRegId(), groupChat.getTargetGroupchatId(), true);
+                                                            List<String> target = new ArrayList<>();
+                                                            target.add(item.getUserId());
+                                                            groupTask.setMyHandler(myHandler);
+                                                            groupTask.execute(target);
+                                                        }
+                                                    }).setNegativeButton(getString(R.string.confirm_no), new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int whichButton) {
+                                                    // Do nothing.
+                                                }
+                                            }).show();
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    if(isLeader){
+                        iconView.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View view) {
+                                if(deleteStatus) restoreFragment();
+                                else    showDeleteIconGrid();
+                                return true;
+                            }
+                        });
+                    }
+
+                    if(deleteStatus)    deleteIcon.setVisibility(View.VISIBLE);
+                }
+                else{
+                    if(deleteStatus){
+                        result.setVisibility(View.INVISIBLE);
+                    }
+                    else{
+                        nameView.setText("");
+                        iconView.setScaleType(ImageView.ScaleType.FIT_XY);
+                        iconView.setMaxHeight(size);
+                        iconView.setMaxWidth(size);
+                        if(i == members.size()){
+                            iconView.setImageResource(R.drawable.btn_add);
+                            iconView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getActivity(), NewGroupChatMemberActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    intent.putExtra("groupId",groupChat.getTargetGroupchatId());
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                        else{
+                            iconView.setImageResource(R.drawable.ic_action_remove);
+                            iconView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    showDeleteIconGrid();
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        private GroupInfoAdapter(Context context, List<GroupMember> members, Boolean deleteStatus) {
+            this.context = context;
+            this.members = members;
+            this.deleteStatus = deleteStatus==null?false:deleteStatus;
+            this.isLeader = StringUtils.equals(getCHCApplication().getUserId(), groupChat.getLeader());
+        }
+    }
+
+}

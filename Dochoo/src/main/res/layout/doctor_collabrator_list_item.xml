@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/doctor_collabrator_listview_item_wrapper"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/doctor_collabrator_listview_item_height"
+    android:background="@drawable/list_selector_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="16dp"
+    android:paddingTop="8dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="8dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.makeramen.RoundedImageView
+            android:layout_gravity="center"
+            android:id="@+id/doctor_collabrator_listview_item_photo"
+            android:layout_width="@dimen/doctor_collabrator_icon_radius"
+            android:layout_height="@dimen/doctor_collabrator_icon_radius"
+            android:src="@drawable/doc_default"
+            android:scaleType="centerCrop"
+            app:corner_radius="@dimen/doctor_collabrator_icon_radius"
+            app:border_width="@dimen/rounded_img_border_width"
+            app:border_color="@color/default_dochoo_orange"
+            app:round_background="true" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/doctor_collabrator_listview_inner_margin"
+        android:layout_marginBottom="@dimen/doctor_collabrator_listview_inner_margin"
+        android:layout_marginRight="@dimen/doctor_collabrator_listview_inner_margin"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.chc.views.TypefacedTextView
+                app:typeface="opensans.ttf"
+                android:id="@+id/doctor_collabrator_listview_item_name"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/default_dochoo_orange" />
+
+        </LinearLayout>
+
+        <com.chc.views.TypefacedTextView
+            app:typeface="opensans.ttf"
+            android:layout_marginLeft="4dp"
+            android:id="@+id/doctor_collabrator_listview_item_specialty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/dochoo_default_text_color"
+            android:singleLine="true"
+            android:ems="17"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+
+    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+        android:id="@+id/conversation_message_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/default_text_size_small"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        android:background="@drawable/new_message_bg"
+        android:gravity="center"
+        android:text="0" />
+
+</LinearLayout>

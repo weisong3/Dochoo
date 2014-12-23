@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="degree_array">
+        <item>MD</item>
+        <item>DO</item>
+        <item>NP</item>
+        <item>RN</item>
+        <item>LVN</item>
+        <item>PA</item>
+        <item>MA</item>
+        <item>"Case Manager"</item>
+        <item>"Pharmacist"</item>
+        <item>"Pharmacy Tech"</item>
+        <item>"Anesthesiologist"</item>
+        <item>"Student"</item>
+        <item>"Chiropractor"</item>
+        <item>"Dentist"</item>
+        <item>"Diet / Nutritionist"</item>
+        <item>"Optometrist"</item>
+        <item>"PT/OT/ST"</item>
+        <item>"Recruiter"</item>
+        <item>"Psychologist"</item>
+        <item>"Social Worker"</item>
+        <item>"Caregiver"</item>
+        <item>"Others"</item>
+    </string-array>
+
+    <string-array name="message_life">
+        <item>604800000</item>
+        <item>1209600000</item>
+        <item>2419200000</item>
+    </string-array>
+
+    <string-array name="reauthenticate_time">
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>86400000</item>
+        <item>604800000</item>
+    </string-array>
+
+</resources>

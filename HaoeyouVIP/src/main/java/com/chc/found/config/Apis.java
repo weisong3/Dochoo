@@ -1,0 +1,335 @@
+package com.chc.found.config;
+
+public abstract class Apis {
+    public static final boolean RELEASE = true;
+	public static final boolean DEBUG = false;
+	/**
+	 * the sender id is the project number on google apis console
+	 */
+	public static final String SENDER_ID = "402767809022";
+	
+	public static final String BETA_SERVER = "http://beta.dochoo.com";
+	private static final String RELEASE_SERVER = "https://www.dochoo.com";
+//    private static final String RELEASE_SERVER = "http://vip.haoeyou.com:8080";
+	
+	public static final String SERVER = RELEASE ? RELEASE_SERVER : BETA_SERVER;
+//	public static final String SERVER = RELEASE_SERVER;
+
+	// get apis
+	/**
+	 * Get doctor admin info using admin id
+	 */
+	public static final String URI_GET_DOCTOR_INFO = SERVER + "/rest/User/Physician/{id}";
+	
+	/**
+	 * Get doctor or medical group using id or pin
+	 */
+	public static final String URI_GET_ENTITY_BY_ID_PIN = SERVER + "/rest/User/User/{idOrPin}";
+	
+	/**
+	 * Get patient info by id
+	 */
+	public static final String URI_GET_PATIENT_BY_ID = SERVER + "/rest/User/getpatient/{id}";
+	
+	/**
+	 * Get patient list by admin id
+	 * returns List<PatientView> json array
+	 */
+	/*public static final String URI_GET_PATIENT_LIST = SERVER + "/rest/User/patientlist/{doctorid}";*/     //version 1 deprecated
+    public static final String URI_GET_PATIENT_LIST = SERVER + "/rest/User/patientlistV2/{doctorid}";
+	public static final String PARAM_GET_PATIENT_LIST_PUSH_ID = "pushid";
+	
+	/**
+	 * Get professional contact list by admin id
+	 * returns List<String> id list
+	 */
+	public static final String URI_GET_PRO_RELATION_LIST = SERVER + "/rest/User/Relation/{userid}";
+	public static final String PARAM_GET_PRO_RELATION_PUSH_ID = "pushid";
+
+    /**
+     * Get professional list for patient
+     */
+    public static final String URI_GET_PROFESSIONAL_LIST = SERVER + "/rest/User/Providers/{userid}";
+    public static final String PARAM_GET_PROFESSIONAL_PUSH_ID = "pushid";
+	
+	/**
+	 * Get medical group admin info using admin id 
+	 */
+	public static final String URI_GET_MEDICAL_GROUP_INFO = SERVER + "/rest/User/MedicalGroup/{id}";
+	
+	/**
+	 * Get: Add relation between two professional
+	 * Both param can be id or pin
+	 */
+	public static final String URI_GET_ADD_RELATION = SERVER + "/rest/Relation/Add/{initiator}/{recipient}";
+
+	/**
+	 * Get all messages for current logged in user
+	 */
+	public static final String URI_GET_MESSAGES = SERVER + "/rest/Message/getmessage";
+	public static final String PARAM_GET_MESSAGES_USERID = "userid";
+	public static final String PARAM_GET_MESSAGES_DOCTORID = "doctor";
+	
+	/**
+	 * Get all news from current admin 
+	 */
+	public static final String URI_GET_NEWS = SERVER + "/rest/Message/getnews";
+	public static final String PARAM_GET_NEWS_PUSHID = "pushid";
+	public static final String PARAM_GET_NEWS_DOCTORID = "doctor";
+	
+	/**
+	 * Get profile icon by id
+	 */
+	public static final String URI_GET_ICON = SERVER + "/rest/User/Head";
+	public static final String PARAM_GET_ICON_ID = "owner";
+	
+	/**
+	 * Get profile icon by photo
+	 */
+	public static final String URI_GET_ICON_BY_PHOTO = SERVER + "/rest/User/Head";
+	public static final String PARAM_GET_ICON_ID_BY_PHOTO = "photo";
+	
+	/**
+	 * Get Logo icon by id
+	 */
+	public static final String URI_GET_LOGO = SERVER + "/rest/User/File/{id}";
+	
+	// **************************************************************************************************
+	// post apis
+//	/**
+//	 * @deprecated
+//	 * Deprecated since the introduction of {@code URI_POST_ADD_ENTITY} use that instead
+//	 * Post registration id with app admin id
+//	 * Expect success code 200 from server
+//	 */
+//	@Deprecated
+//	public static final String URI_POST_REGISTER_NEWS = SERVER + "/rest/Register/registernews";
+//	public static final String PARAM_POST_REGISTER_NEWS_DOCTOR_ID = "doctor";
+//	public static final String PARAM_POST_REGISTER_NEWS_REG_ID = "pushid";
+	
+//	/**
+//	 * Post registration for new user
+//	 * Expect user id as string from server 
+//	 */
+//	public static final String URI_POST_REGISTER_NEW_USER = SERVER + "/rest/Register/registermessage";
+//	public static final String PARAM_POST_REGISTER_NEW_USER_DOCTOR_ID = "doctor";
+//	public static final String PARAM_POST_REGISTER_NEW_USER_EMAIL = "email";
+//	public static final String PARAM_POST_REGISTER_NEW_USER_PASSWORD = "password"; // encoded password
+//	public static final String PARAM_POST_REGISTER_NEW_USER_PUSH_ID = "pushid";
+//	public static final String PARAM_POST_REGISTER_NEW_USER_FIRST_NAME = "firstname";
+//	public static final String PARAM_POST_REGISTER_NEW_USER_LAST_NAME = "lastname";
+	
+//	/**
+//	 * Post sign in info and registration id
+//	 * Expect user id as string from server
+//	 */
+//	public static final String URI_POST_SIGN_IN_MESSAGE = SERVER + "/rest/Register/signinmessage";
+//	public static final String PARAM_POST_SIGN_IN_MESSAGE_DOCTOR_ID = "doctor";
+//	public static final String PARAM_POST_SIGN_IN_MESSAGE_USER_ID = "userid";
+//	public static final String PARAM_POST_SIGN_IN_MESSAGE_PUSH_ID = "pushid";
+//	public static final String PARAM_POST_SIGN_IN_MESSAGE_PASSWORD = "password"; // encoded password
+	
+	public static final String PARAM_TYPE_STR_MEDICAL_GROUP = "medicalgroup";
+	public static final String PARAM_TYPE_STR_DOCTOR = "physician";
+	public static final String PARAM_TYPE_STR_PATIENT = "patient";
+	
+	/**
+	 * Post to send a message to doctor using doctor id and user id
+	 * Expect message object as json from server
+	 */
+	public static final String URI_POST_SEND_MESSAGE = SERVER + "/rest/Message/sendmessageios";
+	public static final String PARAM_POST_SEND_MESSAGE_USER_ID = "userid";
+	public static final String PARAM_POST_SEND_MESSAGE_DOCTOR_ID = "contactid";
+	public static final String PARAM_POST_SEND_MESSAGE_CONTENT = "content";
+	public static final String PARAM_POST_SEND_MESSAGE_PUSH_ID = "pushid";
+    public static final String PARAM_POST_SEND_MESSAGE_DATE = "date";
+
+
+    /**
+	 * Post to subscribe the current logged-in user to a doctor or medical group
+	 * if there is no currently logged-in user then use empty string
+	 * then the server will just subscribe this user to the news feed
+	 */
+	public static final String URI_POST_ADD_ENTITY = SERVER + "/rest/Register/addsubscriber";
+	public static final String PARAM_POST_ADD_ENTITY_DOC_ID = "doctor"; // can be list split by ';'
+	public static final String PARAM_POST_ADD_ENTITY_USER_ID = "userid"; // can be null if patient not logged-in
+	public static final String PARAM_POST_ADD_ENTITY_PUSH_ID = "pushid";
+
+	/**
+	 * Post to register a new user. Could be a patient or professional
+	 */
+	/*public static final String URI_POST_REGISTER_USER = SERVER + "/rest/Register/registeruser";*/
+    public static final String URI_POST_REGISTER_USER = SERVER + "/rest/HaoeyouVip/registeruser";
+	public static final String PARAM_POST_REGISTER_EMAIL = "email";
+	public static final String PARAM_POST_REGISTER_PASSWORD = "password";
+	public static final String PARAM_POST_REGISTER_PUSH_ID = "pushid";
+	public static final String PARAM_POST_REGISTER_FIRST_NAME = "firstname";
+	public static final String PARAM_POST_REGISTER_LAST_NAME = "lastname";
+	public static final String PARAM_POST_REGISTER_TITLE = "title";
+	public static final String PARAM_POST_REGISTER_CENTER_NAME = "name"; // only if type is medicalgroup
+    public static final String PARAM_POST_REGISTER_TYPE = "type";
+    public static final String PARAM_POST_REGISTER_GENDER = "gender";
+    public static final String PARAM_POST_REGISTER_DOB = "dob";
+    public static final String PARAM_POST_REGISTER_ACTIVATION = "activationcode";
+
+	/**
+	 * Sign in for any user, need to specify type
+	 */
+	public static final String URI_POST_SIGN_IN_USER = SERVER + "/rest/User/signinuser";
+	public static final String PARAM_POST_SIGN_IN_USERNAME = "username";
+	public static final String PARAM_POST_SIGN_IN_PASSWORD = "password";
+	public static final String PARAM_POST_SIGN_IN_PUSH_ID = "pushid";
+    public static final String PARAM_POST_SIGN_IN_LANGUAGE = "language";
+
+	/**
+	 * Update profile for users. Use {@code StringEntity} and json string
+	 */
+    public static final String URI_POST_UPDATE_PATIENT_PROFILE = SERVER + "/rest/User/Update/Patient";
+    public static final String URI_POST_UPDATE_DOCTOR_PROFILE = SERVER + "/rest/User/Update/Physician";
+    public static final String URI_POST_UPDATE_CENTER_PROFILE = SERVER + "/rest/User/Update/MedicalGroup";
+
+    /**
+	 * Upload some types of files to server
+	 */
+	public static final String URI_POST_UPLOAD_FILE = SERVER + "/MobileUpload";
+	public static final String PARAM_POST_UPLOAD_USER_ID = "userid";
+	public static final String PARAM_POST_UPLOAD_FILENAME = "filename";
+	public static final String PARAM_POST_UPLOAD_PUSH_ID = "pushid";
+	public static final String PARAM_POST_UPLOAD_RECEIVER_ID = "receiverid";
+    public static final String PARAM_POST_UPLOAD_GROUP_ID = "group";
+	public static final String PARAM_POST_UPLOAD_TYPE = "type";
+	public static final String PARAM_TYPE_UPLOAD_ICON = "HEAD";
+	public static final String PARAM_TYPE_UPLOAD_IMAGE = "IMAGEMESSAGE";
+	public static final String PARAM_TYPE_UPLOAD_FILE = "FILEMESSAGE";
+	public static final String PARAM_TYPE_UPLOAD_VOICE = "VOICEMESSAGE";
+	
+	/**
+	 * Request server to send medical forms to user's email
+	 */
+	public static final String URI_POST_SEND_FORMS = SERVER + "/rest/User/SendEmail/Forms";
+	public static final String PARAM_POST_SEND_FORMS_USER_ID = "patient";
+	public static final String PARAM_POST_SEND_FORMS_TARGET_ID = "target";
+	
+	/**
+	 * Download multimedia message file from server via message id
+	 */
+	public static final String URI_GET_DOWNLOAD_FILE = SERVER + "/DisplayMessageUpload";
+	public static final String PARAM_GET_QUERY_DOWNLOAD_FILE_MSG_ID = "msgid";
+
+    /**
+     * Updates instant message status
+     */
+    public static final String URI_POST_UPDATE_MESSAGE_STATUS = SERVER + "/rest/Message/updatestatus";
+    public static final String PARAM_POST_UPDATE_MESSAGE_STATUS_USER_ID = "userid";
+    public static final String PARAM_POST_UPDATE_MESSAGE_STATUS_PUSH_ID = "pushid";
+    public static final String PARAM_POST_UPDATE_MESSAGE_STATUS_MSG_ID = "msgid";
+    public static final String PARAM_POST_UPDATE_MESSAGE_STATUS_STATUS = "status";
+
+    /**
+     * Gets server time
+     */
+    public static final String URI_GET_SERVERTIME_LONG = SERVER + "/rest/ServerTime/long";
+
+    /**
+     * Syncs message life setting
+     */
+    public static final String URI_PUT_MESSAGE_LIFE_SETTING = SERVER + "/rest/Message/Life";
+    public static final String PARAM_MESSAGE_LIFE_SETTING_ID = "userid";
+    public static final String PARAM_MESSAGE_LIFE_SETTING_CONTENT = "life";
+
+    /**
+     * Exports message history
+     */
+    public static final String URI_POST_EXPORT_CONVERSATION = SERVER + "/rest/Message/msghistory";
+    public static final String PARAM_EXPORT_USER_ID = "userid";
+    public static final String PARAM_EXPORT_PUSH_ID = "pushid";
+    public static final String PARAM_EXPORT_TARGET_ID = "contactid";
+    public static final String PARAM_EXPORT_LOCALE = "request_locale";
+
+    public static final String URI_POST_DELETE_MESSAGE = SERVER + "/rest/Message/SingleMessage";
+    public static final String PARAM_DELETE_MESSAGE_USER_ID = "userId";
+    public static final String PARAM_DELETE_MESSAGE_PUSH_ID = "pushId";
+    public static final String PARAM_DELETE_MESSAGE_ACTION_TYPE = "action";
+    public static final String PARAM_DELETE_MESSAGE_MSG_ID = "messageId";
+    public static final String CONSTANT_DELETE_MESSAGE_TYPE_DELETE = "DELETE";
+    public static final String CONSTANT_DELETE_MESSAGE_TYPE_REVOKE = "REVOKE";
+
+    /**
+     * colleage api
+     */
+    public static final String URI_GET_COLLEAGUE_LIST = SERVER + "/rest/Relation/Colleage/{userid}";
+    public static final String PARAM_QUERY_PUSH_ID = "pushid";
+
+
+    /**
+     * Delete contact by id
+     */
+    public static final String URI_DELETE_CONTACT = SERVER + "/rest/Relation/Delete";
+    public static final String PARAM_DELETE_CONTACT_INITIATOR = "initiator";
+    public static final String PARAM_DELETE_CONTACT_PUSHID = "pushid";
+    public static final String PARAM_DELETE_CONTACT_TARGET = "target";
+    public static final String PARAM_BLOCK_CONTACT_PARAM = "block";
+
+
+    /**
+     * After sign in, request server to resend messages when log out(only messages whose status is SENT)
+     */
+    public static final String URI_GET_MISSING_MESSAGE = SERVER + "/rest/Message/getMissingMessage";
+    public static final String PARAM_GET_MISSING_MESSAGE_USERID = "userid";
+    public static final String PARAM_GET_MISSING_MESSAGE_PUSHID = "pushid";
+
+    /**
+     * Group Chat APIs
+     */
+    //ADD GROUP MEMBER(CREATE GROUP CHAT)
+    public static final String URI_GROUPCHAT_ADD_MEMEBER = SERVER + "/rest/GroupChat/Member/Add";
+    public static final String PARAM_GROUPCHAT_ADD_MEMEBER_USERID = "userid";
+    public static final String PARAM_GROUPCHAT_ADD_MEMEBER_PUSHID = "pushid";
+    public static final String PARAM_GROUPCHAT_ADD_MEMEBER_TARGETS = "targets";
+    public static final String PARAM_GROUPCHAT_ADD_MEMEBER_GROUP = "group";
+
+    //REMOVE GROUP MEMEBER
+    public static final String URI_GROUPCHAT_REMOVE_MEMEBER = SERVER + "/rest/GroupChat/Member/Remove";
+    public static final String PARAM_GROUPCHAT_REMOVE_MEMEBER_USERID = "userid";
+    public static final String PARAM_GROUPCHAT_REMOVE_MEMEBER_PUSHID = "pushid";
+    public static final String PARAM_GROUPCHAT_REMOVE_MEMEBER_TARGET = "target";
+    public static final String PARAM_GROUPCHAT_REMOVE_MEMEBER_GROUP = "group";
+
+    //SEND GROUP MESSAGE
+    public static final String URI_SEND_GROUPCHAT_MESSAGE = SERVER + "/rest/GroupChat/Message/Create";
+    public static final String PARAM_SEND_GROUPCHAT_MESSAGE_USERID = "userid";
+    public static final String PARAM_SEND_GROUPCHAT_MESSAGE_PUSHID = "pushid";
+    public static final String PARAM_SEND_GROUPCHAT_MESSAGE_GROUP = "group";
+    public static final String PARAM_SEND_GROUPCHAT_MESSAGE_DATE = "date";
+    public static final String PARAM_SEND_GROUPCHAT_MESSAGE_CONTENT = "content";
+
+    //CHANGE GROUP TITLE
+    public static final String URI_CHANGE_GROUPCHAT_TITLE = SERVER + "/rest/GroupChat/Title/Change";
+    public static final String PARAM_CHANGE_GROUPCHAT_TITLE_USERID = "userid";
+    public static final String PARAM_CHANGE_GROUPCHAT_TITLE_PUSHID = "pushid";
+    public static final String PARAM_CHANGE_GROUPCHAT_TITLE_TITLE = "title";
+    public static final String PARAM_CHANGE_GROUPCHAT_TITLE_GROUP = "group";
+
+    //EXPORT HISTORY
+    public static final String URI_EXPORT_GROUPCHAT_HISTORY = SERVER + "/rest/GroupChat/History";
+    public static final String PARAM_EXPORT_GROUPCHAT_HISTORY_USERID = "userid";
+    public static final String PARAM_EXPORT_GROUPCHAT_HISTORY_PUSHID = "pushid";
+    public static final String PARAM_EXPORT_GROUPCHAT_HISTORY_GROUP = "group";
+    public static final String PARAM_EXPORT_GROUPCHAT_HISTORY_LOCALE = "request_locale";
+
+    //GET GROUP DETAILS
+    public static final String URI_GET_GROUPCHAT_DETAILS = SERVER + "/rest/GroupChat/Details";
+    public static final String PARAM_GET_GROUPCHAT_DETAILS_USERID = "userid";
+    public static final String PARAM_GET_GROUPCHAT_DETAILS_PUSHID = "pushid";
+    public static final String PARAM_GET_GROUPCHAT_DETAILS_GROUPID = "group";
+
+    //CHECK CURRENT VERSION
+    public static final String URI_GET_CURRENT_VERSION = SERVER + "/rest/AppVersion/current";
+    public static final String PARAM_GET_CURRENT_VERSION_DEVICE_TYPE = "devicetype";
+    public static final String PARAM_GET_CURRENT_VERSION_LANGUAGE = "language";
+
+    public static final String URI_POST_ACTIVATION_CODE = SERVER + "/rest/HaoeyouVip/activation";
+    public static final String PARAM_ACTIVATION_CODE = "activationCode";
+
+    public static final String URI_USER_MANUAL = "http://www.haoeyou.com/intro-vip.jsp";
+}

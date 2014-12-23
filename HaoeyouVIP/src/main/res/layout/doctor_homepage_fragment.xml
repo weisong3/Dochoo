@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/doctor_scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="16dp" >
+
+        <LinearLayout
+            android:id="@+id/doctor_homepage_main_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:id="@+id/doctor_photo"
+                        android:layout_width="@dimen/doctor_hompage_doctor_icon_width"
+                        android:layout_height="@dimen/doctor_hompage_doctor_icon_height"
+                        android:scaleType="fitCenter"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/doc_default" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                            android:id="@+id/doctor_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:text="name"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <!-- TODO change back -->
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                            android:id="@+id/doctor_specialty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="specialty"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                            android:id="@+id/doctor_degree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="occupation"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    <!-- TODO change back -->
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                            android:id="@+id/doctor_pin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="pin"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                            android:id="@+id/doctor_insurance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="sex"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+	            style="?android:attr/textAppearanceMedium"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="@dimen/doctor_hompage_margin"
+	            android:text="@string/offices" />
+            
+            <LinearLayout
+                android:id="@+id/doctor_address_list_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+                
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/doctor_map_visible_container"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="@dimen/doctor_hompage_margin" >
+
+                <FrameLayout
+                    android:id="@+id/doctor_address_map_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null" >
+                </FrameLayout>
+
+                <View
+                    android:id="@+id/doctor_map_transparent_layer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent" />
+            </FrameLayout>
+
+            <LinearLayout
+	            android:id="@+id/doctor_gallery_wrapper"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:paddingBottom="@dimen/center_standard_margin" >
+	            
+	            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:paddingBottom="@dimen/center_inner_margin"
+	                android:text="@string/doctor_photo"
+	                android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	            <com.devsmart.android.ui.HorizontalListView
+	                android:id="@+id/doctor_gallery"
+	                android:layout_width="wrap_content"
+	                android:layout_height="@dimen/center_gallery_height" />
+	        </LinearLayout>
+            
+            <LinearLayout
+                	android:id="@+id/doctor_resume_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/doctor_hompage_margin"
+                    android:text="@string/about"
+                    android:textColor="@color/doctor_home_label"
+                    android:textSize="15sp" />
+
+                <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                    android:id="@+id/doctor_resume"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/doctor_hompage_margin"
+                    android:background="@drawable/border_line_recbg"
+                    android:padding="5dp"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</ScrollView>

@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.chc.dochoo.conversations.ConversationActivity" >
+
+    <item android:id="@+id/action_add_private_msg"
+        android:icon="@drawable/btn_add_single_msg"
+        app:showAsAction="always"
+        android:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/add_private_msg"
+                android:title="@string/action_new_msg"/>
+            <item
+                android:id="@+id/add_group_msg"
+                android:title="@string/action_new_groupchat"/>
+
+        </menu>
+        </item>
+    <item android:id="@+id/action_group_info"
+        android:title="@string/action_new_groupchat"
+        android:icon="@drawable/btn_add_group_msg"
+        app:showAsAction="always"
+        android:showAsAction="always"/>
+</menu>

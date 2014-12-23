@@ -1,0 +1,61 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.chc.dochoo.userlogin.ReauthenticateActivity">
+
+    <!-- Login form -->
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout style="@style/LoginFormContainer"
+            android:orientation="vertical">
+
+            <com.chc.views.TypefacedTextView
+                app:typeface="opensans.ttf"
+                android:layout_marginTop="16dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/default_text_size_medium"
+                android:text="@string/reauth_tips"/>
+
+            <EditText
+                android:layout_marginTop="32dp"
+                android:id="@+id/password"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login_password"
+                android:inputType="textPassword"
+                android:imeActionId="@+id/login"
+                android:imeOptions="actionUnspecified" />
+
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/submit"
+                android:id="@+id/button_sign_in"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/button_bg_selector"
+                android:textColor="@color/white"
+                android:layout_marginTop="32dp" />
+
+
+            <Button
+                android:id="@+id/button_sign_out"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_bg_selector"
+                android:text="@string/signout"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</merge>

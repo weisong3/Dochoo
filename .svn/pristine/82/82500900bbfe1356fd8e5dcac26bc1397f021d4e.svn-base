@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.7.+'
+    }
+}
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+}
+android {
+    compileSdkVersion 19
+    buildToolsVersion '19.0.0'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 19
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    compile 'com.google.android.gms:play-services:4.0.30'
+    compile 'com.android.support:support-v4:+'
+    compile 'commons-lang:commons-lang:+'
+    compile "com.android.support:gridlayout-v7:18.0.+"
+
+    compile project(':ChcHpadUtil')
+    compile project(':ImageViewTouch')
+    compile project(':ScanBarCode')
+    compile project(':RoundedImageView')
+    compile files('libs/ormlite-android-4.47.jar')
+    compile files('libs/ormlite-core-4.47.jar')
+    compile files('libs/devsmartlib.jar')
+}

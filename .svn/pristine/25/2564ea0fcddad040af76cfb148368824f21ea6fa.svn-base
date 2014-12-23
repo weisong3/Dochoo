@@ -1,0 +1,168 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <dimen name="logo_size">32dp</dimen>
+    
+    <!-- Slider -->
+    <dimen name="slidingmenu_offset">96dp</dimen>
+    <dimen name="shadow_width">16dp</dimen>
+    
+    <!-- Menu -->
+    <dimen name="menu_item_height">50dp</dimen>
+    <dimen name="menu_list_padding">10dp</dimen>
+    <dimen name="menu_bottom_bar_padding">5dp</dimen>
+    <dimen name="menu_item_margin_left">4dp</dimen>
+    <dimen name="menu_item_icon_padding">8dp</dimen>
+    <dimen name="menu_item_text_margin_left">@dimen/menu_item_margin_left</dimen>
+    
+    <!-- for profile fragments -->
+    <dimen name="profile_margin">10dp</dimen>
+    <dimen name="profile_inner_margin">5dp</dimen>
+    
+    <!-- itemListActivity -->
+    <dimen name="item_list_activity_item_height">170dp</dimen>
+    <dimen name="item_list_activity_listview_padding">10dp</dimen>
+    <dimen name="item_list_activity_listview_item_padding">20dp</dimen>
+    
+    <!-- doctor collabrator listview -->
+    <dimen name="doctor_collabrator_listview_item_height">80dp</dimen>
+    <dimen name="doctor_collabrator_listview_inner_margin">4dp</dimen>
+    <dimen name="doctor_collabrator_listview_new_message_notification_size">14dp</dimen>
+    
+    <!-- Activities (not Android activities) -->
+    <dimen name="activity_item_height">100dp</dimen>
+    <dimen name="activity_list_padding">10dp</dimen>
+    <dimen name="activities_icon_width">@dimen/activity_item_height</dimen>
+    <dimen name="activities_icon_height">@dimen/activity_item_height</dimen>
+    <dimen name="activities_icon_padding">10dp</dimen>
+    
+    
+    <dimen name="extra_large_font_size">30sp</dimen>
+    <dimen name="button_drawable_padding_left">15dp</dimen>
+    <dimen name="button_text_size">25sp</dimen>
+    <dimen name="large_font_size">27sp</dimen>
+    
+    <!-- for centerfragment -->
+    <dimen name="center_standard_margin">16dp</dimen>
+    <dimen name="center_inner_margin">5dp</dimen>
+    <dimen name="center_gallery_height">100dp</dimen>
+    <dimen name="center_gallery_item">80dp</dimen>
+    
+    <!-- for imageviewer -->
+    <dimen name="imageviewer_gallery_height">80dp</dimen>
+    <dimen name="imageviewer_gallery_item">80dp</dimen>
+    
+    
+    <!-- for newsfragment -->
+    <dimen name="news_standard_margin">16dp</dimen>
+    
+    <!-- for doctordetailfragment -->
+    <dimen name="doctor_detail_standard_margin">16dp</dimen>
+     <dimen name="doctor_detail_inner_margin">5dp</dimen>
+    <dimen name="doctor_detail_profile_min_height">140dp</dimen>
+    
+    <!-- for doctorfragment.xml -->
+    <dimen name="doctor_hompage_padding">10dp</dimen>
+    <dimen name="doctor_hompage_doctor_icon_height">90dp</dimen>
+    <dimen name="doctor_hompage_doctor_icon_width">90dp</dimen>
+    <dimen name="doctor_hompage_margin">5dp</dimen>
+    <dimen name="doctor_hompage_outer_margin">25dp</dimen>
+    <dimen name="doctor_hompage_top_margin">20dp</dimen>
+    <dimen name="doctor_logo_min_width">90dp</dimen>
+    <dimen name="doctor_logo_min_height">90dp</dimen>
+    <dimen name="doctor_top_height">200dp</dimen>
+    <dimen name="doctor_top_width">655dp</dimen>
+    <dimen name="doctor_top_margin">10dp</dimen>
+    <dimen name="doctor_hospital_icon_width">58dp</dimen>
+    <dimen name="doctor_hospital_icon_height">53dp</dimen>
+    <dimen name="doctor_list_video_btn_margin">4dp</dimen>
+    <dimen name="doctor_list_header_padding">8dp</dimen>
+    <dimen name="doctor_homepage_map_height">360dp</dimen>
+    
+    <!-- for doctor_grid_item -->
+    <dimen name="doctor_grid_padding">10dp</dimen>
+    <dimen name="doctor_grid_item_width">0dp</dimen>
+    <dimen name="doctor_grid_item_height">400dp</dimen>
+    
+	<!-- Tips Intro -->
+	<dimen name="intro_tip_ok_btn_margin_right">16dp</dimen>
+	<dimen name="intro_tip_ok_btn_margin_bottom">32dp</dimen>
+	
+    <!-- General button style -->
+    <dimen name="button_padding_vertical">8dp</dimen>
+    <dimen name="button_padding_horizontal">16dp</dimen>
+    <dimen name="button_padding_vertical_small">3dp</dimen>
+    <dimen name="button_padding_horizontal_small">6dp</dimen>
+    <dimen name="small_button_padding_vertical">4dp</dimen>
+    <dimen name="small_button_padding_horizontal">8dp</dimen>
+    
+    <!-- Swipey Tab -->
+    <dimen name="swipey_tab_bottomBarHeight">2dp</dimen>
+    <dimen name="swipey_tab_tabIndicatorHeight">3dp</dimen>
+    
+    
+    <!-- Log in -->
+    <dimen name="login_width">300dp</dimen>
+    <dimen name="login_height">300dp</dimen>
+    <dimen name="login_edittext_width">176dp</dimen>
+    <dimen name="login_edittext_height">32dp</dimen>
+    
+    <!-- Instant Messaging -->
+    <dimen name="instant_msg_img_max_width">160dp</dimen>
+    <dimen name="instant_msg_img_max_height">100dp</dimen>
+    <dimen name="recording_dialog_width">200dp</dimen>
+    <dimen name="recording_dialog_height">160dp</dimen>
+    <dimen name="navigation_drawer_width">300dp</dimen>
+    <dimen name="fragment_instant_msg_listview_paddingbottom">0dp</dimen>
+    <dimen name="padding_imagebtn_default">10dp</dimen>
+    <dimen name="default_text_size_small">9sp</dimen>
+    <dimen name="default_text_size_medium">15sp</dimen>
+    <dimen name="default_text_size_medium_small">12sp</dimen>
+    <dimen name="default_text_size_large">20sp</dimen>
+    <dimen name="default_text_size_medium_large">17sp</dimen>
+    <dimen name="doctor_collabrator_icon_radius">56dp</dimen>
+    <dimen name="icon_action_bar_radius">32dp</dimen>
+    <dimen name="rounded_img_border_width">@dimen/icon_border_size</dimen>
+    <dimen name="icon_border_size">1dp</dimen>
+    <dimen name="item_instant_msg_margin_btw_time_content">8dp</dimen>
+    <dimen name="item_instant_msg_margin_btw_icon_content">16dp</dimen>
+    <dimen name="item_instant_msg_padding_horizontal">16dp</dimen>
+    <dimen name="item_instant_msg_padding_top">8dp</dimen>
+    <dimen name="item_instant_msg_padding_bottom">16dp</dimen>
+    <dimen name="instant_msg_icon_margin_top">8dp</dimen>
+    <dimen name="icon_instant_msg_size">48dp</dimen>
+    <dimen name="instant_msg_text_content_margin_end">32dp</dimen>
+    <dimen name="instant_msg_seekbar_width">160dp</dimen>
+    <dimen name="instant_msg_play_btn_padding">8dp</dimen>
+    <dimen name="navi_item_padding_horizontal">40dp</dimen>
+    <dimen name="navi_item_height">48dp</dimen>
+    <dimen name="navi_title_height">24dp</dimen>
+    <dimen name="navi_drawer_profile_icon_size">48dp</dimen>
+    <dimen name="profile_divider_margin_vertical">4dp</dimen>
+    <dimen name="profile_content_margin_horizontal">48dp</dimen>
+    <dimen name="profile_title_margin_left">16dp</dimen>
+    <dimen name="profile_icon_radius">96dp</dimen>
+    <dimen name="profile_edit_btn_padding_left">16dp</dimen>
+    <dimen name="profile_edit_btn_padding_vertical">8dp</dimen>
+    <dimen name="profile_spinner_margin_horizontal">32dp</dimen>
+    <dimen name="profile_edittext_size">16sp</dimen>
+    <dimen name="default_text_size_extra_large">24sp</dimen>
+    <dimen name="settings_options_wrapper_height">48dp</dimen>
+    <dimen name="option_item_horizontal_padding">8dp</dimen>
+
+
+    <dimen name="dochoo_big_button_padding_vertical">0dp</dimen>
+    <dimen name="dochoo_big_button_padding_horizontal">32dp</dimen>
+
+    <!--group information page-->
+    <dimen name="group_info_grid_icon_radius">70dp</dimen>
+    <dimen name="group_info_grid_delete_radius">30dp</dimen>
+
+    <!--add group member activity-->
+    <dimen name="new_group_member_lien_left_margin">5dp</dimen>
+    <dimen name="new_group_member_lien_top_margin">10dp</dimen>
+
+</resources>

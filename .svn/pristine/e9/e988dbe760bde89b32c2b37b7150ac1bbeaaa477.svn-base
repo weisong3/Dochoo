@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextInvitation"
+        android:textColor="@color/default_dark_blue_grey"
+        android:layout_gravity="center_horizontal"
+        android:editable="true"
+        android:inputType="textMultiLine|textLongMessage|textCapSentences"
+        android:maxLines="12"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:layout_width="250dp"
+        android:background="@drawable/button_bg_selector"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:text="@string/invitation_button_sms"
+        android:id="@+id/buttonSms"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:layout_width="250dp"
+        android:background="@drawable/button_bg_selector"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:text="@string/invitation_button_email"
+        android:id="@+id/buttonEmail"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:layout_width="250dp"
+        android:background="@drawable/button_bg_selector"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:text="@string/invitation_button_other_app"
+        android:id="@+id/buttonOther"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp" />
+</LinearLayout>

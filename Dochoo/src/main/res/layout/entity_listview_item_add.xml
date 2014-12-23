@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.chc.views.TypefacedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/entity_list_item_add_wrapper"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:gravity="center"
+    android:background="@drawable/transparent_color"
+    android:text="@string/add_new_pro"
+    android:textColor="@color/black"
+    app:typeface="opensans.ttf"
+    android:textAppearance="?android:attr/textAppearanceSmall" />

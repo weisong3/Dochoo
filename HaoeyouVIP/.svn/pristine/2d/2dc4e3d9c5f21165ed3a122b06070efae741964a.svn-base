@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:gravity="center"
+    >
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <com.makeramen.RoundedImageView
+            android:id="@+id/group_info_grid_icon"
+            android:layout_width="@dimen/group_info_grid_icon_radius"
+            android:layout_height="@dimen/group_info_grid_icon_radius"
+            android:src="@drawable/doc_default"
+            android:scaleType="centerCrop"
+            app:corner_radius="@dimen/doctor_collabrator_icon_radius"
+            app:border_width="@dimen/rounded_img_border_width"
+            app:border_color="@color/default_dochoo_orange"
+            app:round_background="true" />
+        <com.makeramen.RoundedImageView
+            android:layout_height="@dimen/group_info_grid_delete_radius"
+            android:layout_width="@dimen/group_info_grid_delete_radius"
+            android:id="@+id/group_info_grid_delete"
+            android:src="@drawable/cancel_record_unpress"
+            android:scaleType="centerCrop"
+            app:corner_radius="@dimen/doctor_collabrator_icon_radius"
+            app:border_width="@dimen/rounded_img_border_width"
+            app:border_color="@color/transparent"
+            app:round_background="true"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/group_info_grid_fullname"
+        android:layout_width="wrap_content"
+        android:maxWidth="75dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        />
+</LinearLayout>

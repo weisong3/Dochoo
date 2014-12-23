@@ -1,0 +1,161 @@
+//package com.chc.found;
+//
+//import android.support.v7.app.ActionBar;
+//import android.app.Activity;
+//import android.content.Intent;
+//import android.graphics.Bitmap;
+//import android.graphics.Rect;
+//import android.graphics.drawable.Drawable;
+//import android.os.Bundle;
+//import android.support.v4.app.ActionBarActivity;
+//import android.support.v4.app.FragmentTransaction;
+//import android.view.MenuItem;
+//import android.widget.ImageView;
+//
+//import com.chc.dochoo.CHCApplication;
+//import com.chc.found.fragments.InstantMessageFragment;
+//import com.chc.found.models.AddEntityState;
+//import com.chc.found.models.EntityUser;
+//import com.chc.found.presenters.EntityPresenter;
+//import com.chc.found.utils.ImageUtil;
+//import com.chc.found.views.IEntityView;
+//import com.chcgp.hpad.util.download.ImageDownloader;
+//import com.chcgp.hpad.util.general.CHCGeneralUtil;
+//import com.makeramen.RoundedDrawable;
+//import com.test.found.R;
+//
+//import java.util.List;
+//
+//public class InstantMessageActivity extends ActionBarActivity implements IEntityView {
+//
+//    public static final String KEY_ENTITY_ID = "bundle_entity_id";
+//    private String entityId;
+//
+//    public static final void startActivity(Activity a, String entityId) {
+//		Intent intent = new Intent(a, InstantMessageActivity.class);
+//        Bundle args = new Bundle();
+//        args.putString(KEY_ENTITY_ID, entityId);
+//        intent.putExtras(args);
+//		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//		a.startActivity(intent);
+//
+//		a.overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
+//	}
+//
+//	@Override
+//	public void onBackPressed() {
+//        android.support.v4.app.Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.root);
+//        if (fragment instanceof InstantMessageFragment) {
+//            ((InstantMessageFragment) fragment).close();
+//        }
+//
+////        super.onBackPressed();
+//        goToParentActivity();
+//        finish();
+//
+//        this.overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
+//	}
+//
+//    private void goToParentActivity() {
+//        DoctorMainActivity.startActivity(this);
+//    }
+//
+//    @Override
+//	protected void onCreate(Bundle savedInstanceState) {
+//		super.onCreate(savedInstanceState);
+//
+//		setContentView(R.layout.activity_empty);
+//
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null)
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//
+//        Bundle args = getIntent().getExtras();
+//        doCreate(args);
+//	}
+//
+//    private void doCreate(Bundle args) {
+//        if (args == null) return;
+//        entityId = args.getString(KEY_ENTITY_ID);
+//        if (entityId == null) {
+//            finish();
+//            return;
+//        }
+//
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setLogo(R.drawable.ic_launcher);
+//        }
+//
+//        EntityPresenter presenter = new EntityPresenter(this);
+//
+//        EntityUser user = presenter.getEntityById(entityId);
+//
+//        if (user == null) {
+//            finish();
+//            return;
+//        }
+//
+//        int dimen = getResources().getDimensionPixelSize(R.dimen.logo_size);
+//        ImageDownloader.getInstance().downloadWithCallback(this, user.getProfileIconUrl(), dimen,
+//                new ImageDownloader.Callback() {
+//
+//                    @Override
+//                    public void onImageLoaded(Bitmap bitmap) {
+//                        try {
+//                            ActionBar actionBar = getSupportActionBar();
+//                            if (actionBar != null && bitmap != null) {
+//                                bitmap = CHCGeneralUtil.cropSquareBitmap(bitmap);
+//                                int radius = getResources().getDimensionPixelSize(R.dimen.icon_action_bar_radius);
+//                                RoundedDrawable logo = new RoundedDrawable(bitmap);
+//                                logo.setScaleType(ImageView.ScaleType.CENTER_INSIDE)
+//                                        .setCornerRadius(radius)
+//                                        .setBorderWidth(getResources().getDimensionPixelSize(R.dimen.icon_border_size))
+//                                        .setBorderColors(getResources().getColorStateList(R.color.default_dochoo_orange))
+//                                        .setOval(true);
+//                                actionBar.setLogo(logo);
+//                            }
+//                        } catch (Exception e) {}
+//                    }
+//                });
+//
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.root, InstantMessageFragment.newInstance(entityId));
+//        ft.commitAllowingStateLoss();
+//    }
+//
+//    @Override
+//    protected void onNewIntent(Intent intent) {
+//        super.onNewIntent(intent);
+//        Bundle args = intent.getExtras();
+//
+//        doCreate(args);
+//    }
+//
+//    @Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		if (item.getItemId() == android.R.id.home) {
+//			onBackPressed();
+//			return true;
+//		}
+//		return super.onOptionsItemSelected(item);
+//	}
+//
+//	@Override
+//	public CHCApplication getCHCApplication() {
+//		return CHCApplication.getInstance(this);
+//	}
+//
+//	@Override
+//	public void onEntityLoaded(EntityUser user) {
+//	}
+//
+//	@Override
+//	public void onEntityLoaded(List<EntityUser> user) {
+//	}
+//
+//	@Override
+//	public void getEntityFailed(AddEntityState state) {
+//	}
+//
+//}

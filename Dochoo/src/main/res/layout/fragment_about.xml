@@ -1,0 +1,187 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_bg"
+    tools:context="com.chc.dochoo.more.AboutActivity$PlaceholderFragment">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="32dp"
+        android:paddingTop="16dp"
+        android:paddingRight="32dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:src="@drawable/splash_page_small"/>
+
+        <com.chc.views.TypefacedTextView
+            app:typeface="opensans.ttf"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size_extra_large"
+            android:text="@string/about_mission"
+            android:textColor="@color/default_dochoo_orange" />
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/profile_divider_color"
+            android:clickable="false" />
+
+        <com.chc.views.TypefacedTextView
+            app:typeface="opensans.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size_medium"
+            android:text="@string/about_mission_content"
+            android:textColor="@color/default_dark_blue_grey" />
+
+
+        <com.chc.views.TypefacedTextView
+            app:typeface="opensans.ttf"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size_extra_large"
+            android:text="@string/about_contact"
+            android:textColor="@color/default_dochoo_orange" />
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/profile_divider_color"
+            android:clickable="false" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_text_size_medium"
+                    android:text="@string/phone"
+                    android:textColor="@color/default_dark_blue_grey" />
+
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_text_size_medium"
+                    android:text="@string/phone_number_chc"
+                    android:textColor="@color/default_dark_blue_grey" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_text_size_medium"
+                    android:text="@string/address"
+                    android:textColor="@color/default_dark_blue_grey" />
+
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_text_size_medium"
+                    android:text="@string/about_address_chc"
+                    android:textColor="@color/default_dark_blue_grey" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_text_size_medium"
+                    android:text="@string/email_colon"
+                    android:textColor="@color/default_dark_blue_grey" />
+
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/default_text_size_medium"
+                    android:text="@string/email_chc"
+                    android:textColor="@color/default_dark_blue_grey" />
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <com.chc.views.TypefacedTextView
+            app:typeface="opensans.ttf"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size_extra_large"
+            android:text="@string/about_about_us"
+            android:textColor="@color/default_dochoo_orange" />
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/profile_divider_color"
+            android:clickable="false" />
+
+        <com.chc.views.TypefacedTextView
+            app:typeface="opensans.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text_size_medium"
+            android:text="@string/about_about_us_content"
+            android:textColor="@color/default_dark_blue_grey" />
+
+
+    </LinearLayout>
+
+</ScrollView>

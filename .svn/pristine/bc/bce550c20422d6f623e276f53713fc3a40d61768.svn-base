@@ -1,0 +1,173 @@
+package com.chc.dochoo;
+
+import android.app.Activity;
+import android.app.Application;
+import android.app.Service;
+import android.util.Log;
+
+import com.chc.found.models.DatabaseHelper;
+import com.chc.found.models.EntityUser;
+import com.chc.found.utils.SharedPreferenceUtil;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+
+import org.apache.commons.lang.StringUtils;
+import org.json.JSONException;
+
+public class CHCApplication extends Application {
+
+    private static final String TAG = CHCApplication.class.getSimpleName();
+    private volatile DatabaseHelper databaseHelper = null;
+    private volatile String regId = null;
+    private volatile String userId = null;
+    private volatile String userName = null;
+    private volatile String userFullname = null;
+    private volatile EntityUser user = null;
+    private volatile boolean isSignedIn = false;
+    private String currentChattingId = "";
+    private boolean isCenter;
+
+    @Override
+    public void onCreate() {
+//		ACRA.init(this);
+//		com.chc.bugreport.ChcReportSender mSender
+//		  = new com.chc.bugreport.ChcReportSender(getPackageName());
+//		ErrorReporter.getInstance().setReportSender(mSender);
+
+        super.onCreate();
+
+        this.userId = SharedPreferenceUtil.getCachedUserId(this);
+        this.userName = SharedPreferenceUtil.getCachedUserName(this);
+        this.userFullname = SharedPreferenceUtil.getFullName(this);
+        try {
+            String json = SharedPreferenceUtil.getUserData(this);
+            if (StringUtils.isNotBlank(json))
+                this.user = EntityUser.parseJson(json);
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+        if (this.user != null && user.getUsername() != null) {
+            if (!this.userName.equals(user.getUsername())) {
+                this.userName = user.getUsername();
+                SharedPreferenceUtil.writeUserName(this, userName);
+            }
+        }
+        this.regId = SharedPreferenceUtil.getRegistrationId(this);
+        setSignedIn(StringUtils.isNotBlank(userId) && StringUtils.isNotBlank(userName));
+    }
+
+
+    public static CHCApplication getInstance(Activity a) {
+        return (CHCApplication) a.getApplication();
+    }
+
+    public static CHCApplication getInstance(Service service) {
+        return (CHCApplication) service.getApplication();
+    }
+
+    public DatabaseHelper getHelper() {
+        if (databaseHelper == null) {
+            synchronized (this) {
+                if (databaseHelper == null) {
+                    databaseHelper =
+                            OpenHelperManager.getHelper(this, DatabaseHelper.class);
+                }
+            }
+        }
+        return databaseHelper;
+    }
+
+    public synchronized void releaseDatabaseHelper() {
+        if (databaseHelper != null) {
+            OpenHelperManager.releaseHelper();
+            databaseHelper = null;
+        }
+    }
+
+    public synchronized String getRegId() {
+        return regId;
+    }
+
+    public synchronized void setRegId(String regId) {
+        this.regId = regId;
+    }
+
+    public synchronized String getUserId() {
+        return userId;
+    }
+
+    public synchronized void setUserId(String userId) {
+        this.userId = userId;
+        this.setSignedIn(StringUtils.isNotEmpty(userId));
+    }
+
+    public synchronized String getUserName() {
+        return userName;
+    }
+
+    public synchronized void setUserName(String userName) {
+        this.userName = userName;
+        this.setSignedIn(StringUtils.isNotEmpty(userName));
+    }
+
+    public synchronized boolean isSignedIn() {
+        return isSignedIn;
+    }
+
+    public synchronized void setSignedIn(boolean isSignedIn) {
+        this.isSignedIn = isSignedIn;
+    }
+
+    public String getUserFullname() {
+        return userFullname;
+    }
+
+    public void setUserFullname(String userFullname) {
+        SharedPreferenceUtil.writeFullName(this, userFullname);
+        this.userFullname = userFullname;
+    }
+
+    public boolean isShowNotification(String id) {
+        return !currentChattingId.equals(id);
+    }
+
+    public void setCurrentChattingId(String id) {
+        this.currentChattingId = id;
+    }
+
+    public EntityUser getUser() {
+        return user;
+    }
+
+    public void setUser(EntityUser user) {
+        this.user = user;
+        if (user != null)
+            setUserFullname(user.getFullname());
+    }
+
+    public void setUser(String userdata) {
+        if (StringUtils.isBlank(userdata)) return;
+        try {
+            setUser(EntityUser.parseJson(userdata));
+        } catch (JSONException e) {
+            this.user = null;
+            Log.e(TAG, e.getMessage(), e);
+        }
+    }
+
+    public void onSignedOut() {
+        this.user = null;
+        this.userId = null;
+        this.userName = null;
+        this.userFullname = null;
+        this.currentChattingId = "";
+        this.isSignedIn = false;
+    }
+
+    public boolean isCenter() {
+        return isCenter;
+    }
+
+    public void setCenter(boolean isCenter) {
+        this.isCenter = isCenter;
+    }
+}

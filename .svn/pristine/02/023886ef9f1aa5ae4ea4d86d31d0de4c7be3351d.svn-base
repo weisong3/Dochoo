@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/default_dark_blue_grey">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dochoo_image"
+            android:padding="8dp" />
+    </FrameLayout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/login_bg">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="32dp"
+                android:background="@color/role_selected_bg"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+            <com.chc.views.TypefacedTextView
+                app:typeface="opensans.ttf"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:text="@string/ask_for_login"
+                android:textSize="@dimen/default_text_size_extra_large"
+                android:textColor="@color/default_dochoo_orange" />
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/profile_divider_color"
+                    android:clickable="false" />
+                <LinearLayout
+                    android:id="@+id/relativelayout_login_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp">
+
+                    <com.chc.views.TypefacedTextView
+                        app:typeface="opensans.ttf"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/login_email"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/black" />
+
+                    <EditText
+                        android:id="@+id/edittext_login_email"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:inputType="textEmailAddress"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/relativelayout_login_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp">
+
+                    <com.chc.views.TypefacedTextView
+                        app:typeface="opensans.ttf"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/login_password"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/black" />
+
+                    <EditText
+                        android:id="@+id/edittext_login_password"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:imeOptions="actionGo"
+                        android:inputType="textPassword"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <Button
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/submit"
+                        android:id="@+id/buttonSubmit"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/button_bg_selector"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="16dp" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/not_member_yet"
+                android:textColor="@color/dochoo_default_text_color"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="48dp"
+                android:textSize="@dimen/default_text_size_medium_large" />
+
+            <com.chc.views.TypefacedTextView
+                app:typeface="opensans.ttf"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_login_newuser"
+                android:text="@string/sign_up_now"
+                android:textSize="@dimen/default_text_size_large"
+                android:textColor="@color/default_dochoo_orange" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_gravity="right"
+                android:layout_height="wrap_content">
+
+                <com.chc.views.TypefacedTextView
+                    app:typeface="opensans.ttf"
+                    android:id="@+id/textView_login_forgot_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/forgot_pwd"
+                    android:textColor="@color/default_dark_blue_grey" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

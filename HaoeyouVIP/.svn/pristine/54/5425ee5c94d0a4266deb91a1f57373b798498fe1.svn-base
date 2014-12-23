@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- DO NOT TRANSLATE -->
+    <!-- Intent Action: -->
+    <string name="news_action">ACTION_FOUND_NEWS_RECEIVED</string>
+    <string name="im_action">ACTION_FOUND_IM_RECEIVED</string>
+    <string name="broadcast_intent_extra_tag_news">broadcast_intent_extra_tag_news</string>
+    <string name="broadcast_intent_extra_tag_news_entity">broadcast_intent_extra_tag_news</string>
+    <string name="broadcast_intent_extra_tag_im">broadcast_intent_extra_tag_im</string>
+    <string name="broadcast_intent_extra_tag_im_entity">broadcast_intent_extra_tag_im_entity</string>
+    <string name="broadcast_intent_extra_tag_im_group">broadcast_intent_extra_tag_im_group</string>
+    <string name="broadcast_intent_extra_tag_group_noticetype">broadcast_intent_extra_tag_group_noticetype</string>
+    <string name="broadcast_intent_extra_tag_group_newtitle">broadcast_intent_extra_tag_group_newtitle</string>
+    <string name="app_admin_iscenter">false</string>
+    <string name="unique_application_config_id">ffffffffffffffffffffffffffffffff</string>
+    <string name="app_config_root_path">/configs/</string>
+    <string name="title_mainactivity">@string/found_app_name</string>
+    <string name="slidingmenu_fade_degree">0.35</string>
+    <string name="title_section1">Title1</string>
+    <string name="title_section2">Title2</string>
+    <string name="title_section3">Title3</string>
+    <!-- DO NOT TRANSLATE -->
+
+    <string name="found_app_name">好医友vip</string>
+    <string name="loading">载入中...</string>
+    <string name="action_settings">系统设置</string>
+    <string name="action_doctor_detail">医生详细信息</string>
+    <string name="action_news_detail">新闻详情</string>
+
+    <!-- EntityList -->
+    <string-array name="country_arrays">
+        <item>请输入PIN码</item>
+        <item>扫描二维码</item>
+    </string-array>
+
+    <string name="new_message">未读消息</string>
+    <string name="confirm_yes">是</string>
+    <string name="confirm_no">否</string>
+    <string name="ask_user_notification">愿意接受您的医生/医疗机构发送的消息和新闻推送吗?</string>
+    <string name="drawer_open">Open the drawer</string>
+    <string name="drawer_close">Close the drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Settings -->
+    <string name="notification_enabled">消息推送已启用. 如需禁用, 请访问系统设置菜单.</string>
+    <string name="notification_disabled">消息推送已禁用. 如需启用, 请访问系统设置菜单.</string>
+    <string name="notification">消息推送</string>
+
+
+    <!-- Tabs -->
+    <string name="tab_title_medical_center">医疗机构</string>
+    <string name="tab_title_doctor_home">医疗专家信息</string>
+    <string name="tab_title_patient">会员信息</string>
+    <string name="tab_title_news">新闻和信息</string>
+    <string name="tab_title_messages">消息</string>
+
+    <!-- News && Instant message -->
+    <string name="on_user_signed_in">已登入!</string>
+    <string name="on_user_signin_failed">用户名/密码输入错误. 请重试.</string>
+    <string name="you_have_news">您的医疗专家发布了新的新闻.</string>
+    <string name="message_invalid_image">失败. 图片无效. 请重试</string>
+    <string name="instant_message_content_desc_image">[图片]</string>
+    <string name="instant_message_content_desc_file">[文件]</string>
+    <string name="instant_message_content_desc_voice">[音频]</string>
+    <string name="im_record_recording">停止并发送</string>
+    <string name="im_record_cancel">松开并取消</string>
+    <string name="voice_message_press_to_play">按下开始播放消息</string>
+    <string name="voice_message_press_to_stop">按下停止</string>
+
+    <!-- Login and register -->
+    <string name="ask_for_login">登录</string>
+    <string name="error_msg_duplicate_username">这个邮箱地址已于其他账号绑定.</string>
+    <string name="error_msg_wrong_username_or_password">邮箱/密码输入错误.</string>
+    <string name="error_msg_wrong_register_other">注册失败. 请检查网络连接情况并重试.</string>
+    <string name="new_user_register">新用户?</string>
+    <string name="login_email">用户名/邮箱:</string>
+    <string name="login_password">密码:</string>
+    <string name="network_wait">连接中...请稍后</string>
+    <string name="login_invalid_input">无效的邮箱/密码. 请检查并重试.</string>
+    <string name="sign_out_complete">您已成功登出账号.</string>
+    <string name="action_registeruser">新用户</string>
+    <string name="register_success">祝贺您! 已成功注册账号. 现将自动登录.</string>
+    <string name="register_unmatched_pwd">两次输入的密码不相同.</string>
+    <string name="register_all_fields_required">所有的项目都必填.</string>
+    <string name="register_password_too_short">您输入的密码太短. 请至少使用6位字符.</string>
+    <string name="register_invalid_email_address">请输入正确的邮箱地址.</string>
+    <string name="forgot_password">如需找回密码, 请联系客服</string>
+    <string name="action_logout">登出</string>
+    <string name="logout_title">确认登出</string>
+    <string name="logout_message">登出账号将清除本机上您的用户信息和聊天记录.</string>
+    <string name="logout_confirm">登出</string>
+    <string name="cancel">返回</string>
+    <string name="register_detail_info">请完善您的个人信息.</string>
+
+    <!-- Scan -->
+    <string name="action_capture">请扫描二维码</string>
+
+    <!-- Agreement -->
+
+
+    <!-- Contact list -->
+    <string name="contact_patient">会员</string>
+    <string name="contact_pro">医疗专家</string>
+    <string name="contact_add_success">添加成功</string>
+    <string name="contact_add_failed">无法找到该联系人, 请重试.</string>
+    <string name="contact_added_by_others"> 添加您为联系人.</string>
+    <string name="contact_added_by_anonym"> 您有一个新联系人.</string>
+
+    <!-- Misc -->
+    <string name="toast_doctormainactivity_pin_already_added">这个PIN密码已被添加过.</string>
+    <string name="toast_doctormainactivity_pin_no_exists">这个PIN密码不存在, 请核实并重试.</string>
+    <string name="toast_doctormainactivity_blocked">您被该用户屏蔽了.</string>
+    <string name="toast_doctormainactivity_other">现在无法连接到服务器. 请重试.</string>
+    <string name="button_doctormainactivity_enter_pin">输入PIN密码</string>
+    <string name="button_doctormainactivity_scan">请扫描二维码</string>
+    <string name="title_dialog_doctormainactivity_add"></string>
+    <string name="title_dialog_doctormainactivity_input_pin">输入PIN密码</string>
+    <string name="toast_entitylistactivity_pin_duplicate">这个PIN密码已被添加过.</string>
+    <string name="toast_entitylistactivity_pin_no_exists">这个PIN密码不存在, 请核实并重试.</string>
+    <string name="toast_entitylistactivity_other">现在无法连接到服务器. 请重试.</string>
+    <string name="toast_entitylistactivity_scan_failed">二维码扫描失败, 请重试.</string>
+    <string name="toast_entitylistactivity_add_new_success">成功添加医疗专家</string>
+    <string name="toast_entitylistactivity_upload_profile_icon_failed">头像上传失败</string>
+    <string name="toast_entitylistactivity_upload_profile_icon_success">头像上传成功</string>
+    <string name="button_dialog_single_healthcare_provider">独立医疗专家</string>
+    <string name="button_dialog_medical_group">医疗组织或机构</string>
+    <string name="title_dialog_registeruseractivity_select_user_type">选择您的类型</string>
+    <string name="title_dialog_registeruseractivity_signin_patient">登录会员账号</string>
+    <string name="content_dialog_registeruseractivity_ask_patient_signin">您想要现在注册或登录一个会员账号吗?</string>
+    <string name="confirm_no_skip">不(跳过)</string>
+    <string name="textview_settings_signin_first">请先登录</string>
+    <string name="toast_error_google_service">谷歌地图服务错误, 请重启.</string>
+    <string name="marker_map_title_doctor">医疗专家</string>
+    <string name="toast_error_download_failed">下载失败. 请重试.</string>
+    <string name="title_app_chooser_select_picture">选择图片.</string>
+    <string name="toast_error_recording_failed">录音失败. 请重试.</string>
+    <string name="time_am">上午</string>
+    <string name="time_pm">下午</string>
+    <string name="toast_error_damaged_voice">音频文件已损坏, 请重试.</string>
+    <string name="msg_dialog_downloading">下载中</string>
+    <string name="toast_error_birth_format">生日输入格式错误</string>
+    <string name="toast_error_load_profile">下载用户档案失败</string>
+    <string name="toast_success_update_profile">用户档案更新成功</string>
+    <string name="toast_failure_update_profile">用户档案更新失败</string>
+    <string name="toast_success_upload_icon">头像上传成功; 头像图标已保存.</string>
+    <string name="toast_failure_upload_icon">头像上传失败</string>
+    <string name="website">网站:</string>
+    <string name="accepted_insurance">接受的保险类型:</string>
+    <string name="username">用户名:</string>
+    <string name="your_username">您的用户名</string>
+    <string name="signout">登出并清除所有信息</string>
+    <string name="doctor_name">医疗专家姓名</string>
+    <string name="center_name">机构或组织名称</string>
+    <string name="hours">在线时间:</string>
+    <string name="photo">照片:</string>
+    <string name="about">关于:</string>
+    <string name="about_info">关于信息</string>
+    <string name="address">地址:</string>
+    <string name="phone">电话:</string>
+    <string name="new_msg">新消息</string>
+    <string name="specialty">专长:</string>
+    <string name="offices">办公室地址:</string>
+    <string name="doctor_photo">照片:</string>
+    <string name="welcome">欢迎!</string>
+    <string name="click_signin">点此处登录或注册新账号…</string>
+    <string name="add_new_pro">添加新的医疗专家/机构</string>
+    <string name="resume">继续:</string>
+    <string name="hold_talk">按住并讲话</string>
+    <string name="attach_img">图像</string>
+    <string name="send">发送</string>
+    <string name="record">录音</string>
+    <string name="Type_text">类行</string>
+    <string name="enter">输入</string>
+    <string name="forgot_pwd">忘记密码?</string>
+    <string name="news_time">时间</string>
+    <string name="firstname">名:</string>
+    <string name="lastname">姓:</string>
+    <string name="gender">性别:</string>
+    <string name="gender_male">男</string>
+    <string name="gender_female">女</string>
+    <string name="dob_format">生日: (月/日/年)</string>
+    <string name="profile_email">主要邮箱地址 / 用户名:</string>
+    <string name="profile_email2">备用邮箱地址: (选填)</string>
+    <string name="profile_phone">电话: (选填)</string>
+    <string name="profile_medical_condition">医疗状况/主诉: (选填)</string>
+    <string name="profile_surgeries">以往手术史: (选填)</string>
+    <string name="profile_medications">用药记录: (选填)</string>
+    <string name="profile_allergies">过敏反应: (选填)</string>
+    <string name="profile_insurances">保险: (选填)</string>
+    <string name="profile_back">返回</string>
+    <string name="submit">提交</string>
+    <string name="title_registration">注册</string>
+    <string name="firstname_colon">名:</string>
+    <string name="lastname_colon">姓:</string>
+    <string name="centername_colon">Center Name:</string>
+    <string name="email_colon">邮箱地址:</string>
+    <string name="pwd_colon">密码:</string>
+    <string name="confirm_pwd_colon">确认密码:</string>
+    <string name="signin_as_patient_info">使用会员身份登录. 您可以注册账号. 如不注册账号, 消息及账号同步更新服务将无法使用</string>
+    <string name="signin_as_doctor_info">使用医疗专家身份登录, 并注册账号.</string>
+    <string name="doctor_skill">专长:</string>
+
+    <!-- for DoctorHomepage -->
+    <string name="certification_id">证书编号:</string>
+    <string name="notification_message_prefix">"您有 "</string>
+    <string name="notification_message_infix">" 新消息从 "</string>
+    <string name="you_have_msgs">"您收到的新消息"</string>
+    <string name="you_have_msgs_from">"给您发送了一条新消息 "</string>
+    <string name="you_have_new_group_message">您有新的群聊信息</string>
+    <string name="btn_recording_cancel">取消录音</string>
+    <string name="toast_error_record_too_short">录音时间太短</string>
+    <string name="compose_hint">发送消息</string>
+    <string name="status_im_send_failed">未发送</string>
+    <string name="status_im_send_sent">已发送</string>
+    <string name="status_im_send_delivered">已传送</string>
+    <string name="status_im_send_is_read">已读</string>
+    <string name="status_im_send_sending">加密中</string>
+    <string name="title_activity_conversation">对话</string>
+    <string name="action_example">操作举例</string>
+    <string name="navi_title_conversation">对话</string>
+    <string name="navi_title_contact">联系人列表</string>
+    <string name="navi_title_more">更多</string>
+    <string name="navi_text_conversation_all">所有消息</string>
+    <string name="navi_text_conversation_single">个人</string>
+    <string name="navi_text_conversation_group">群组</string>
+    <string name="navi_text_conversation_starred">星标</string>
+    <string name="navi_text_contact_collab">医疗专家</string>
+    <string name="navi_text_contact_colleague">同事</string>
+    <string name="navi_text_contact_patients">会员</string>
+    <string name="navi_profile_edit">修改档案</string>
+    <string name="navi_text_more_logout">登出</string>
+    <string name="navi_text_more_settings">系统设置</string>
+    <string name="navi_text_more_about">关于我们</string>
+    <string name="content_desc_profile_icon">档案图标</string>
+    <string name="title_activity_contact">联系人</string>
+    <string name="title_activity_about">关于我们</string>
+    <string name="degree">职业:</string>
+    <string name="languages">语言:</string>
+    <string name="personal_intro">个人介绍:</string>
+    <string name="office_hour">坐诊时间:</string>
+    <string name="profile_edittext_hint">编辑</string>
+    <string name="action_save">保存</string>
+    <string name="profile_cancel_message">请确认未经保存就离开此页面.所有未保存的信息将被清除.</string>
+    <string name="profile_cancel_negative_btn_text">停留</string>
+    <string name="profile_cancel_positive_btn_text">清除修改</string>
+    <string name="activity_title_profile">档案</string>
+    <string name="please_specify">请细化:</string>
+    <string name="affiliation">附属关系</string>
+    <string name="title_activity_general_agreement">协议</string>
+    <string name="checkbox_agree_disclaimer">我已阅读, 了解并同意“用户协议”.</string>
+    <string name="must_agree">继续以前, 您必须先同意使用条例.</string>
+    <string name="title_activity_user_role_select">创建账号</string>
+    <string name="title_activity_register_info">创建账号</string>
+    <string name="role_provider">我是医疗从业人员.</string>
+    <string name="role_group">我们是专业医疗服务团体.</string>
+    <string name="role_patient">我是会员.</string>
+    <string name="register_group_name">群组名称:</string>
+    <string name="register_email_address">邮箱地址:</string>
+    <string name="female">女</string>
+    <string name="male">男</string>
+    <string name="dob">生日:</string>
+    <string name="occupation">职业:</string>
+    <string name="center_introduction">介绍</string>
+    <string name="register_message">请提供如下信息:\n(您的邮箱地址将被设为用户名)</string>
+    <string name="sign_up_now">现在就注册</string>
+    <string name="im_recording_title">录音中</string>
+    <string name="profile">档案</string>
+    <string name="action_new_msg">新消息</string>
+    <string name="action_new_groupchat">新群组聊天</string>
+    <!--<string name="dochoo_website_url">https://dochoo.com/about-us.jsp</string>-->
+    <string name="activity_title_mainactivity">档案</string>
+    <string name="activity_title_patientviewactivity">档案</string>
+    <string name="conversation_list_empty">对话列表为空. 要发起新的对话, 点击右上角的"新消息"按钮."</string>
+    <string name="not_member_yet">还不是会员?</string>
+    <string name="btn_continue">继续</string>
+    <string name="role_select_step_1">步骤 1</string>
+    <string name="role_select_choose">从如下的选项中选择:</string>
+    <string name="register_step_2">步骤 2</string>
+    <string name="default_reauthentication_interval">604800000</string>
+    <string name="default_msg_delete_interval">2419200000</string>
+    <string name="title_activity_reauthenticate">需要重新认证账号信息</string>
+    <string name="settings_message_life">消息保留时间</string>
+    <string name="settings_message_life_1">7 天</string>
+    <string name="settings_message_life_2">14 天</string>
+    <string name="settings_message_life_3">28 天</string>
+    <string name="settings_reauth_time">重新认证周期</string>
+    <string name="settings_reauth_time_1">30 分钟</string>
+    <string name="settings_reauth_time_2">1 小时</string>
+    <string name="settings_reauth_time_3">1 天</string>
+    <string name="settings_reauth_time_4">7 天</string>
+    <string name="reauth_tips">距离上次登录已有一段时间了. 请再次输入密码以确认您的身份. 您可以在系统设置中更改重新认证被启用的时间间隔.</string>
+    <string name="phone_number_chc">(323) 261-5866</string>
+    <string name="email_chc">info@chcgp.com</string>
+    <string name="about_mission">使命</string>
+    <string name="about_mission_content">我们的使命，是以创新网络科技为载体，在服务世界华人健康的道路上精进不休！</string>
+    <string name="about_contact">联系方式</string>
+    <string name="about_address_chc">13181 Crossroads Pkwy. N., Suite 200\nCity of Industry, CA 91746</string>
+    <string name="about_about_us">关于我们</string>
+    <string name="about_about_us_content" formatted="false">VIP国际医疗贵宾服务是好医友适应当前国内高端医疗需求，面向好医友贵宾会员所提供的全面、高效、细致海外医疗健康服务。\n\n目前在中国，当人们遇到健康问题时，即便财务自由也无法保证能够及时有效的接触顶级医疗机构。医疗资源质量、需求量都存在严重不平衡，对一线城市三甲医院的需求远远大于现有资源；而在地市级城市活三甲一下医院，医生资质、医疗质量比较堪忧。因此，稀缺的优质医疗资源的这种现况，激励民众寻求海外更优质的医疗服务。\n\n
+好医友正是依据市场的需求，推出了VIP国际医疗贵宾服务。我们立足美国，为贵宾建立了美国优质医疗绿色通道，将提供全方位的、人性化的医疗服务。从贵宾的美国私人医疗专家团队，到医疗机构的筛选、诊疗前后的各项事宜，以及安排海外转诊就医的全方位协调。均由来自美国的好医友全程处理，提供一站式服务。我们以提高客户以及家人的健康生活质量为己任，竭诚保障每一位关注健康的尊贵会员。\n\n
+尊贵专享\n
+好医友国际医疗贵宾服务，提供全球最顶级的个人医疗健康服务。专业医疗顾问、资深私人医生提供一对一的完美呵护。让您享受到全方位、持续性、人性化的服务。\n
+美国顶尖的医护团队，千余名美国医疗专家，全方位覆盖的医疗科室，提供最专业的医疗服务。为您的健康保驾护航！\n
+100%绿色就医通道\n
+1000余名各专科领域美国医学博士\n
+85%为美国医学协会会员\n
+38%以上有副教授、教授职称\n
+11%为美国国家医学院院士\n\n
+便捷无忧\n
+按照美国优质的医疗体系流程，为您安排最先进、严谨的专科检查并由全美各医学专科领域的优秀专家教授或专家团队为您亲自问诊或多学科协调会诊，出具权威检查报告，规划制定并解读评估具体详细的诊疗方案。\n
+为会员建立云端电子健康档案，实时维护更新。方便医生随时查看！\n
+赴美就医便捷绿色通道，急速直达，绝不耽误病情\n
+消除语言、文化障碍，安排在美一切事务。\n
+海外协调服务，解决突发问题，保证会员在美就医放心无忧。\n\n
+安全私密\n
+根据美国医患法案条例，全面保护您的个人隐私。提供资深私人医生专用通道，为您的健康保驾护航！精通双语的专业医疗顾问“24小时/7天/365天”为您随时待命，解决一切需求！\n
+好医友vip 私人医生平台与私人医生突破时间、空间，一对一的贴心服务！\n
+美国医疗专家视频专线咨询，面对面交流，专业英文翻译，无障碍沟通！\n
+多学科医疗专家会诊，解决顽固的疑难杂症问题！\n\n
+VIP国际医疗贵宾会员专享服务\n
+会员将通过好医友安全信息平台与他们美国的家庭私人医生、护士等医护人员建立联系。每位会员都将配备一个私人专属医疗团队，包括一名国内资深服务人员，一名美国执业护士与医护人员，以及会员选择的私人家庭医生。\n
+VIP国际医疗贵宾会员专享服务包括：\n
+-	尊享专业医疗团队服务\n
+-	通过远程医疗/视频、音频咨询帮助建立发展和稳定维护医患关系；\n
+-	必要时，提供会员与其医疗专家之间对话的实时翻译，解决语言沟通问题；\n
+-	美国就医绿色通道：为会员与美国医疗和医护专家进行便捷的常规和紧急预约；\n
+-	为会员维护云端单子健康档案，方便与医生交流健康体检预约：帮助预约美国各类型实验室检验；\n
+-	需要时，组建会诊团队，协调多学科、多机构专家联合会诊；\n
+-	美国专家视频义诊优先参与权；\n
+-	会员赴美就医服务费折扣；\n
+-	会员在全美加州健康连锁药房购药折扣；\n\n
+
+此外，每位好医友VIP国际医疗贵宾会员有权选择他们的美国私人医疗专家为其进行每年一次的综合健康咨询（含最多一次远程视频咨询以及一次面对面问诊）。私人医生可以根据需要推介和协调全美范围内的各学科顶尖医疗专家为会员提供额外的健康诊疗服务。\n
+VIP国际医疗贵宾会员专享年度健康咨询：\n
+会员将接受一次年度健康咨询，包括对既往病史和诊疗指导的综合审查。医生可以根据会员个体需要和健康档案，为会员全面评估健康状态，并为其量身定制或推荐进一步的健康检查，例如：\n
+全面体检；\n
+-	一般血液检查，包括考级实验室筛查；\n
+-	尿液检验分析；\n
+-	胸部X光筛查；\n
+-	心电图/核磁共振/计算机断层扫描；\n
+-	核压力测试活标准压力测试；\n
+-	一边超声波和心脏超声波；\n
+-	肺功能试验；\n
+-	营养咨询；\n
+
+好医友的所有服务都将为好医友VIP国际医疗贵宾会员提供特别折扣，包括：\n
+与美国医疗专家进行远程医疗会诊服务的服务费优惠；\n
+各种赴美诊疗服务产品的服务费八折优惠；\n
+全美加州健康连锁药房购药九折优惠；\n
+    </string>
+    <string name="delete_conversation_confirm">您想要删除整个对话, 包括其中的所有信息吗?</string>
+    <string name="delete_yes">删除</string>
+    <string name="delete_contact_confirm">要删除这个联系人吗?</string>
+    <string name="delete_contact_final_confirm">确认删除? </string>
+    <string name="block_contact_confirm">要屏蔽这个联系人吗?</string>
+    <string name="block_contact_final_confirm">确认屏蔽? </string>
+    <string name="navi_text_more_advanced">高级</string>
+    <string name="title_activity_advanced_features">高级特性</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="export_all_message">导出所有消息</string>
+    <string name="title_activity_export_all_messages">ExportAllMessagesActivity</string>
+    <string name="export_all_confirm_email">请确认如下的邮箱地址:</string>
+    <string name="export_all_if_email_incorrect">如果以上的信息不正确, 请联系客服.</string>
+    <string name="export_all_allow_send">通过点击下面的“导出”按钮, 您授权好医友将所有未存档的消息发送至指定的邮箱.</string>
+    <string name="export_all_button_text">导出所有</string>
+    <string name="private_conversation_export_msg">请确认导出到以下的邮箱地址:\n</string>
+    <string name="export_confirm">确认导出</string>
+    <string name="export_failed">导出失败. 请重试.</string>
+    <string name="export_success">导出成功.</string>
+    <string name="broadcast_intent_extra_tag_im_new">broadcast_intent_extra_tag_im_new</string>
+    <string name="delete_message_confirm">您要将这条消息从本地和服务器上一同删除吗?</string>
+    <string name="delete_single_message_failed">删除消息失败, 请重试.</string>
+    <string name="delete_single_message_success">删除成功.</string>
+    <string name="navi_text_invitation">邀请</string>
+    <string name="title_activity_invitation">发送邀请</string>
+    <string name="dochoo_invitation_title">邀请您使用好医友健康信使</string>
+    <string name="dochoo_invitation_sms">快来和我一同使用好医友健康信使吧, 从此个人隐私安全无忧! \n我的PIN码是 %s. 点此链接开始下载: https://www.haoeyou.com/</string>
+    <string name="invitation_button_sms">通过短信发送</string>
+    <string name="invitation_button_email">通过电子邮件发送</string>
+    <string name="invitation_button_other_app">通过其他应用发送</string>
+    <string name="activity_patient_view_name">姓名:</string>
+    <string name="activity_patient_view_conditions">状态:</string>
+    <string name="activity_patient_view_medications">用药:</string>
+    <string name="activity_patient_view_allergies">过敏反应:</string>
+    <string name="activity_patient_view_insurances">保险:</string>
+
+    <!-- Authentication status -->
+    <string name="account_logged_in_on_other_device">您的账号在其他设备上登录了, 请重新登录.</string>
+
+    <!-- Group Chat -->
+    <string name="title_activity_new_group_chat_member">群组聊天</string>
+    <string name="confirm_groupchat_member">确认(0)</string>
+    <string name="group_info_quit_group">退出群组聊天</string>
+    <string name="group_info_export_history">导出聊天记录</string>
+    <string name="group_info_groupname">群名称: </string>
+    <string name="group_info_fragment_title">群信息</string>
+    <string name="group_created_notice">创建了一个群聊天，成员包括</string>
+    <string name="group_self_add_member_notice">您 </string>
+    <string name="group_add_member_notice_pre">将 </string>
+    <string name="group_add_member_notice_suf"> 加入群聊天</string>
+    <string name="group_remove_member_notice"> 被移出群聊天 </string>
+    <string name="group_change_title_notice"> 更改群名称为 </string>
+    <string name="group_quit_notice">您退出了群聊天</string>
+
+
+    <string name="quit_group_alert_title">退出了群聊</string>
+    <string name="quit_group_alert_content">您将不再收到这个群组的任何消息. 确认退出吗?</string>
+    <string name="export_group_history_title">导出群聊天记录</string>
+    <string name="navi_text_my_qr_code">我的二维码</string>
+    <string name="navi_text_user_manual">用户手册</string>
+    <string name="group_info_not_contact_title">还不是您的联系人</string>
+    <string name="group_info_not_contact_question">您是否要将此成员添加到您的联系人列表？</string>
+
+    <string name="group_task_loadingMessage_add_group_member">正在添加新的群聊成员……</string>
+    <string name="group_task_loadingMessage_create_group">正在创建群聊天……</string>
+    <string name="group_task_loadingMessage_remove_group_member">正在移除群聊成员……</string>
+    <string name="group_task_loadingMessage_change_group_topic">正在更改群聊标题……</string>
+    <string name="group_task_loadingMessage_quit_group">正在退出群聊天……</string>
+    <string name="group_task_loadingMessage_export_group_history">正在请求导出群聊天记录……</string>
+    <string name="group_task_loadingMessage_add_member_to_contact">正在添加群聊成员为您的联系人……</string>
+
+    <string name="group_info_add_contact_patient">会员：</string>
+    <string name="group_info_add_contact_doctor">医疗专家:</string>
+    <string name="group_info_add_contact_center">医疗机构:</string>
+
+
+    <string name="new_version_app_available">有新的版本，请尽快更新</string>
+    <string name="camera_button">拍摄照片</string>
+    <string name="gallery_button">相册</string>
+
+    <string name="private_conversation_title">导出</string>
+    <string name="group_info_change_topic_title">更改群聊名称</string>
+    <string name="ok_button">确认</string>
+    <string name="cancel_button">取消</string>
+
+    <string name="block_yes">屏蔽</string>
+    <string name="create_group_cancelled">已取消创建群聊天</string>
+    <string name="create_group_success">成功创建群聊天</string>
+    <string name="activation_code_title">请输入您的注册激活码</string>
+    <string name="wrong_activiation">激活码错误</string>
+    <string name="register_half_success_msg">您已注册成功，请登录</string>
+
+    <string name="init_system_fail">软件启动失败，请检查您的网络情况</string>
+</resources>

@@ -1,0 +1,809 @@
+package com.chc.found.network;
+
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.util.Log;
+
+import com.chc.exceptions.InternalErrorException;
+import com.chc.found.config.Apis;
+import com.chc.found.models.DoctorUser;
+import com.chc.found.models.EntityUser;
+import com.chc.found.models.MedicalCenterUser;
+import com.chc.found.models.PatientUser;
+import com.chcgp.hpad.util.general.CHCGeneralUtil;
+import com.chcgp.hpad.util.network.CHCNetworkUtil;
+import com.google.gson.Gson;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Date;
+
+public class NetworkRequestsUtil {
+    private static final String UTF_ENCODING = "UTF-8";
+    private static final char CHAR_TOKEN_SPLIT = ',';
+    private static final boolean DEBUG = Apis.DEBUG;
+    private static final String TAG = "NetworkRequestsUtil";
+    private static final int DEFAULT_CONNECTION_TIMEOUT_VALUE = 10 * 1000;
+    private static final int DEFAULT_SOCKET_TIMEOUT_VALUE = 10 * 1000;
+    private static final int BUFFER_SIZE = 1024 * 100;
+    private static final long MAX_FILE_SIZE = 1024 * 1024 * 5; // in bytes
+
+
+    public static String getAddRelation(String initiator, String recipient) throws ClientProtocolException, IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_ADD_RELATION);
+        return getHttpGetResponse(uriComBuilder.build().expand(initiator, recipient).toUri());
+    }
+
+    public static String getColleagueList(String... params) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_COLLEAGUE_LIST);
+        uriComBuilder.queryParam(Apis.PARAM_QUERY_PUSH_ID, params[1]);
+        return getHttpGetResponse(uriComBuilder.build().expand(params[0]).toUri());
+    }
+
+    public static String getIconImageUrlString(String ownerId) {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_ICON);
+        uriComBuilder.queryParam(Apis.PARAM_GET_ICON_ID, ownerId);
+        return uriComBuilder.build().toString();
+    }
+
+    public static String getIconImageUrlStringByPhoto(String photo) {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_ICON_BY_PHOTO);
+        uriComBuilder.queryParam(Apis.PARAM_GET_ICON_ID_BY_PHOTO, photo);
+        return uriComBuilder.build().toString();
+    }
+
+    public static String getGalleryImageUrlString(String fileId) {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_LOGO);
+        return uriComBuilder.build().expand(fileId).toUriString();
+    }
+
+    public static String getEntityByIdOrPin(String idOrPin) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_ENTITY_BY_ID_PIN);
+        URI uri = uriComBuilder.build().expand(idOrPin).toUri();
+        return getHttpGetResponse(uri);
+    }
+
+    public static String getDoctorById(String docId) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_DOCTOR_INFO);
+        URI uri = uriComBuilder.build().expand(docId).toUri();
+        return getHttpGetResponse(uri);
+    }
+
+    public static String getPatientList(String userId, String pushId) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_PATIENT_LIST);
+        uriComBuilder.queryParam(Apis.PARAM_GET_PATIENT_LIST_PUSH_ID, pushId);
+        URI uri = uriComBuilder.build().expand(userId).toUri();
+        return getHttpGetResponse(uri);
+    }
+
+    public static String getProRelationList(String userId, String pushId) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_PRO_RELATION_LIST);
+        uriComBuilder.queryParam(Apis.PARAM_GET_PRO_RELATION_PUSH_ID, pushId);
+        URI uri = uriComBuilder.build().expand(userId).toUri();
+        return getHttpGetResponse(uri);
+    }
+
+    public static String getProfessionalList(String userId, String pushId) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_PROFESSIONAL_LIST);
+        uriComBuilder.queryParam(Apis.PARAM_GET_PROFESSIONAL_PUSH_ID, pushId);
+        URI uri = uriComBuilder.build().expand(userId).toUri();
+        return getHttpGetResponse(uri);
+    }
+
+    public static String getMedicalCenterById(String centerId) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_MEDICAL_GROUP_INFO);
+        URI uri = uriComBuilder.build().expand(centerId).toUri();
+        return getHttpGetResponse(uri);
+    }
+
+    public static String getMessages(String docId, String userId) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_MESSAGES);
+        uriComBuilder.queryParam(Apis.PARAM_GET_MESSAGES_USERID, userId);
+        uriComBuilder.queryParam(Apis.PARAM_GET_MESSAGES_DOCTORID, docId);
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpGetResponse(uri);
+    }
+
+    public static String getNews(String docId, String pushId) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_NEWS);
+        uriComBuilder.queryParam(Apis.PARAM_GET_NEWS_PUSHID, pushId);
+        uriComBuilder.queryParam(Apis.PARAM_GET_NEWS_DOCTORID, docId);
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpGetResponse(uri);
+    }
+
+    public static boolean postSubscribeNewDoctor(final String docId, final String userId, final String pushId) {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_POST_ADD_ENTITY);
+        URI uri = uriComBuilder.build().toUri();
+
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_ADD_ENTITY_DOC_ID, docId));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_ADD_ENTITY_USER_ID, userId));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_ADD_ENTITY_PUSH_ID, pushId));
+        try {
+            getHttpPostResponseByFormEntity(uri, nameValuePairs);
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean postUpdateProfileForPatient(final String json) {
+        return postUpdateProfile(json, Apis.URI_POST_UPDATE_PATIENT_PROFILE);
+    }
+
+    public static boolean postUpdateProfileForDoctor(final String json) {
+        return postUpdateProfile(json, Apis.URI_POST_UPDATE_DOCTOR_PROFILE);
+    }
+
+    public static boolean postUpdateProfileForCenter(final String json) {
+        return postUpdateProfile(json, Apis.URI_POST_UPDATE_CENTER_PROFILE);
+    }
+
+    private static boolean postUpdateProfile(final String json, String uri) {
+        boolean result = false;
+        try {
+            postStringEntity(URI.create(uri), json);
+            result = true;
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InternalErrorException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static String postMobileUploadFile(
+
+            final String userid,
+            final String targetid,
+            final String groupId,
+            final String pushid,
+            final String filename,
+            final InputStream input,
+            final String uploadtype
+
+    ) throws InternalErrorException, IOException {
+
+        Map<String, Object> queryParams = new HashMap<String, Object>();
+        queryParams.put(Apis.PARAM_POST_UPLOAD_TYPE, uploadtype);
+        queryParams.put(Apis.PARAM_POST_UPLOAD_USER_ID, userid);
+        queryParams.put(Apis.PARAM_POST_UPLOAD_FILENAME, filename);
+        queryParams.put(Apis.PARAM_POST_UPLOAD_PUSH_ID, pushid);
+        queryParams.put(Apis.PARAM_POST_UPLOAD_RECEIVER_ID, targetid);
+        queryParams.put(Apis.PARAM_POST_UPLOAD_GROUP_ID, groupId);
+
+        HttpURLConnection conn = null;
+        DataOutputStream os = null;
+        try {
+
+            UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_POST_UPLOAD_FILE);
+            for (Map.Entry<String, Object> entry : queryParams.entrySet()) {
+                uriComBuilder.queryParam(entry.getKey(), entry.getValue());
+            }
+            URL url = uriComBuilder.build().toUri().toURL();
+
+            if (Apis.DEBUG) Log.w(TAG, url.toString());
+
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Content-Type", "multipart/mixed");
+
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+            conn.setUseCaches(false);
+
+            os = new DataOutputStream(conn.getOutputStream());
+            BufferedInputStream binput = new BufferedInputStream(input);
+            byte[] buffer = new byte[BUFFER_SIZE];
+            int read = 0;
+            while ((read = binput.read(buffer)) != -1) {
+                os.write(buffer, 0, read);
+            }
+            os.flush();
+            CHCGeneralUtil.closeQuietly(os);
+            CHCGeneralUtil.closeQuietly(binput);
+
+            int status = conn.getResponseCode();
+            if (status / 100 == 2) {
+                BufferedInputStream bis = new BufferedInputStream(new DataInputStream(conn.getInputStream()));
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                read = 0;
+                while ((read = bis.read(buffer)) != -1) {
+                    bos.write(buffer, 0, read);
+                }
+                bos.flush();
+                String res = new String(bos.toByteArray(), UTF_ENCODING);
+
+                CHCGeneralUtil.closeQuietly(bis);
+                CHCGeneralUtil.closeQuietly(bos);
+
+                if (Apis.DEBUG) Log.w(TAG, "Post successful, id: " + res);
+                return res;
+
+            } else {
+                throw new InternalErrorException(status);
+            }
+
+        } finally {
+            try {
+                os.close();
+                conn.disconnect();
+            } catch (Exception e) {
+                // ignored
+            }
+        }
+    }
+
+//	/**
+//	 * @deprecated use {@link #postSubscribeNewDoctor(List, String, String)} instead
+//	 * @param docId
+//	 * @param pushId
+//	 * @return
+//	 */
+//	@Deprecated
+//	public static boolean postRegistrationID(String docId, String pushId) {
+//		UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_POST_REGISTER_NEWS);
+//		URI uri = uriComBuilder.build().toUri();
+//		
+//		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+//		nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_NEWS_DOCTOR_ID, docId));
+//    nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_NEWS_REG_ID, pushId));
+//    try {
+//			getHttpPostResponseByFormEntity(uri, nameValuePairs);
+//		} catch (Exception e) {
+//			Log.e(TAG, e.getMessage(), e);
+//			return false;
+//		}
+//    return true;
+//	}
+
+//	public static boolean postRegistrationID(List<String> docIdList, String pushId) {
+//    return postRegistrationID(concatIdList(docIdList), pushId);
+//	}
+
+    private static <T> String concatUsingSplitToken(List<T> docIdList) {
+        if (docIdList == null || docIdList.isEmpty()) return "";
+        StringBuilder sb = new StringBuilder(docIdList.get(0).toString());
+        for (int i = 1; i < docIdList.size(); i++) {
+            sb.append(CHAR_TOKEN_SPLIT).append(docIdList.get(i));
+        }
+        return sb.toString();
+    }
+
+    /**
+     *
+     * String email,
+     * String passwordHashed,
+     * String pushId,
+     * String firstname,
+     * String lastname,
+     * String centerName,
+     * String physicianDegree,
+     * String role,
+     * String gender,
+     * String dob
+     *
+     * @return
+     * @throws ClientProtocolException
+     * @throws IOException
+     * @throws InternalErrorException
+     */
+    public static String postNewUser(
+
+            String... params
+
+    ) throws IOException, InternalErrorException {
+
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_POST_REGISTER_USER);
+        URI uri = uriComBuilder.build().toUri();
+
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_EMAIL, params[0]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_PASSWORD, params[1]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_PUSH_ID, params[2]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_FIRST_NAME, params[3]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_LAST_NAME, params[4]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_CENTER_NAME, params[5]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_TITLE, params[6]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_TYPE, params[7]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_GENDER, params[8]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_DOB, params[9]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_REGISTER_LANGUAGE,"EN"));
+        return getHttpPostResponseByFormEntity(uri, nameValuePairs);
+    }
+
+    /**
+     * Posts update to the status of incoming messages upon receipt or read
+     * @param params
+     * @return
+     * @throws ClientProtocolException
+     * @throws IOException
+     * @throws InternalErrorException
+     */
+    public static String postUpdateMessageStatus(
+
+            String... params
+
+    ) throws IOException, InternalErrorException {
+
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_POST_UPDATE_MESSAGE_STATUS);
+        URI uri = uriComBuilder.build().toUri();
+
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_UPDATE_MESSAGE_STATUS_USER_ID, params[0]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_UPDATE_MESSAGE_STATUS_PUSH_ID, params[1]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_UPDATE_MESSAGE_STATUS_MSG_ID, params[2]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_UPDATE_MESSAGE_STATUS_STATUS, params[3]));
+        return getHttpPostResponseByFormEntity(uri, nameValuePairs);
+
+    }
+
+    /**
+     * @param username
+     * @param passwordHashed
+     * @param pushId
+     * @return
+     * @throws ClientProtocolException
+     * @throws IOException
+     * @throws InternalErrorException
+     */
+    public static String postSignIn(String username, String passwordHashed, String pushId) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_POST_SIGN_IN_USER);
+        URI uri = uriComBuilder.build().toUri();
+
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_SIGN_IN_USERNAME, username));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_SIGN_IN_PASSWORD, passwordHashed));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_SIGN_IN_PUSH_ID, pushId));
+//    nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_SIGN_IN_TYPE, type));
+        return getHttpPostResponseByFormEntity(uri, nameValuePairs);
+    }
+
+    public static String postMessage(String docId, String content, String userId, String pushid) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_POST_SEND_MESSAGE);
+        URI uri = uriComBuilder.build().toUri();
+
+        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_SEND_MESSAGE_USER_ID, userId));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_SEND_MESSAGE_DOCTOR_ID, docId));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_SEND_MESSAGE_CONTENT, content));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_SEND_MESSAGE_PUSH_ID, pushid));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_POST_SEND_MESSAGE_DATE, Long.toString(NetworkRequestsUtil.getBestCurrentTime())));
+        return getHttpPostResponseByFormEntity(uri, nameValuePairs);
+    }
+
+    private static String getHttpGetResponse(URI uri) throws IOException, InternalErrorException {
+        String responseString = null;
+        HttpClient httpclient = getHttpClientWithTimeout(DEFAULT_CONNECTION_TIMEOUT_VALUE, DEFAULT_SOCKET_TIMEOUT_VALUE);
+        HttpGet httpget = new HttpGet(uri);
+
+        if (DEBUG) Log.w(TAG, uri.toString());
+
+        HttpResponse response = httpclient.execute(httpget);
+        HttpEntity he = response.getEntity();
+
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode / 100 == 2) {
+            if (he != null) responseString = EntityUtils.toString(he);
+
+        } else {
+            Log.e(TAG, uri + "\n" + EntityUtils.toString(he));
+            throw new InternalErrorException(statusCode);
+        }
+        return responseString;
+    }
+
+    private static String getHttpPutResponse(URI uri) throws IOException, InternalErrorException {
+        String responseString = null;
+        HttpClient httpclient = getHttpClientWithTimeout(DEFAULT_CONNECTION_TIMEOUT_VALUE, DEFAULT_SOCKET_TIMEOUT_VALUE);
+        HttpPut httpPut = new HttpPut(uri);
+
+        if (DEBUG) Log.w(TAG, uri.toString());
+
+        HttpResponse response = httpclient.execute(httpPut);
+        HttpEntity he = response.getEntity();
+
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode / 100 == 2) {
+            if (he != null) responseString = EntityUtils.toString(he);
+
+        } else {
+            Log.e(TAG, uri + "\n" + EntityUtils.toString(he));
+            throw new InternalErrorException(statusCode);
+        }
+        return responseString;
+    }
+
+    private static String getHttpPostResponseByFormEntity(URI uri, List<NameValuePair> nameValuePairs)
+            throws IOException, InternalErrorException {
+        String responseString = null;
+        HttpClient httpclient = getHttpClientWithTimeout(
+                DEFAULT_CONNECTION_TIMEOUT_VALUE,
+                DEFAULT_SOCKET_TIMEOUT_VALUE
+        );
+        HttpPost httppost = new HttpPost(uri);
+        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+
+        if (DEBUG) Log.w(TAG, uri.toString() + '\n' + nameValuePairs.toString());
+
+        HttpResponse response = httpclient.execute(httppost);
+        HttpEntity he = response.getEntity();
+
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode / 100 == 2) {
+            if (he != null) responseString = EntityUtils.toString(he);
+
+        } else {
+            Log.e(TAG, statusCode + " failed\n" + uri + "\n" + EntityUtils.toString(he));
+            throw new InternalErrorException(statusCode);
+        }
+        ;
+        return responseString;
+    }
+
+    /**
+     * Post as {@code StringEntity} and header as application/json
+     *
+     * @param uri
+     * @param content
+     * @return
+     * @throws ClientProtocolException
+     * @throws IOException
+     * @throws InternalErrorException  if response code is not 200-299.
+     */
+    private static String postStringEntity(URI uri, String content) throws IOException, InternalErrorException {
+        String responseString = null;
+        HttpClient httpclient = getHttpClientWithTimeout(
+                DEFAULT_CONNECTION_TIMEOUT_VALUE,
+                DEFAULT_SOCKET_TIMEOUT_VALUE
+        );
+        HttpPost httppost = new HttpPost(uri);
+        httppost.setEntity(new StringEntity(content, UTF_ENCODING));
+        httppost.setHeader(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+
+        if (DEBUG) Log.w(TAG, uri.toString() + '\n' + content);
+
+        HttpResponse response = httpclient.execute(httppost);
+        HttpEntity he = response.getEntity();
+
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode / 100 == 2) {
+            if (he != null)
+                responseString = EntityUtils.toString(he);
+            else
+                responseString = "";
+
+        } else {
+            Log.e(TAG, statusCode + " failed\n" + uri + "\n" + EntityUtils.toString(he));
+            throw new InternalErrorException(statusCode);
+        }
+        ;
+        return responseString;
+    }
+
+    private static DefaultHttpClient getHttpClientWithTimeout(int timeoutConnection, int timeoutSocket) {
+        HttpParams httpParameters = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+        HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+        DefaultHttpClient httpClient = new DefaultHttpClient(httpParameters);
+        return httpClient;
+    }
+
+    public static boolean postUpdateProfile(EntityUser profile) throws IOException {
+        Gson gson = new Gson();
+        String json = gson.toJson(profile);
+        if (profile instanceof PatientUser) {
+            return postUpdateProfileForPatient(json);
+        } else if (profile instanceof DoctorUser) {
+            return postUpdateProfileForDoctor(json);
+        } else if (profile instanceof MedicalCenterUser) {
+            return postUpdateProfileForCenter(json);
+        } else {
+            throw new IllegalArgumentException("Unsupported subclass: "
+                    + profile.getClass().getSimpleName());
+        }
+    }
+
+    public static boolean postUploadHeadIcon(String userid, String pushid,
+                                             String filename, Bitmap bitmap) {
+        String type = Apis.PARAM_TYPE_UPLOAD_ICON;
+        if (bitmap.getRowBytes() * bitmap.getHeight() > MAX_FILE_SIZE) return false;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        boolean b = bitmap.compress(CompressFormat.JPEG, 75, bos);
+        if (!b) return false;
+        try {
+            postMobileUploadFile(userid, "", "",pushid, filename, new ByteArrayInputStream(bos.toByteArray()), type);
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+            return false;
+        } finally {
+            CHCGeneralUtil.closeQuietly(bos);
+        }
+        return true;
+    }
+
+    /**
+     * Downloads (overriding if exists) from server for a particular message id
+     * @param absoluteDirectory
+     * @param filename
+     * @param msgid
+     * @return
+     */
+    public static boolean downloadFile(String absoluteDirectory, String filename, String msgid) {
+        File file = new File(absoluteDirectory + "/" + filename);
+
+        File path = new File(absoluteDirectory);
+        if (!path.exists() || !path.isDirectory()) path.mkdirs();
+
+        if (file.exists()) {
+            if (file.isDirectory()) return false;
+            else file.delete();
+        }
+
+        Map<String, Object> queryParams = new HashMap<String, Object>();
+        queryParams.put(Apis.PARAM_GET_QUERY_DOWNLOAD_FILE_MSG_ID, msgid);
+
+        try {
+            UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_DOWNLOAD_FILE);
+            for (Map.Entry<String, Object> entry : queryParams.entrySet()) {
+                uriComBuilder.queryParam(entry.getKey(), entry.getValue());
+            }
+
+            URL url = uriComBuilder.build().toUri().toURL();
+            if (Apis.DEBUG) Log.w(TAG, url.toString());
+
+            return CHCNetworkUtil.downloadFile(file, url);
+
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+            return false;
+        }
+    }
+
+    public static String postImageMessage(InputStream inputStream, String targetid, String groupId, String filename,
+                                          String userid, String pushid, String fullpath, String uploadtype) throws InternalErrorException, IOException {
+        return postMobileUploadFile(userid, targetid, groupId, pushid, filename, inputStream, uploadtype);
+    }
+
+    public static Long getBestCurrentTime() {
+        try {
+            BufferedReader in;
+            String inputLine;
+            Long serverTime;
+            final int INTERVAL = 5 * 1000; // 10 second timeout
+            URL serverTimeRequest = new URL(Apis.URI_GET_SERVERTIME_LONG);
+            HttpURLConnection sc = (HttpURLConnection) serverTimeRequest.openConnection();
+            sc.setRequestMethod("GET");
+            sc.setConnectTimeout(INTERVAL);
+            sc.setReadTimeout(INTERVAL);
+            sc.connect();
+            in = new BufferedReader(new InputStreamReader(
+                    sc.getInputStream()));
+            inputLine = in.readLine();
+            in.close();
+            serverTime = Long.parseLong(inputLine);
+            return serverTime;
+        } catch (Exception e) {
+            return System.currentTimeMillis(); // any error we use current time
+        }
+    }
+
+    public static String putMessageLifeSetting(String id, String content) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_PUT_MESSAGE_LIFE_SETTING);
+        uriComBuilder.queryParam(Apis.PARAM_MESSAGE_LIFE_SETTING_ID, id);
+        uriComBuilder.queryParam(Apis.PARAM_MESSAGE_LIFE_SETTING_CONTENT, content);
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpPutResponse(uri);
+    }
+
+    public static String postExportConversation(String userId, String pushId, String targetId) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_POST_EXPORT_CONVERSATION);
+
+        uriComBuilder.queryParam(Apis.PARAM_EXPORT_USER_ID, userId);
+        uriComBuilder.queryParam(Apis.PARAM_EXPORT_PUSH_ID, pushId);
+        uriComBuilder.queryParam(Apis.PARAM_EXPORT_TARGET_ID, targetId);
+        uriComBuilder.queryParam(Apis.PARAM_EXPORT_HISTORY_LOCALE,Locale.getDefault().getLanguage().contains("en")?"en_US":"es_MX");
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpPostResponseByFormEntity(uri, new ArrayList<NameValuePair>(0));
+    }
+
+    public static String postDeleteSingleMessage(String... params) throws IOException, InternalErrorException {
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_POST_DELETE_MESSAGE);
+
+        uriComBuilder.queryParam(Apis.PARAM_DELETE_MESSAGE_USER_ID, params[0]);
+        uriComBuilder.queryParam(Apis.PARAM_DELETE_MESSAGE_PUSH_ID, params[1]);
+        uriComBuilder.queryParam(Apis.PARAM_DELETE_MESSAGE_MSG_ID, params[2]);
+        uriComBuilder.queryParam(Apis.PARAM_DELETE_MESSAGE_ACTION_TYPE, Apis.CONSTANT_DELETE_MESSAGE_TYPE_DELETE);
+
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpPostResponseByFormEntity(uri, new ArrayList<NameValuePair>(0));
+    }
+
+    public static String postDeleteContact(String... params) throws IOException, InternalErrorException{
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_DELETE_CONTACT);
+        uriComBuilder.queryParam(Apis.PARAM_DELETE_CONTACT_INITIATOR, params[0]);
+        uriComBuilder.queryParam(Apis.PARAM_DELETE_CONTACT_PUSHID, params[1]);
+        uriComBuilder.queryParam(Apis.PARAM_DELETE_CONTACT_TARGET, params[2]);
+        if(params.length>3){
+            uriComBuilder.queryParam(Apis.PARAM_BLOCK_CONTACT_PARAM, params[3]);
+        }
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpPostResponseByFormEntity(uri, new ArrayList<NameValuePair>(0));
+    }
+
+    public static String getMissingMsg(String... params) throws IOException, InternalErrorException{
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_MISSING_MESSAGE);
+        uriComBuilder.queryParam(Apis.PARAM_GET_MISSING_MESSAGE_USERID,params[0]);
+        uriComBuilder.queryParam(Apis.PARAM_GET_MISSING_MESSAGE_PUSHID,params[1]);
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpGetResponse(uri);
+    }
+
+    public static String postAddGroupChatMember(String... params) throws IOException, InternalErrorException{
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GROUPCHAT_ADD_MEMEBER);
+        uriComBuilder.queryParam(Apis.PARAM_GROUPCHAT_ADD_MEMEBER_USERID,params[0]);
+        uriComBuilder.queryParam(Apis.PARAM_GROUPCHAT_ADD_MEMEBER_PUSHID,params[1]);
+        uriComBuilder.queryParam(Apis.PARAM_GROUPCHAT_ADD_MEMEBER_TARGETS,params[2]);
+        if(params.length>3){
+            uriComBuilder.queryParam(Apis.PARAM_GROUPCHAT_ADD_MEMEBER_GROUP,params[3]);
+        }
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpPostResponseByFormEntity(uri, new ArrayList<NameValuePair>(0));
+    }
+
+    public static String postRemoveGroupChatMember(String... params) throws IOException, InternalErrorException{
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GROUPCHAT_REMOVE_MEMEBER);
+        uriComBuilder.queryParam(Apis.PARAM_GROUPCHAT_REMOVE_MEMEBER_USERID,params[0]);
+        uriComBuilder.queryParam(Apis.PARAM_GROUPCHAT_REMOVE_MEMEBER_PUSHID,params[1]);
+        uriComBuilder.queryParam(Apis.PARAM_GROUPCHAT_REMOVE_MEMEBER_TARGET,params[2]);
+        uriComBuilder.queryParam(Apis.PARAM_GROUPCHAT_REMOVE_MEMEBER_GROUP,params[3]);
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpPostResponseByFormEntity(uri, new ArrayList<NameValuePair>(0));
+    }
+
+    public static String postGroupChatMessage(String... params) throws IOException, InternalErrorException{
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_SEND_GROUPCHAT_MESSAGE);
+        URI uri = uriComBuilder.build().toUri();
+        List<NameValuePair> nameValuePairs = new ArrayList<>();
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_SEND_GROUPCHAT_MESSAGE_USERID,params[0]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_SEND_GROUPCHAT_MESSAGE_PUSHID,params[1]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_SEND_GROUPCHAT_MESSAGE_GROUP,params[2]));
+        nameValuePairs.add(new BasicNameValuePair(Apis.PARAM_SEND_GROUPCHAT_MESSAGE_CONTENT,params[3]));
+        return getHttpPostResponseByFormEntity(uri, nameValuePairs);
+    }
+    public static String postChangeGroupChatTitle(String... params) throws IOException, InternalErrorException{
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_CHANGE_GROUPCHAT_TITLE);
+        uriComBuilder.queryParam(Apis.PARAM_CHANGE_GROUPCHAT_TITLE_USERID, params[0]);
+        uriComBuilder.queryParam(Apis.PARAM_CHANGE_GROUPCHAT_TITLE_PUSHID, params[1]);
+        uriComBuilder.queryParam(Apis.PARAM_CHANGE_GROUPCHAT_TITLE_GROUP, params[2]);
+        uriComBuilder.queryParam(Apis.PARAM_CHANGE_GROUPCHAT_TITLE_TITLE, params[3]);
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpPostResponseByFormEntity(uri, new ArrayList<NameValuePair>(0));
+    }
+
+    public static String getGroupChatDetails(String... params) throws IOException, InternalErrorException{
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_GROUPCHAT_DETAILS);
+        uriComBuilder.queryParam(Apis.PARAM_GET_GROUPCHAT_DETAILS_USERID, params[0]);
+        uriComBuilder.queryParam(Apis.PARAM_GET_GROUPCHAT_DETAILS_PUSHID, params[1]);
+        uriComBuilder.queryParam(Apis.PARAM_GET_GROUPCHAT_DETAILS_GROUPID, params[2]);
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpGetResponse(uri);
+    }
+
+    public static String postExportGroupHistory(String... params) throws IOException, InternalErrorException{
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_EXPORT_GROUPCHAT_HISTORY);
+        uriComBuilder.queryParam(Apis.PARAM_EXPORT_GROUPCHAT_HISTORY_USERID,params[0]);
+        uriComBuilder.queryParam(Apis.PARAM_EXPORT_GROUPCHAT_HISTORY_PUSHID,params[1]);
+        uriComBuilder.queryParam(Apis.PARAM_EXPORT_GROUPCHAT_HISTORY_GROUP,params[2]);
+        uriComBuilder.queryParam(Apis.PARAM_EXPORT_GROUPCHAT_HISTORY_LOCALE, Locale.getDefault().getLanguage().contains("en")?"en_US":"es_MX");
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpPostResponseByFormEntity(uri, new ArrayList<NameValuePair>(0));
+    }
+
+    public static String getCurrentAppVersion(String... params) throws IOException, InternalErrorException{
+        UriComponentsBuilder uriComBuilder = UriComponentsBuilder.fromUriString(Apis.URI_GET_CURRENT_VERSION);
+        uriComBuilder.queryParam(Apis.PARAM_GET_CURRENT_VERSION_DEVICE_TYPE,"0");//android device type on server
+        uriComBuilder.queryParam(Apis.PARAM_GET_CURRENT_VERSION_LANGUAGE,"EN");
+        URI uri = uriComBuilder.build().toUri();
+        return getHttpGetResponse(uri);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

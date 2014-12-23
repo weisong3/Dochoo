@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?><!-- User's. On right side -->
+<FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/instant_msg_container">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/item_instant_msg_padding_horizontal"
+        android:paddingTop="@dimen/item_instant_msg_padding_top"
+        android:paddingRight="@dimen/item_instant_msg_padding_horizontal"
+        android:paddingBottom="@dimen/item_instant_msg_padding_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/item_instant_msg_margin_btw_icon_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical|right">
+
+                        <com.chc.views.TypefacedTextView
+                            app:typeface="opensans.ttf"
+                            android:id="@+id/instant_msg_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MsgStatus"
+                            android:layout_marginRight="8dp"
+                            android:textSize="@dimen/default_text_size_small"
+                            android:textColor="@color/dark_grey" />
+
+                        <com.chc.views.TypefacedTextView
+                            app:typeface="opensans.ttf"
+                            android:id="@+id/instant_msg_out_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="This is msg time"
+                            android:textSize="@dimen/default_text_size_small"
+                            android:textColor="@color/dark_grey" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_marginTop="@dimen/item_instant_msg_margin_btw_time_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/instant_msg_out_ivfailed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/im_fail"
+                        android:visibility="invisible" />
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginLeft="16dp">
+
+                        <com.chc.views.TypefacedTextView
+                            app:typeface="opensans.ttf"
+                            android:id="@+id/instant_msg_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:textSize="@dimen/default_text_size_medium"
+                            android:textColor="@color/dochoo_default_text_color" />
+
+                        <LinearLayout
+                            android:id="@+id/instant_msg_voice_wrapper"
+                            android:orientation="horizontal"
+                            android:layout_width="fill_parent"
+                            android:gravity="center_vertical|right"
+                            android:layout_height="fill_parent">
+
+                            <ImageButton
+                                android:id="@+id/instant_msg_voice_img_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/btn_voice_play_out"
+                                android:paddingTop="@dimen/instant_msg_play_btn_padding"
+                                android:paddingLeft="@dimen/instant_msg_play_btn_padding"
+                                android:paddingBottom="@dimen/instant_msg_play_btn_padding"
+                                android:background="@drawable/transparent_color"
+                                android:visibility="visible" />
+
+                            <SeekBar
+                                android:layout_width="@dimen/instant_msg_seekbar_width"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/instant_msg_voice_seekBar"
+                                style="@style/instant_msg_voice_seekbar_outbound"
+                                android:layout_marginRight="2dp" />
+
+                            <com.chc.views.TypefacedTextView
+                                app:typeface="opensans.ttf"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0:59"
+                                android:ems="2"
+                                android:id="@+id/instant_msg_voice_time"
+                                android:layout_gravity="right|center_vertical"
+                                android:textSize="@dimen/default_text_size_small"
+                                android:textColor="@color/dochoo_default_text_color" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/instant_msg_image"
+                            android:layout_width="@dimen/instant_msg_img_max_width"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="right|center_vertical"
+                            android:adjustViewBounds="true"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                </FrameLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_marginTop="@dimen/instant_msg_icon_margin_top"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent">
+
+            <com.makeramen.RoundedImageView
+                android:layout_width="@dimen/icon_instant_msg_size"
+                android:layout_height="@dimen/icon_instant_msg_size"
+                android:id="@+id/icon_im_user"
+                android:src="@drawable/default_head"
+                android:scaleType="centerCrop"
+                app:corner_radius="@dimen/icon_instant_msg_size"
+                app:border_width="@dimen/rounded_img_border_width"
+                app:border_color="@color/default_dark_blue_grey"
+                app:is_oval="true"
+                app:round_background="true" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/im_selected"
+        android:background="@null" />
+</FrameLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@drawable/other1"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+            android:id="@+id/dochoo_card_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="TextView"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <LinearLayout
+            android:id="@+id/dochoo_card_website_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/website" />
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                android:id="@+id/dochoo_card_website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dochoo_card_insurance_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/accepted_insurance" />
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                android:id="@+id/dochoo_card_insurance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center" >
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PIN:"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                android:id="@+id/dochoo_card_pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
+        <com.chc.views.SquareRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" >
+
+            <ImageView
+                android:id="@+id/dochoo_card_qr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.chc.views.SquareRelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

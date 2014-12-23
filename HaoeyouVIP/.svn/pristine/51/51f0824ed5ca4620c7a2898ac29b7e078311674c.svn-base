@@ -1,0 +1,26 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="32dp"
+    android:paddingTop="16dp"
+    android:paddingRight="32dp"
+    android:paddingBottom="16dp">
+
+    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="@dimen/default_text_size_large"
+        android:text="Please choose the operation you wish to perform"
+        android:id="@+id/feature_title"
+        android:layout_gravity="center_horizontal" />
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/feature_list_view" />
+</LinearLayout>

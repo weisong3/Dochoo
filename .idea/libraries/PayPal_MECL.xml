@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="PayPal_MECL">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ChcHpadUtil/libs/PayPal_MECL.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

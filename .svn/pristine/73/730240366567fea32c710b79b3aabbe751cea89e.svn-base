@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/instant_msg_bg" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <ListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawSelectorOnTop="false"
+                android:divider="@color/default_listview_divider"
+                android:dividerHeight="1px"
+                android:stackFromBottom="true"
+                android:paddingBottom="@dimen/fragment_instant_msg_listview_paddingbottom"
+                android:listSelector="@android:color/transparent"
+                android:transcriptMode="alwaysScroll" >
+
+            </ListView>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/im_attach_selector_wrapper"
+            android:background="@color/default_dark_blue_grey">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gallery_button"
+                android:textColor="@color/white"
+                android:drawableLeft="@drawable/gallery_small_unpress"
+                android:drawablePadding="8dp"
+                android:background="@color/transparent"
+                android:id="@+id/buttonIMGallery"
+                />
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_margin="8dp"
+                android:layout_height="fill_parent"
+                android:background="@drawable/divider_vertical_holo_light"/>
+
+            <Button
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/camera_small_unpress"
+                android:drawablePadding="8dp"
+                android:background="@color/transparent"
+                android:text="@string/camera_button"
+                android:id="@+id/buttonIMCamera"/>
+
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/instant_msg_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/default_dark_blue_grey">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/message_wrapper"
+                android:layout_toRightOf="@+id/post_image_btn" >
+
+                <EditText
+                    android:id="@+id/instant_msg_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLines="4"
+                    android:hint ="@string/compose_hint"
+                    android:scrollbars="vertical">
+
+                    <requestFocus />
+                </EditText>
+                <!--
+                <Button
+                    android:id="@+id/hold_voice_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/hold_talk"
+                	android:textAppearance="?android:attr/textAppearanceSmall"
+                	android:textColor="@color/white"
+                    android:visibility="invisible" />
+                    -->
+            </FrameLayout>
+
+            <ImageButton
+                android:id="@+id/post_image_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/padding_imagebtn_default"
+                android:src="@drawable/btn_attach"
+                android:background="@null"
+                />
+
+            <FrameLayout
+                android:id="@+id/message_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" >
+
+                <ImageButton
+                    android:id="@+id/post_message_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_color"
+                    android:visibility="invisible"
+                    android:src="@drawable/btn_send_text_msg"/>
+
+                <ImageButton
+                    android:id="@+id/show_record_btn"
+                    android:padding="@dimen/padding_imagebtn_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/btn_record"
+                    android:background="@null"/>
+                <!--
+                <Button
+                    android:id="@+id/show_edittext_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/Type_text"
+                    android:background="@null"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@android:color/white"
+                    android:visibility="invisible" />
+                    -->
+            </FrameLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/record_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:background="@color/transparentBlack85p"
+        android:visibility="invisible" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/im_recording_title"
+                android:textColor="@color/default_dochoo_orange"
+                android:textSize="@dimen/default_text_size_extra_large"
+                android:layout_gravity="center_horizontal" />
+
+            <FrameLayout
+                android:id="@+id/frame_btn_stop_recording"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_stop_recording" >
+
+                <LinearLayout
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                        android:id="@+id/im_record_dialog_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/im_record_recording"
+                        android:textColor="@color/dochoo_default_text_color"
+                        android:textSize="@dimen/default_text_size_medium"
+                        android:layout_gravity="center_horizontal" />
+
+                    <ImageView
+                        android:layout_marginTop="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/recording_microphone"
+                        android:layout_gravity="center"
+                        android:src="@drawable/microphone_recording" />
+                </LinearLayout>
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    >
+                    <ImageView
+                        android:id="@+id/instant_msg_recording_amplitude"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/vol_1"
+                        />
+                    </FrameLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_marginTop="32dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:gravity="center"
+                    android:layout_height="fill_parent">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_recording_cancel"
+                        android:id="@+id/recording_cancel_btn"
+                        android:background="@drawable/transparent_color"
+                        android:drawableLeft="@drawable/btn_stop_recording"
+                        android:drawablePadding="8dp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/groupchat_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="88dp"
+        android:fadingEdge="none" >
+    </ListView>
+
+    <!--<LinearLayout
+        android:id="@+id/title_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="18dp"
+
+        android:layout_marginTop="70dp"
+        android:background="#d4d4d4" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dip"
+            android:textColor="#ffffff"
+            android:textSize="13sp" />
+    </LinearLayout>-->
+
+    <com.chc.dochoo.contacts.SideBar
+        android:layout_width="20dp"
+        android:layout_height="fill_parent"
+        android:id="@+id/sidebar"
+        android:layout_marginTop="88dp"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right|center_vertical"
+        />
+
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="70dp">
+        <LinearLayout
+            android:id="@+id/group_member_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            />
+     </HorizontalScrollView>
+
+    <RelativeLayout
+        android:id="@+id/section_toast_layout"
+        android:layout_width="70dip"
+        android:layout_height="70dip"
+        android:layout_centerInParent="true"
+        android:background="@drawable/section_toast"
+        android:visibility="gone"
+        >
+        <TextView
+            android:id="@+id/section_toast_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            />
+    </RelativeLayout>
+</RelativeLayout>

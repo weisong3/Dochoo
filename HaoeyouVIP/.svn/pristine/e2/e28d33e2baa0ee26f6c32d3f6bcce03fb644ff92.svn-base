@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.test.found"
+    android:versionCode="201407220"
+    android:versionName="1.2.4.6" >
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="getui.permission.GetuiService" />
+
+    <permission
+        android:name="getui.permission.GetuiService"
+        android:protectionLevel="normal" >
+    </permission>
+
+    <permission
+        android:name="com.test.found.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />
+
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.screen.landscape" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+    <!-- This excludes Google TV, which is unfortunately included by virtue of not requiring a camera -->
+    <uses-feature android:name="android.hardware.touchscreen" />
+    <!-- TODO make this not required again after android.hardware.camera.any is available -->
+
+    <application
+        android:name="com.chc.dochoo.CHCApplication"
+        android:allowBackup="true"
+        android:debuggable="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/found_app_name"
+        android:theme="@style/foundAppTheme" >
+        <!--<uses-library android:name="com.google.android.maps" />-->
+
+        <!--testing-->
+        <meta-data
+            android:name="PUSH_APPID"
+            android:value="H7LhhTJbkU86fbtEzXBhOA" />
+        <meta-data
+            android:name="PUSH_APPKEY"
+            android:value="5ejzzm36AR79eLKlPeSxU3" />
+        <meta-data
+            android:name="PUSH_APPSECRET"
+            android:value="heItBtTmhj6CZunhUlVz73" />
+        <meta-data
+            android:name="PUSH_GROUPID"
+            android:value="" />
+
+        <receiver
+            android:name="com.chc.found.GcmBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.H7LhhTJbkU86fbtEzXBhOA" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.igexin.sdk.PushService"
+            android:process=":pushservice"
+            android:exported="true"
+            android:label="NotificationCenter" >
+        </service>
+
+        <receiver android:name="com.igexin.sdk.PushReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.igexin.sdk.action.refreshls" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.igexin.sdk.PushReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.pushmanager" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.igexin.sdk.PushActivity"
+            android:process=":pushservice"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:taskAffinity="com.igexin.sdk.PushActivityTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+
+        <service android:name="com.igexin.download.DownloadService" android:process=":pushservice" />
+        <receiver android:name="com.igexin.download.DownloadReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <provider
+            android:process=":pushservice"
+            android:name="com.igexin.download.DownloadProvider"
+            android:authorities="downloads.com.test.found"	/>
+        <activity android:name="com.igexin.getuiext.activity.GetuiExtActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:process=":pushservice"
+            android:taskAffinity="android.task.myServicetask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="false" />
+
+        <receiver android:name="com.igexin.getuiext.service.PayloadReceiver" android:exported="false" >
+            <intent-filter>
+                <!-- 这个com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4固定，不能修改 -->
+                <action android:name="com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4" />
+                <!-- android:name="com.igexin.sdk.action.第三方的appId" -->
+                <action android:name="com.igexin.sdk.action.H7LhhTJbkU86fbtEzXBhOA" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.igexin.getuiext.service.GetuiExtService" android:process=":pushservice" />
+
+        <activity
+            android:name="com.chc.dochoo.splash.SplashActivity"
+            android:label="@string/found_app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.chc.found.MainActivity"
+            android:label="@string/activity_title_mainactivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.chc.found.PatientViewActivity"
+            android:label="@string/activity_title_patientviewactivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.settings.SettingsActivity"
+            android:label="@string/action_settings"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.found.NewsActivity"
+            android:label="@string/action_news_detail"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.found.DoctorDetailScrollableTabsActivity"
+            android:label="@string/action_doctor_detail"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.userlogin.UserLogInActivity"
+            android:label="@string/action_registeruser"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.chc.found.ImageViewerActivity"
+            android:label="@string/found_app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.conversations.PrivateConversationActivity"
+            android:label="@string/found_app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.conversations.GroupConversationActivity"
+            android:label="@string/found_app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.chc.found.DochooCardActivity"
+            android:label="@string/found_app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.found.UserManualActivity"
+            android:label="@string/found_app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.profiles.ProfileActivity"
+            android:label="@string/activity_title_profile"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+
+
+
+        <service
+            android:name="com.chc.found.GcmIntentService"
+            android:enabled="true" />
+
+        <activity
+            android:name="com.chc.dochoo.conversations.ConversationActivity"
+            android:label="@string/title_activity_conversation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.contacts.ContactActivity"
+            android:label="@string/title_activity_contact"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.more.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.userlogin.GeneralAgreementActivity"
+            android:label="@string/title_activity_general_agreement"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.userlogin.UserRoleSelectActivity"
+            android:label="@string/title_activity_user_role_select"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.userlogin.RegisterInfoActivity"
+            android:label="@string/title_activity_register_info"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.userlogin.ReauthenticateActivity"
+            android:label="@string/title_activity_reauthenticate"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.more.AdvancedFeaturesActivity"
+            android:label="@string/title_activity_advanced_features"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.more.ExportAllMessagesActivity"
+            android:label="@string/title_activity_export_all_messages" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.more.InvitationActivity"
+            android:label="@string/title_activity_invitation" >
+        </activity>
+        <activity
+            android:name="com.chc.dochoo.contacts.NewGroupChatMemberActivity"
+            android:label="@string/title_activity_new_group_chat_member"
+            android:screenOrientation="portrait" >
+        </activity>
+    </application>
+
+</manifest>

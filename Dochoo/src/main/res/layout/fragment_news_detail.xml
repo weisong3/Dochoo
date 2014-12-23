@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/news_standard_margin" >
+
+        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+            android:id="@+id/news_detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="NEWS TITLE"
+            android:gravity="center" />
+
+        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+            android:id="@+id/news_detail_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_standard_margin"
+            android:text="@string/news_time" />
+        
+        <com.chc.found.views.ResizableImageView
+            android:id="@+id/news_detail_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/news_standard_margin" />
+
+        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+            android:id="@+id/news_detail_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/news_standard_margin"
+            android:text="NEWS CONTENT" />
+
+    </LinearLayout>
+
+</ScrollView>

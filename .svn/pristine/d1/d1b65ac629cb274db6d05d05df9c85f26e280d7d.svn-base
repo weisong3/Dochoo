@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.chc.views.TypefacedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_margin="50dp"
+    android:gravity="center"
+    app:typeface="opensans.ttf"
+    android:textAppearance="?android:attr/textAppearanceMedium" />

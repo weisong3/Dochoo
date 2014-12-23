@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- DO NOT TRANSLATE -->
+    <!-- Intent Action: -->
+    <string name="news_action">ACTION_FOUND_NEWS_RECEIVED</string>
+    <string name="im_action">ACTION_FOUND_IM_RECEIVED</string>
+    <string name="push_id_action">ACTION_PUSH_ID_RECEIVED</string>
+    <string name="broadcast_intent_extra_tag_news">broadcast_intent_extra_tag_news</string>
+    <string name="broadcast_intent_extra_tag_news_entity">broadcast_intent_extra_tag_news</string>
+    <string name="broadcast_intent_extra_tag_im">broadcast_intent_extra_tag_im</string>
+    <string name="broadcast_intent_extra_tag_im_entity">broadcast_intent_extra_tag_im_entity</string>
+    <string name="broadcast_intent_extra_tag_im_group">broadcast_intent_extra_tag_im_group</string>
+    <string name="broadcast_intent_extra_tag_group_noticetype">broadcast_intent_extra_tag_group_noticetype</string>
+    <string name="broadcast_intent_extra_tag_group_newtitle">broadcast_intent_extra_tag_group_newtitle</string>
+    <string name="broadcast_intent_extra_tag_push_id">clientid</string>
+
+    <string name="app_admin_iscenter">false</string>
+    <string name="unique_application_config_id">ffffffffffffffffffffffffffffffff</string>
+    <string name="app_config_root_path">/configs/</string>
+    <string name="title_mainactivity">@string/found_app_name</string>
+    <string name="slidingmenu_fade_degree">0.35</string>
+    <string name="title_section1">Title1</string>
+    <string name="title_section2">Title2</string>
+    <string name="title_section3">Title3</string>
+    <!-- DO NOT TRANSLATE -->
+
+    <string name="found_app_name">Dochoo</string>
+    <string name="loading">Loading</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_doctor_detail">Doctor Detail</string>
+    <string name="action_news_detail">News Detail</string>
+
+    <!-- EntityList -->
+    <string-array name="country_arrays">
+        <item>Enter PIN Number</item>
+        <item>Scan QR Code</item>
+    </string-array>
+
+    <string name="new_message">Unread message</string>
+    <string name="confirm_yes">Yes</string>
+    <string name="confirm_no">No</string>
+    <string name="ask_user_notification">Would you like to receive messages and news notifications from your care provider?</string>
+    <string name="drawer_open">Open the drawer</string>
+    <string name="drawer_close">Close the drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Settings -->
+    <string name="notification_enabled">Notifications are enabled. To disable notifications, please go to settings menu.</string>
+    <string name="notification_disabled">Notifications are disabled. To enable notifications, please go to settings menu.</string>
+    <string name="notification">Notification</string>
+
+    <!-- Tabs -->
+    <string name="tab_title_medical_center">Medical Organization</string>
+    <string name="tab_title_doctor_home">Healthcare Provider Info</string>
+    <string name="tab_title_patient">Patient Info</string>
+    <string name="tab_title_news">News &amp; Info</string>
+    <string name="tab_title_messages">Messages</string>
+
+    <!-- News && Instant message -->
+    <string name="on_user_signed_in">Logged in!</string>
+    <string name="on_user_signin_failed">Invalid Credentials. Please try again.</string>
+    <string name="you_have_news">Your provider has updated news feeds.</string>
+    <string name="message_invalid_image">Failed. Invalid image. Please try again</string>
+    <string name="instant_message_content_desc_image">[Image]</string>
+    <string name="instant_message_content_desc_file">[File]</string>
+    <string name="instant_message_content_desc_voice">[Voice Message]</string>
+    <string name="im_record_recording">Stop and send</string>
+    <string name="im_record_cancel">Release to cancel</string>
+    <string name="voice_message_press_to_play">Press to play message</string>
+    <string name="voice_message_press_to_stop">Press to stop</string>
+
+    <!-- Login and register -->
+    <string name="ask_for_login">Sign In</string>
+    <string name="error_msg_duplicate_username">The email has already been associated with an account.</string>
+    <string name="error_msg_wrong_username_or_password">The email/password combination is incorrect.</string>
+    <string name="error_msg_wrong_register_other">Registration failed. Please check your network connection and try again.</string>
+    <string name="new_user_register">New User?</string>
+    <string name="login_email">Username/Email:</string>
+    <string name="login_password">Password:</string>
+    <string name="network_wait">Connecting. Please wait</string>
+    <string name="login_invalid_input">Invalid email/password. Please verify and try again.</string>
+    <string name="sign_out_complete">You have successfully signed out.</string>
+    <string name="action_registeruser">New User</string>
+    <string name="register_success">Congratulations! You have successfully registered an account and have been automatically signed in.</string>
+    <string name="register_unmatched_pwd">The two passwords you entered do not match.</string>
+    <string name="register_all_fields_required">All fields are required.</string>
+    <string name="register_password_too_short">Your password is too short. Please use a minimum of 6 characters.</string>
+    <string name="register_invalid_email_address">Please enter a valid email address.</string>
+    <string name="forgot_password">To recover your password, please visit www.dochoo.com</string>
+    <string name="action_logout">Log Out</string>
+    <string name="logout_title">Confirm Log Out</string>
+    <string name="logout_message">Logging out will clear all user data and history on the device. You can export your data at www.dochoo.com</string>
+    <string name="logout_confirm">Log Out</string>
+    <string name="cancel">Go back</string>
+    <string name="register_detail_info">To refine your profile, please log onto www.dochoo.com</string>
+
+    <!-- Scan -->
+    <string name="action_capture">Scan QR code now</string>
+
+    <!-- Agreement -->
+
+
+    <!-- Contact list -->
+    <string name="contact_patient">Patients</string>
+    <string name="contact_pro">Healthcare Professionals</string>
+    <string name="contact_add_success">Successfully Added</string>
+    <string name="contact_add_failed">Could not locate contact, please try again.</string>
+    <string name="contact_added_by_others"> has added you as his contact.</string>
+    <string name="contact_added_by_anonym"> You have new contact.</string>
+
+    <!-- Misc -->
+    <string name="toast_doctormainactivity_pin_already_added">This PIN has already been added.</string>
+    <string name="toast_doctormainactivity_pin_no_exists">This PIN does not exist, please verify and try again.</string>
+    <string name="toast_doctormainactivity_blocked">You have been blocked by this user.</string>
+    <string name="toast_doctormainactivity_other">Cannot connect to server at this time. Please try again.</string>
+    <string name="button_doctormainactivity_enter_pin">Enter PIN</string>
+    <string name="button_doctormainactivity_scan">Scan QR code now</string>
+    <string name="title_dialog_doctormainactivity_add"></string>
+    <string name="title_dialog_doctormainactivity_input_pin">Enter PIN</string>
+    <string name="toast_entitylistactivity_pin_duplicate">This PIN has already been added.</string>
+    <string name="toast_entitylistactivity_pin_no_exists">This PIN does not exist, please verify and try again.</string>
+    <string name="toast_entitylistactivity_other">Cannot connect to server at this time. Please try again.</string>
+    <string name="toast_entitylistactivity_scan_failed">QR code scan failed, please try again.</string>
+    <string name="toast_entitylistactivity_add_new_success">Healthcare professional added successfully</string>
+    <string name="toast_entitylistactivity_upload_profile_icon_failed">Profile image upload failed</string>
+    <string name="toast_entitylistactivity_upload_profile_icon_success">Profile image upload complete</string>
+    <string name="button_dialog_single_healthcare_provider">Individual Professional</string>
+    <string name="button_dialog_medical_group">Healthcare Groups or organizations</string>
+    <string name="title_dialog_registeruseractivity_select_user_type">Select user type</string>
+    <string name="title_dialog_registeruseractivity_signin_patient">Sign in as a patient</string>
+    <string name="content_dialog_registeruseractivity_ask_patient_signin">Would you like to sign in or register for a patient account now?</string>
+    <string name="confirm_no_skip">No(Skip)</string>
+    <string name="textview_settings_signin_first">Please complete sign in first</string>
+    <string name="toast_error_google_service">Error with GOOGLE MAP service, please restart.</string>
+    <string name="marker_map_title_doctor">Healthcare Professional</string>
+    <string name="toast_error_download_failed">Download failed. Please try again.</string>
+    <string name="title_app_chooser_select_picture">Select image.</string>
+    <string name="toast_error_recording_failed">Recording failed. Please try again.</string>
+    <string name="time_am">AM</string>
+    <string name="time_pm">PM</string>
+    <string name="toast_error_damaged_voice">Damaged Voice File, please try again.</string>
+    <string name="msg_dialog_downloading">Downloading</string>
+    <string name="toast_error_birth_format">Birth-date format error</string>
+    <string name="toast_error_load_profile">Cannot load user profile</string>
+    <string name="toast_success_update_profile">Update user profile succeeded</string>
+    <string name="toast_failure_update_profile">Update user profile failed</string>
+    <string name="toast_success_upload_icon">Profile image upload complete; your profile icon has been saved.</string>
+    <string name="toast_failure_upload_icon">Profile image upload failed</string>
+    <string name="website">Website:</string>
+    <string name="accepted_insurance">Accepted Insurances:</string>
+    <string name="username">Username:</string>
+    <string name="your_username">Your Username</string>
+    <string name="signout">Sign Out And Wipe All Data</string>
+    <string name="doctor_name">Healthcare professional name</string>
+    <string name="center_name">Group or Organization name</string>
+    <string name="hours">Hours:</string>
+    <string name="pin">PIN:</string>
+    <string name="photo">Photos:</string>
+    <string name="about">About:</string>
+    <string name="about_info">about info</string>
+    <string name="address">Address:</string>
+    <string name="phone">Phone:</string>
+    <string name="new_msg">New Msg</string>
+    <string name="specialty">Specialty:</string>
+    <string name="offices">Office Locations:</string>
+    <string name="doctor_photo">Photo:</string>
+    <string name="welcome">WELCOME!</string>
+    <string name="click_signin">Click here to sign in or register a new account…</string>
+    <string name="add_new_pro">Add new Professional/Group</string>
+    <string name="resume">Resume:</string>
+    <string name="hold_talk">Hold to talk</string>
+    <string name="attach_img">Image</string>
+    <string name="send">Send</string>
+    <string name="record">Record</string>
+    <string name="Type_text">Type</string>
+    <string name="enter">Enter</string>
+    <string name="forgot_pwd">Forgot password?</string>
+    <string name="news_time">Time</string>
+    <string name="firstname">First Name:</string>
+    <string name="lastname">Last Name:</string>
+    <string name="gender">Gender:</string>
+    <string name="gender_male">M</string>
+    <string name="gender_female">F</string>
+    <string name="dob_format">Date of birth: (month/day/year)</string>
+    <string name="profile_email">Primary Email / Account Name:</string>
+    <string name="profile_email2">Secondary Email: (Optional)</string>
+    <string name="profile_phone">Phone: (Optional)</string>
+    <string name="profile_medical_condition">Medical Conditions/complaints: (Optional)</string>
+    <string name="profile_surgeries">Past Surgeries: (Optional)</string>
+    <string name="profile_medications">Medications: (Optional)</string>
+    <string name="profile_allergies">Allergies: (Optional)</string>
+    <string name="profile_insurances">Insurances: (Optional)</string>
+    <string name="profile_back">Back</string>
+    <string name="submit">Submit</string>
+    <string name="title_registration">Registration</string>
+    <string name="firstname_colon">First Name:</string>
+    <string name="lastname_colon">Last Name:</string>
+    <string name="centername_colon">Center Name:</string>
+    <string name="email_colon">Email:</string>
+    <string name="pwd_colon">Password:</string>
+    <string name="confirm_pwd_colon">Confirm Pwd:</string>
+    <string name="signin_as_patient_info">Sign in as a patient or family member. An account registration is optional, if not, message and account sync service will not be available.</string>
+    <string name="signin_as_doctor_info">Sign in as a Healthcare professional, an account registration is required.</string>
+    <string name="doctor_skill">Specialty:</string>
+
+    <!-- for DoctorHomepage -->
+    <string name="certification_id">Certification Number:</string>
+    <string name="notification_message_prefix">"You have "</string>
+    <string name="notification_message_infix">" new messages from "</string>
+    <string name="you_have_msgs">"You have new message(s)"</string>
+    <string name="you_have_msgs_from">"You have new message(s) from "</string>
+    <string name="btn_recording_cancel">Cancel recording</string>
+    <string name="toast_error_record_too_short">Recording length is too short</string>
+    <string name="compose_hint">Send a message</string>
+    <string name="status_im_send_failed">Not sent</string>
+    <string name="status_im_send_sent">Sent</string>
+    <string name="status_im_send_delivered">Delivered</string>
+    <string name="status_im_send_is_read">Read</string>
+    <string name="status_im_send_sending">Encrypting</string>
+    <string name="title_activity_conversation">Conversations</string>
+    <string name="action_example">Example action</string>
+    <string name="navi_title_conversation">Conversations</string>
+    <string name="navi_title_contact">Contact List</string>
+    <string name="navi_title_more">More</string>
+    <string name="navi_text_conversation_all">All Messages</string>
+    <string name="navi_text_conversation_single">Single</string>
+    <string name="navi_text_conversation_group">Group</string>
+    <string name="navi_text_conversation_starred">Starred</string>
+    <string name="navi_text_contact_collab">Professionals</string>
+    <string name="navi_text_contact_colleague">Colleagues</string>
+    <string name="navi_text_contact_patients">Patients</string>
+    <string name="navi_profile_edit">Edit Profile</string>
+    <string name="navi_text_more_logout">Log out</string>
+    <string name="navi_text_more_settings">Settings</string>
+    <string name="navi_text_more_about">About</string>
+    <string name="content_desc_profile_icon">Profile icon</string>
+    <string name="title_activity_contact">Contacts</string>
+    <string name="title_activity_about">About Us</string>
+    <string name="degree">Occupation:</string>
+    <string name="languages">Languages Spoken:</string>
+    <string name="personal_intro">Personal Introduction:</string>
+    <string name="office_hour">Office Hour:</string>
+    <string name="profile_edittext_hint">Edit</string>
+    <string name="action_save">SAVE</string>
+    <string name="profile_cancel_message">Please confirm leaving this page without saving. Any unsaved changes will be discarded.</string>
+    <string name="profile_cancel_negative_btn_text">Stay</string>
+    <string name="profile_cancel_positive_btn_text">Discard Changes</string>
+    <string name="activity_title_profile">Profile</string>
+    <string name="please_specify">Please specify:</string>
+    <string name="affiliation">Affiliations</string>
+    <string name="title_activity_general_agreement">Agreement</string>
+    <string name="checkbox_agree_disclaimer">I have read, understood, and agree to the "Terms of Service".</string>
+    <string name="must_agree">You must agree to our acknowledgement before continuing.</string>
+    <string name="title_activity_user_role_select">Account Creation</string>
+    <string name="title_activity_register_info">Account Creation</string>
+    <string name="role_provider">I am a Healthcare Prof.</string>
+    <string name="role_group">We are a Healthcare Group.</string>
+    <string name="role_patient">I am a Patient or Family</string>
+    <string name="register_group_name">Group Name:</string>
+    <string name="register_email_address">Email address:</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="dob">Date of birth:</string>
+    <string name="occupation">Occupation:</string>
+    <string name="center_introduction">Introduction</string>
+    <string name="register_message">Please provide the following information:\n(Your email will be used as account name)</string>
+    <string name="sign_up_now">Sign Up Now</string>
+    <string name="im_recording_title">Now Recording</string>
+    <string name="profile">Profile</string>
+    <string name="action_new_msg">New Message</string>
+    <string name="action_new_groupchat">New Group Chat</string>
+    <string name="dochoo_website_url">https://dochoo.com/about-us.jsp</string>
+    <string name="activity_title_mainactivity">Profile</string>
+    <string name="activity_title_patientviewactivity">Profile</string>
+    <string name="conversation_list_empty">"This conversation list is empty. To create a new conversation, press the "new message" button in the top right corner of the screen."</string>
+    <string name="not_member_yet">Not a member yet?</string>
+    <string name="btn_continue">Continue</string>
+    <string name="role_select_step_1">STEP 1</string>
+    <string name="role_select_choose">Choose one of the following options:</string>
+    <string name="register_step_2">STEP 2</string>
+    <string name="default_reauthentication_interval">604800000</string>
+    <string name="default_msg_delete_interval">2419200000</string>
+    <string name="title_activity_reauthenticate">Re-authentication Needed</string>
+    <string name="settings_message_life">Message Life</string>
+    <string name="settings_message_life_1">7 days</string>
+    <string name="settings_message_life_2">14 days</string>
+    <string name="settings_message_life_3">28 days</string>
+    <string name="settings_reauth_time">Re-authentication In</string>
+    <string name="settings_reauth_time_1">30 mins</string>
+    <string name="settings_reauth_time_2">1 hour</string>
+    <string name="settings_reauth_time_3">1 day</string>
+    <string name="settings_reauth_time_4">7 days</string>
+    <string name="reauth_tips">It has been some time since your last sign-on. Please provide your password again in order to verify your identity. You can change how often you are required to re-authenticate in the app settings.</string>
+    <string name="phone_number_chc">(323) 261-5866</string>
+    <string name="email_chc">info@chcgp.com</string>
+    <string name="about_mission">Mission</string>
+    <string name="about_mission_content">At Dochoo, our goal is focused on re-engineering the patient doctor engagement experience. We believe more communication and access leads to desired outcomes.</string>
+    <string name="about_contact">Contact</string>
+    <string name="about_address_chc">13181 Crossroads Pkwy. N., Suite 200\nCity of Industry, CA 91746</string>
+    <string name="about_about_us">About Us</string>
+    <string name="about_about_us_content">California Healthcom Group is a Los Angeles based startup focused on building disruptive healthcare platforms connecting healthcare professionals to patients globally.\n\nOur technologies enables patients to connect with care providers anywhere in the world through the use of low cost consumer and mobile devices.\n\nHealthcom provides the tools and platform to empower health consumers and expand clinical practices beyond geographic borders.</string>
+    <string name="delete_conversation_confirm">Would you like to delete this conversation and every message within?</string>
+    <string name="delete_yes">Delete</string>
+    <string name="delete_contact_confirm">Would you like to delete this contact?</string>
+    <string name="delete_contact_final_confirm">Are you sure you want to DELETE </string>
+    <string name="block_contact_confirm">Would you like to block this contact?</string>
+    <string name="block_contact_final_confirm">Are you sure you want to BLOCK </string>
+    <string name="navi_text_more_advanced">Advanced</string>
+    <string name="title_activity_advanced_features">Advanced Features</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="export_all_message">Export All Messages</string>
+    <string name="title_activity_export_all_messages">ExportAllMessagesActivity</string>
+    <string name="export_all_confirm_email">Please confirm your email address below:</string>
+    <string name="export_all_if_email_incorrect">If the above information is incorrect, please visit www.dochoo.com and edit in account management pages.</string>
+    <string name="export_all_allow_send">By pressing the export button below, you allow Dochoo to send all your unarchived messages to the email address specified above</string>
+    <string name="export_all_button_text">Export All</string>
+    <string name="private_conversation_export_msg">Please confirm exporting to the email address below:\n</string>
+    <string name="export_confirm">Confirm export</string>
+    <string name="export_failed">Export failed. Please try again.</string>
+    <string name="export_success">Successfully exported.</string>
+    <string name="broadcast_intent_extra_tag_im_new">broadcast_intent_extra_tag_im_new</string>
+    <string name="delete_message_confirm">Would you like to delete this message both locally and on server?</string>
+    <string name="delete_single_message_failed">Failed to delete message, please try again.</string>
+    <string name="delete_single_message_success">Successfully deleted.</string>
+    <string name="navi_text_invitation">Invite</string>
+    <string name="title_activity_invitation">Send Invitation</string>
+    <string name="dochoo_invitation_title">Invitation to Dochoo App</string>
+    <string name="dochoo_invitation_sms">I\'d like to invite you to chat securely over Dochoo Healthcare Messenger.\nMy PIN is %s. To download the app click here: https://www.dochoo.com/download/</string>
+    <string name="invitation_button_sms">Send via SMS message</string>
+    <string name="invitation_button_email">Send via Email</string>
+    <string name="invitation_button_other_app">Share via other apps</string>
+    <string name="activity_patient_view_name">Name:</string>
+    <string name="activity_patient_view_conditions">Conditions:</string>
+    <string name="activity_patient_view_medications">Medications:</string>
+    <string name="activity_patient_view_allergies">Allergies:</string>
+    <string name="activity_patient_view_insurances">Insurances:</string>
+
+    <!-- Authentication status -->
+    <string name="account_logged_in_on_other_device">Your account has been logged in on other device. Please re-login.</string>
+
+    <!-- Group Chat -->
+    <string name="title_activity_new_group_chat_member">Group Chat</string>
+    <string name="confirm_groupchat_member">OK(0)</string>
+    <string name="group_info_quit_group">Quit Group Chat</string>
+    <string name="group_info_export_history">Export Chat History</string>
+    <string name="group_info_groupname">Group Name: </string>
+    <string name="group_info_fragment_title">Group Information</string>
+    <string name="group_created_notice">create a group chat of</string>
+    <string name="group_self_add_member_notice">You </string>
+    <string name="group_add_member_notice_pre">add </string>
+    <string name="group_add_member_notice_suf"> to group chat</string>
+    <string name="group_remove_member_notice"> is removed from group chat </string>
+    <string name="group_change_title_notice"> changes group title to </string>
+    <string name="group_quit_notice">You quit the group chat</string>
+
+    <string name="quit_group_alert_title">Quit from group chat</string>
+    <string name="quit_group_alert_content">You will never receive messages from this group chat.Are you sure?</string>
+    <string name="export_group_history_title">Export group chat history</string>
+
+    <string name="navi_text_my_qr_code">My QR Code</string>
+    <string name="group_info_not_contact_title">is not your contact yet</string>
+    <string name="group_info_not_contact_question">Would you like to add this group member as your contact?</string>
+
+    <string name="group_task_loadingMessage_add_group_member">Adding Group Member...</string>
+    <string name="group_task_loadingMessage_create_group">Creating Group Chat...</string>
+    <string name="group_task_loadingMessage_remove_group_member">Removing Group Member...</string>
+    <string name="group_task_loadingMessage_change_group_topic">Changing Group Topic...</string>
+    <string name="group_task_loadingMessage_quit_group">Quiting Group...</string>
+    <string name="group_task_loadingMessage_export_group_history">Request Exporting Chat History...</string>
+    <string name="group_task_loadingMessage_add_member_to_contact">Adding Group Member as Your Contact...</string>
+
+    <string name="group_info_add_contact_patient">Patient:</string>
+    <string name="group_info_add_contact_doctor">Physician:</string>
+    <string name="group_info_add_contact_center">Medical Center:</string>
+
+    <string name="new_version_app_available">There is a new version available. Please upgrade your app in app store.</string>
+    <string name="camera_button">Camera</string>
+    <string name="gallery_button">Gallery</string>
+
+    <string name="private_conversation_title">Export</string>
+    <string name="group_info_change_topic_title">Change Group Chat Name</string>
+    <string name="ok_button">OK</string>
+    <string name="cancel_button">Cancel</string>
+
+    <string name="block_yes">Block</string>
+    <string name="create_group_cancelled">Cancel creating group chat</string>
+    <string name="create_group_success">Successfully created group chat</string>
+
+    <string name="register_push_service_fail">Failed to register push notification, attempt to retry</string>
+    <string name="offline">Disconnected to internet</string>
+    <string name="initializing_system">Initializing system</string>
+</resources>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/entity_list_item_wrapper"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_list_activity_item_height"
+    android:background="@drawable/other1"
+    android:orientation="vertical"
+    android:padding="@dimen/item_list_activity_listview_item_padding" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical" >
+
+        <com.chc.views.SquareRelativeLayout
+            android:id="@+id/entity_list_item_doctor_image_wrapper"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@color/dark_grey"
+            android:padding="1dp" >
+
+            <ImageView
+                android:id="@+id/entity_list_item_doctor_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:background="@color/white"
+                android:src="@drawable/doc_default" />
+        </com.chc.views.SquareRelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:padding="@dimen/activity_list_padding" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                    android:id="@+id/entity_list_item_doctor_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="name"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/LinearLayout1"
+                android:orientation="horizontal" >
+
+                <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                    android:id="@+id/entity_list_item_doctorl_hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="hours"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/LinearLayout2"
+                android:orientation="horizontal" >
+
+                <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                    android:id="@+id/entity_list_item_doctor_addressOrSpecialty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="addressOrSpecialty"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                android:id="@+id/entity_list_item_doctor_new_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/LinearLayout3"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/LinearLayout3"
+                android:textColor="#ff0000"
+                android:text="@string/new_message"
+                android:visibility="invisible"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

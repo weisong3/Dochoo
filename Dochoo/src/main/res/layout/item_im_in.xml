@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/instant_msg_container"
+    android:background="@color/instant_msg_bg_orange"
+    >
+
+    <LinearLayout
+        android:paddingLeft="@dimen/item_instant_msg_padding_horizontal"
+        android:paddingTop="@dimen/item_instant_msg_padding_top"
+        android:paddingRight="@dimen/item_instant_msg_padding_horizontal"
+        android:paddingBottom="@dimen/item_instant_msg_padding_bottom"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <FrameLayout
+            android:layout_marginTop="@dimen/instant_msg_icon_margin_top"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent">
+
+            <com.makeramen.RoundedImageView
+                android:layout_width="@dimen/icon_instant_msg_size"
+                android:layout_height="@dimen/icon_instant_msg_size"
+                android:id="@+id/icon_im_user"
+                android:src="@drawable/default_head"
+                android:scaleType="centerCrop"
+                app:corner_radius="@dimen/icon_instant_msg_size"
+                app:border_width="@dimen/rounded_img_border_width"
+                app:border_color="@color/default_dochoo_orange"
+                app:round_background="true" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/item_instant_msg_margin_btw_icon_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical|left">
+
+                        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                            android:id="@+id/instant_msg_from"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxEms="12"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:textSize="@dimen/default_text_size_small"
+                            android:textColor="@color/dark_grey" />
+
+                        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                            android:id="@+id/instant_msg_out_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="This is msg time"
+                            android:layout_marginLeft="8dp"
+                            android:textSize="@dimen/default_text_size_small"
+                            android:textColor="@color/dark_grey" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/item_instant_msg_margin_btw_time_content" >
+
+                    <FrameLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                            android:id="@+id/instant_msg_content"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/instant_msg_text_content_margin_end"
+                            android:textSize="@dimen/default_text_size_medium"
+                            android:textColor="@color/default_dochoo_orange"/>
+
+                        <FrameLayout
+                            android:id="@+id/instant_msg_voice_wrapper"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent">
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="fill_parent"
+                                android:gravity="center_vertical"
+                                android:layout_height="fill_parent">
+
+                                <ImageButton
+                                    android:id="@+id/instant_msg_voice_img_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:src="@drawable/btn_voice_play_in"
+                                    android:paddingTop="@dimen/instant_msg_play_btn_padding"
+                                    android:paddingLeft="@dimen/instant_msg_play_btn_padding"
+                                    android:paddingBottom="@dimen/instant_msg_play_btn_padding"
+                                    android:background="@drawable/transparent_color"
+                                    android:visibility="visible" />
+
+                                <SeekBar
+                                    style="@style/instant_msg_voice_seekbar_inbound"
+                                    android:layout_width="@dimen/instant_msg_seekbar_width"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/instant_msg_voice_seekBar"
+                                    android:layout_marginRight="2dp"
+                                    />
+
+
+                                <com.chc.views.TypefacedTextView app:typeface="opensans.ttf"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0:59"
+                                    android:ems="2"
+                                    android:id="@+id/instant_msg_voice_time"
+                                    android:layout_gravity="right|center_vertical"
+                                    android:textSize="@dimen/default_text_size_small"
+                                    android:textColor="@color/dochoo_default_text_color"
+                                    />
+
+                                <ImageView
+                                    android:layout_marginLeft="8dp"
+                                    android:id="@+id/im_unread"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/new_voice_dot"/>
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                        <ImageView
+                            android:id="@+id/instant_msg_image"
+                            android:layout_width="@dimen/instant_msg_img_max_width"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:visibility="gone"
+                            android:src="@drawable/doc_default"/>
+                    </FrameLayout>
+
+
+                </FrameLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/im_selected"
+        android:background="@null"/>
+</FrameLayout>

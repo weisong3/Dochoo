@@ -1,0 +1,219 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.chc.dochoo.userlogin.PhysicianInfoFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="fill_parent">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:id="@+id/wrapper_role_2">
+
+
+            <com.makeramen.RoundedImageView
+                android:layout_gravity="center"
+                android:layout_width="@dimen/doctor_collabrator_icon_radius"
+                android:layout_height="@dimen/doctor_collabrator_icon_radius"
+                android:src="@drawable/doc_default"
+                android:scaleType="centerCrop"
+                app:corner_radius="@dimen/doctor_collabrator_icon_radius"
+                app:border_width="@dimen/rounded_img_border_width"
+                app:border_color="@color/default_dochoo_orange"
+                app:round_background="true"
+                android:padding="4dp" />
+
+            <com.chc.views.TypefacedTextView
+                app:typeface="opensans.ttf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/role_provider"
+                android:textSize="@dimen/default_text_size_medium_large"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:textColor="@color/default_dochoo_orange" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/check2"
+                android:src="@drawable/button_check_pressed" />
+
+
+        </LinearLayout>
+
+        <android.support.v7.widget.GridLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:columnCount="10"
+            app:alignmentMode="alignBounds"
+            app:useDefaultMargins="true"
+            app:columnOrderPreserved="false">
+
+            <com.chc.views.TypefacedTextView
+                android:ems="6"
+                app:typeface="opensans.ttf"
+
+                android:text="@string/firstname_colon"
+                app:layout_columnSpan="3" />
+
+            <EditText
+                app:layout_gravity="right"
+                android:ems="10"
+                android:id="@+id/firstname"
+                app:layout_columnSpan="7"
+                android:inputType="text" />
+
+            <com.chc.views.TypefacedTextView
+                android:ems="6"
+                app:typeface="opensans.ttf"
+                android:text="@string/lastname_colon"
+                app:layout_columnSpan="3" />
+
+            <EditText
+                app:layout_gravity="right"
+                android:ems="10"
+                android:id="@+id/lastname"
+                app:layout_columnSpan="7"
+                android:inputType="text" />
+
+            <com.chc.views.TypefacedTextView
+                android:ems="6"
+                app:typeface="opensans.ttf"
+                android:text="@string/gender"
+                app:layout_gravity="center_vertical"
+                app:layout_columnSpan="3" />
+
+            <RadioGroup
+                android:orientation="horizontal"
+                app:layout_columnSpan="7"
+                android:id="@+id/gender_radio_group"
+                app:layout_gravity="center">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/gender_female"
+                    android:textColor="@color/register_text_color"
+                    android:textSize="@dimen/default_text_size_medium"
+                    android:text="@string/female" />
+
+                <RadioButton
+                    android:textColor="@color/register_text_color"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="@dimen/default_text_size_medium"
+                    android:id="@+id/gender_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/male" />
+
+            </RadioGroup>
+
+            <com.chc.views.TypefacedTextView
+                android:ems="6"
+                app:typeface="opensans.ttf"
+
+                android:text="@string/occupation"
+                app:layout_gravity="center_vertical"
+                app:layout_columnSpan="3" />
+
+            <Spinner
+                android:id="@+id/register_spinner_degree"
+                app:layout_columnSpan="7"
+                app:layout_gravity="fill_horizontal|right"
+                android:layout_width="0dp" />
+
+            <com.chc.views.TypefacedTextView
+                app:typeface="opensans.ttf"
+                android:id="@+id/other_specify_left"
+                android:visibility="gone"
+                android:text="@string/please_specify"
+                app:layout_columnSpan="3" />
+
+            <EditText
+                android:visibility="gone"
+                app:layout_gravity="right"
+                android:ems="10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/other_specify_right"
+                app:layout_columnSpan="7" />
+
+            <com.chc.views.TypefacedTextView
+                app:typeface="opensans.ttf"
+                android:ems="6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_email_address"
+                app:layout_columnSpan="3" />
+
+            <EditText
+                app:layout_gravity="right"
+                android:ems="10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/email"
+                app:layout_columnSpan="7"
+                android:inputType="textEmailAddress" />
+
+
+            <com.chc.views.TypefacedTextView
+                app:typeface="opensans.ttf"
+
+                android:ems="6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_password"
+                app:layout_columnSpan="3" />
+
+            <EditText
+                app:layout_gravity="right"
+                android:ems="10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/password"
+                app:layout_columnSpan="7"
+                android:inputType="textPassword" />
+
+
+            <com.chc.views.TypefacedTextView
+                android:ems="6"
+                app:typeface="opensans.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirm_pwd_colon"
+                app:layout_columnSpan="3" />
+
+            <EditText
+                app:layout_gravity="right"
+                android:ems="10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/confirm_password"
+                android:inputType="textPassword"
+                app:layout_columnSpan="7" />
+        </android.support.v7.widget.GridLayout>
+
+
+        <Button
+            android:layout_width="250dp"
+            android:background="@drawable/button_bg_selector"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            android:id="@+id/buttonSubmit"
+            app:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+
+</FrameLayout>
